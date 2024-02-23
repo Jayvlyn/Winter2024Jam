@@ -6,13 +6,19 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public NearbySlashable ns;
+
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+    [SerializeField] private float thresholdDemand = 1.0f;
+    [SerializeField] private float speedThreshold = 12.0f;
+    [SerializeField] private float speed = 8.0f;
+    [SerializeField] private float jumpPower = 10.0f;
+
     private float horizontal;
-    private float speed = 8.0f;
-    private float jumpingPower = 16.0f;
     private bool isFacingRight = true;
+
 
     private void Start()
     {
@@ -29,6 +35,11 @@ public class PlayerController : MonoBehaviour
         if((!isFacingRight && horizontal > 0f) || (isFacingRight && horizontal < 0f))
         {
             FlipX();
+        }
+
+        if(rb.velocity.magnitude > thresholdDemand)
+        {
+
         }
     }
 
@@ -59,7 +70,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("onjump");
         if(inputValue.isPressed && IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
         if(!inputValue.isPressed && rb.velocity.y > 0)
@@ -70,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnSlash(InputValue inputValue)
     {
-
+        Slashable slashable = ns.GetClosestSlashable();
     }
 
     private void OnThrow(InputValue inputValue)
