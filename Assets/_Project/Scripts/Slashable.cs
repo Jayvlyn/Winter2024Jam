@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class Slashable : MonoBehaviour
 {
     private Slasher connectedSlasher;
+    [SerializeField] int health;
     [SerializeField] private UnityEvent slashThroughEvent;
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -26,8 +27,16 @@ public class Slashable : MonoBehaviour
         }
     }
 
-    public void OnSlashThrough()
+    public void OnSlashThrough(int damage)
     {
+        health -= damage;
         slashThroughEvent?.Invoke();
+
+        if (health <= 0) Death();
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }
