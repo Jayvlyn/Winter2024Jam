@@ -15018,6 +15018,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 474109553154729411, guid: 007ad10cd6786d14994f4c9dcff88f69, type: 3}
+      propertyPath: lerpFollow
+      value: 0.508
+      objectReference: {fileID: 0}
+    - target: {fileID: 474109553154729411, guid: 007ad10cd6786d14994f4c9dcff88f69, type: 3}
+      propertyPath: forwardSlashDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7286107659416866905, guid: 007ad10cd6786d14994f4c9dcff88f69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.86
@@ -16181,6 +16189,10 @@ PrefabInstance:
     - target: {fileID: 6031198325566053122, guid: e3c0ace9411cc444b8f57eecf44de226, type: 3}
       propertyPath: m_Name
       value: BasicEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964965693310771326, guid: e3c0ace9411cc444b8f57eecf44de226, type: 3}
+      propertyPath: canDie
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
