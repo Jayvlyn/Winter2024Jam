@@ -85,6 +85,7 @@ public class HoveringSword : SwordStateBase
 
     public override void UpdateState(Sword sword)
     {
+        //Debug.Log("Hovering");
         sword.FollowForce = Vector2.Distance(sword.transform.position, sword.PlayerTransform.position) * sword.FollowForceMultiplier;
         sword.MoveTowards(sword.PlayerTransform, sword.FollowForce, false);
     }
