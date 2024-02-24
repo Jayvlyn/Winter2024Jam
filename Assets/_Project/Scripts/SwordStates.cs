@@ -21,7 +21,11 @@ public class IdleSword : SwordStateBase
 
     public override void UpdateState(Sword sword)
     {
-        sword.MoveTowards(sword.PlayerTransform);
+        sword.MoveTowards(sword.PlayerTransform, sword.IdleForce);
+        if (Vector2.Distance(sword.transform.position, sword.PlayerTransform.position) < sword.distanceTolerance)
+        {
+            sword.ChangeState(sword.hovering);
+        }
     }
 }
 public class StationarySword : SwordStateBase
@@ -55,12 +59,11 @@ public class ThrowingSword : SwordStateBase
 
     public override void UpdateState(Sword sword)
     {
-        sword.ElapsedThrowTime += Time.deltaTime * sword.ThrowSpeedUpPercent;
         if (sword.objectStabbedInto != null)
         {
             sword.ChangeState(sword.stationary);
         }
-        sword.MoveTowards(sword.FollowTransform);
+        sword.MoveTowards(sword.FollowTransform, sword.ThrowForce);
     }
 }
 public class SlashingSword : SwordStateBase
@@ -68,4 +71,15 @@ public class SlashingSword : SwordStateBase
     public override void OnEnterState(Sword sword) {}
     public override void OnExitState(Sword sword) {}
     public override void UpdateState(Sword sword) {}
+}
+
+public class HoveringSword : SwordStateBase
+{
+    public override void OnEnterState(Sword sword) {}
+    public override void OnExitState(Sword sword) {}
+
+    public override void UpdateState(Sword sword)
+    {
+        sword.MoveTowards(sword.PlayerTransform, sword.FollowForce, false);
+    }
 }
