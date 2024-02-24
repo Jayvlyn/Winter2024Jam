@@ -141,7 +141,7 @@ public class PlayerController : Singleton<PlayerController>
 
         if (Input.GetKey(KeyCode.L))
         {
-            if (!isHoldingSword && timeFromThrow > 0.5f) //min pull back time
+            if (!isHoldingSword && timeFromThrow > 0.5f && swordController.sword.currentState != swordController.sword.hovering) //min pull back time
             {
                 swordController.ReelIn();
             }

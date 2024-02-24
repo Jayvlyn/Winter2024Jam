@@ -31,7 +31,7 @@ public class Sword : MonoBehaviour
     }
     private void Start()
     {
-        ChangeState(reel);
+        ChangeState(hovering);
     }
 
     private void Update()
@@ -44,7 +44,7 @@ public class Sword : MonoBehaviour
         currentState.UpdateState(this);
     }
 
-    private SwordStateBase currentState;
+    public SwordStateBase currentState;
     public void ChangeState(SwordStateBase state)
     {
         currentState?.OnExitState(this);
