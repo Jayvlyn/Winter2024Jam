@@ -20,19 +20,19 @@ public class ClockTimeTable : Singleton<ClockTimeTable>
     [SerializeField] public float totalTime;
 
     [SerializeField] private float fadeInSpeed;
-    private float elapsedTime;
+    public float elapsedTime;
     private void Update()
     {
-        elapsedTime += Time.deltaTime * fadeInSpeed;
+        elapsedTime += Time.deltaTime;
         clockImage.color = new Color(clockImage.color.r, clockImage.color.g, clockImage.color.b,
-            elapsedTime * extraClockFade / totalTime);
+            elapsedTime * extraClockFade * fadeInSpeed / totalTime);
         
         second.color = new Color(second.color.r, second.color.g, second.color.b,
-            elapsedTime / totalTime);
+            elapsedTime * fadeInSpeed / totalTime);
         minute.color = new Color(minute.color.r, minute.color.g, minute.color.b,
-            elapsedTime / totalTime);
+            elapsedTime * fadeInSpeed / totalTime);
         hour.color = new Color(hour.color.r, hour.color.g, hour.color.b,
-            elapsedTime / totalTime);
+            elapsedTime * fadeInSpeed / totalTime);
 
         if (elapsedTime >= totalTime)
         {

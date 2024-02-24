@@ -585,11 +585,12 @@ MonoBehaviour:
   second: {fileID: 117480017}
   minute: {fileID: 358395684}
   hour: {fileID: 260404424}
-  bonusRotateSpeed: 4
+  bonusRotateSpeed: 1.04
   sceneChanger: {fileID: 1300577834}
   extraClockFade: 4
   totalTime: 12
   fadeInSpeed: 4.12
+  elapsedTime: 0
 --- !u!4 &1300577833
 Transform:
   m_ObjectHideFlags: 0
@@ -628,7 +629,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: af7a2cf2490805a4bbd28c372fd9ed5f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
