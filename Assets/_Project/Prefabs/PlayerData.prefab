@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2353386070582251226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7498963985523672368}
+  - component: {fileID: 1988413088743870492}
+  m_Layer: 0
+  m_Name: SwordHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7498963985523672368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353386070582251226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.39, y: 0.76, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7010372736609984587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988413088743870492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353386070582251226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac08776f73816404f9a59bd8ff2a2648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 7010372736609984587}
+  movement: 1
+  radiusOrEnd: {x: 0.64, y: 1.46}
+  centerOrStart: {x: -0.68, y: 1.48}
+  speed: 140
+  reverse: 0
 --- !u!1 &5038602880137707305
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +156,7 @@ MonoBehaviour:
   ThrowForce: 500
   FollowForce: 400
   distanceTolerance: 0.1
-  PlayerTransform: {fileID: 7010372736609984587}
+  PlayerTransform: {fileID: 7498963985523672368}
   FollowTransform: {fileID: 1701426720975399227}
   ElapsedThrowTime: 0
   MovingSpeedUpPercent: 100
@@ -392,7 +442,10 @@ PrefabInstance:
       objectReference: {fileID: 1701426720975399227}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2113641642622345006, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7498963985523672368}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
 --- !u!4 &7010372736609984587 stripped
