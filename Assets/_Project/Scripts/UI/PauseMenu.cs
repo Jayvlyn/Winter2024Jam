@@ -38,11 +38,19 @@ public class PauseMenu : MonoBehaviour
         paused = true;
     }
 
+
     #region BUTTON EVENTS
 
     public void OnResume()
     {
         Resume();
+    }
+
+    public void OnRestart()
+    {
+        Time.timeScale = 1f;
+        paused = false;
+        SceneManager.LoadScene("Game");
     }
 
     public void OnSettings()
