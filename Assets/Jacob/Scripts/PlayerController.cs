@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     public NearbySlashable ns;
 
     public Transform groundCheck;
@@ -17,10 +17,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedThreshold = 12.0f;
     [SerializeField] private float moveSpeed = 8.0f;
     [SerializeField] private float jumpPower = 10.0f;
-    [SerializeField] private float slashPower = 10.0f;
-    [SerializeField] private float slashLength = 1.2f;
-    private bool isSlashing;
+    [SerializeField] private float baseSlashPower = 10.0f;
+    private float slashPower = 10.0f;
+    [SerializeField] private float baseSlashLength = 1.2f;
+    private float slashLength = 1.2f;
+    [SerializeField, Range(0.1f,0.99f)] private float verticalSlashDamping = .5f;
+    [SerializeField, Range(0.1f, 0.99f)] private float horizontalSlashDamping = .5f;
 
+    private bool isJumping;
+    [SerializeField] private float jumpControlTime = 1f;
+    private float jumpControlTimer;
+    private bool isSlashing;
     private bool isFacingRight = true;
     private Vector2 moveInput = Vector2.zero;
 
@@ -31,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        slashPower = baseSlashPower;
+        slashLength = baseSlashLength;
         rb = GetComponent<Rigidbody2D>();
         ns = GetComponent<NearbySlashable>();
     }
@@ -45,11 +54,28 @@ public class PlayerController : MonoBehaviour
         accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? 2.8f : 3f;
         movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 1.21f) * Mathf.Sign(speedDifference);
         rb.AddForce(movement * Vector2.right);
+
+        if (moveInput.y < 0)
+        {
+            rb.AddForce(2 * moveSpeed * -Vector2.up, ForceMode2D.Force);
+        }
+
+        if (isJumping)
+        {
+            if(jumpControlTimer > 0f)
+            {
+                rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Force);
+                jumpControlTimer -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
     }
 
     private void Update()
     {
-
         if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
             FlipX();
@@ -78,7 +104,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue inputValue)
     {
-        Debug.Log("onmove");
         moveInput = inputValue.Get<Vector2>();
     }
 
@@ -86,20 +111,23 @@ public class PlayerController : MonoBehaviour
     {
         if (inputValue.isPressed && IsGrounded())
         {
-            rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
+            isJumping = true;
+            jumpControlTimer = jumpControlTime;
+            rb.AddForce(new Vector2(0, jumpPower * 0.5f), ForceMode2D.Impulse);
         }
 
-        if (!inputValue.isPressed && rb.velocity.y > 0)
+        if (!inputValue.isPressed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            isJumping = false;
         }
     }
 
     private void OnSlash(InputValue inputValue)
     {
-
-        if (ns.GetClosestSlashable() != null)
+        if (ns.GetClosestSlashable() != null && !isSlashing)
         {
+            rb.velocity = Vector2.zero;
+
             Slashable slashable = ns.GetClosestSlashable();
 
             slashable.OnSlashThrough(1);
@@ -109,9 +137,22 @@ public class PlayerController : MonoBehaviour
 
             Vector3 slashDir = slashable.transform.position - transform.position;
             slashDir.Normalize();
-            rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
 
-            StartCoroutine(FinishSlasher(slashDir));
+            float distance = Vector3.Distance(transform.position, slashable.transform.position);
+
+            slashPower = baseSlashPower * distance;
+            if (slashPower < baseSlashPower) slashPower = baseSlashPower;
+
+            rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
+            //rb.velocity = slashDir * slashPower;
+
+            slashLength = 1.7f * distance / rb.velocity.magnitude;
+
+            Debug.Log(slashLength);
+
+            //if (slashLength < baseSlashLength) slashLength = baseSlashLength;
+
+            StartCoroutine(FinishSlash(slashDir));
         }
     }
 
@@ -121,7 +162,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    private IEnumerator FinishSlasher(Vector3 slashDir)
+    private IEnumerator FinishSlash(Vector3 slashDir)
     {
         yield return new WaitForSeconds(slashLength);
 
@@ -130,7 +171,7 @@ public class PlayerController : MonoBehaviour
 
         if (slashDir.y > 0)
         {
-            rb.AddForce(-slashDir * (slashPower * .5f), ForceMode2D.Impulse);
+            rb.AddForce(new Vector3(-slashDir.x * (slashPower * horizontalSlashDamping), -slashDir.y * (slashPower * verticalSlashDamping)), ForceMode2D.Impulse);
         }
         else
         {
