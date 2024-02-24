@@ -11,11 +11,15 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+    [SerializeField] private float gravity = 3.5f;
+
     [SerializeField] private float thresholdDemand = 0.98f;
     [SerializeField] private float speedThreshold = 12.0f;
     [SerializeField] private float moveSpeed = 8.0f;
     [SerializeField] private float jumpPower = 10.0f;
     [SerializeField] private float slashPower = 10.0f;
+    [SerializeField] private float slashLength = 1.2f;
+    private bool isSlashing;
 
     private bool isFacingRight = true;
     private Vector2 moveInput = Vector2.zero;
@@ -33,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isSlashing) return;
+
         targetSpeed = moveInput.x * moveSpeed;
         //gets the difference between current velocity and wanted velocity
         speedDifference = targetSpeed - rb.velocity.x;
@@ -43,12 +49,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
+        if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
             FlipX();
         }
 
-        if(rb.velocity.magnitude > speedThreshold)
+        if (rb.velocity.magnitude > speedThreshold)
         {
             rb.velocity *= thresholdDemand;
         }
@@ -74,15 +80,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("onmove");
         moveInput = inputValue.Get<Vector2>();
     }
-    
+
     private void OnJump(InputValue inputValue)
     {
-        if(inputValue.isPressed && IsGrounded())
+        if (inputValue.isPressed && IsGrounded())
         {
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
         }
 
-        if(!inputValue.isPressed && rb.velocity.y > 0)
+        if (!inputValue.isPressed && rb.velocity.y > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
@@ -90,11 +96,21 @@ public class PlayerController : MonoBehaviour
 
     private void OnSlash(InputValue inputValue)
     {
-        Slashable slashable = ns.GetClosestSlashable();
 
-        Vector3 slashDir = slashable.transform.position - transform.position ;
-        slashDir.Normalize();
-        rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
+        if (ns.GetClosestSlashable() != null)
+        {
+
+
+            Slashable slashable = ns.GetClosestSlashable();
+            isSlashing = true;
+            rb.gravityScale = 0;
+
+            Vector3 slashDir = slashable.transform.position - transform.position;
+            slashDir.Normalize();
+            rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
+
+            StartCoroutine(FinishSlasher(slashDir));
+        }
     }
 
     private void OnThrow(InputValue inputValue)
@@ -102,4 +118,21 @@ public class PlayerController : MonoBehaviour
 
     }
     #endregion
+
+    private IEnumerator FinishSlasher(Vector3 slashDir)
+    {
+        yield return new WaitForSeconds(slashLength);
+
+        isSlashing = false;
+        rb.gravityScale = gravity;
+
+        if (slashDir.y > 0)
+        {
+            rb.AddForce(-slashDir * (slashPower * .5f), ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(new Vector3(-slashDir.x, 0, 0) * (slashPower * .5f), ForceMode2D.Impulse);
+        }
+    }
 }
