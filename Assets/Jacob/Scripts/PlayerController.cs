@@ -198,6 +198,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             rb.velocity = Vector2.zero;
 
+
             Slashable slashable = ns.GetClosestSlashable();
 
             slashable.OnSlashThrough(1);
@@ -207,6 +208,7 @@ public class PlayerController : Singleton<PlayerController>
 
             Vector3 slashDir = slashable.transform.position - transform.position;
             slashDir.Normalize();
+            
 
             AudioManager.Instance.PlayOneShotOnSlashDir(slashClip, slashDir.y);
 
@@ -221,6 +223,7 @@ public class PlayerController : Singleton<PlayerController>
 
             if (slashLength < baseSlashLength) slashLength = baseSlashLength;
 
+            swordController.Slash(transform, slashDir, slashLength * 0.25f);
             StartCoroutine(FinishSlash(slashDir));
         }
     }
