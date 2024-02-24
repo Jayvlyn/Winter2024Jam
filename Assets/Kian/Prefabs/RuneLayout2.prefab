@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6220764791591803435}
   - component: {fileID: 6182641891390418970}
   m_Layer: 0
-  m_Name: RuneLayout1
+  m_Name: RuneLayout2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8451174086802459344, guid: 5d1e9bc09f095d74fad8fd617a008810, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.75
+      value: 7.06
       objectReference: {fileID: 0}
     - target: {fileID: 8451174086802459344, guid: 5d1e9bc09f095d74fad8fd617a008810, type: 3}
       propertyPath: m_LocalPosition.y
@@ -229,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8451174086802459344, guid: 5d1e9bc09f095d74fad8fd617a008810, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.12
       objectReference: {fileID: 0}
     - target: {fileID: 8451174086802459344, guid: 5d1e9bc09f095d74fad8fd617a008810, type: 3}
       propertyPath: m_LocalPosition.y
@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8451174086802459344, guid: 5d1e9bc09f095d74fad8fd617a008810, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.02
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 8451174086802459344, guid: 5d1e9bc09f095d74fad8fd617a008810, type: 3}
       propertyPath: m_LocalPosition.y
