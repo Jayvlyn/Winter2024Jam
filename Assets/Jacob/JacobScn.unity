@@ -805,26 +805,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1839286288254620351, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
-      propertyPath: jumpPower
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839286288254620351, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
-      propertyPath: slashLength
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839286288254620351, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
-      propertyPath: jumpControlTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839286288254620351, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
-      propertyPath: verticalSlashDamping
-      value: 0.913
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839286288254620351, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
-      propertyPath: horizontalSlashDamping
-      value: 0.81
-      objectReference: {fileID: 0}
     - target: {fileID: 2113641642622345006, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.93
@@ -864,10 +844,6 @@ PrefabInstance:
     - target: {fileID: 2113641642622345006, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5194869974375074503, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
-      propertyPath: m_GravityScale
-      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8687300768126396772, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
       propertyPath: m_Name

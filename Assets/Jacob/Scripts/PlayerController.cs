@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public NearbySlashable ns;
+    private NearbySlashable ns;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
+
+    [SerializeField] private float mag = 0;
 
     [SerializeField] private float gravity = 3.5f;
 
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         slashLength = baseSlashLength;
         rb = GetComponent<Rigidbody2D>();
         ns = GetComponent<NearbySlashable>();
+        rb.gravityScale = gravity;
     }
 
     private void FixedUpdate()
@@ -76,12 +79,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        mag = rb.velocity.magnitude;
+
         if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
             FlipX();
         }
 
-        if (rb.velocity.magnitude > speedThreshold)
+        if (rb.velocity.magnitude > speedThreshold && !isSlashing && !isJumping)
         {
             rb.velocity *= thresholdDemand;
         }

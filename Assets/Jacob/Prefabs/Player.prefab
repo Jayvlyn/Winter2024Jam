@@ -81,7 +81,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb2098a990b96b4c872362b8c20d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
   ns: {fileID: 0}
   groundCheck: {fileID: 1258761605078518878}
   groundLayer:
@@ -91,9 +90,12 @@ MonoBehaviour:
   thresholdDemand: 1
   speedThreshold: 12
   moveSpeed: 8
-  jumpPower: 10
-  slashPower: 10
-  slashLength: 1.2
+  jumpPower: 30
+  baseSlashPower: 10
+  baseSlashLength: 1
+  verticalSlashDamping: 0.9
+  horizontalSlashDamping: 0.8
+  jumpControlTime: 0.2
 --- !u!114 &8000620562320514018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,8 +262,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 3.5
+  m_Material: {fileID: 6200000, guid: f28b7825332cf3646baf25f5d3f11db2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
