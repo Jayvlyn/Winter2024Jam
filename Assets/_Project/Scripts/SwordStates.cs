@@ -3,37 +3,69 @@ using System.Collections.Generic;
 using Guymon.DesignPatterns;
 using UnityEngine;
 
-public class IdleSword : BaseState2D<Sword.SwordState>
+public class SwordStateBase
 {
-    private Sword sword = null;
-    private Sword getSword(StateMessenger2D<Sword.SwordState> messenger)
-    {
-        //if (sword == null) return sword;
-        Sword sword = messenger as Sword;
-        return sword;
-    }
-    public IdleSword(Sword.SwordState key) : base(key)
-    {
-    }
-
-    public override void UpdateState(StateMessenger2D<Sword.SwordState> messenger)
-    {
-        base.UpdateState(messenger);
-        
-        
-    }
+    
+    public virtual void OnEnterState(Sword sword) {}
+    public virtual void OnExitState(Sword sword) {}
+    public virtual void UpdateState(Sword sword) {}
 }
 
-public class ThrowingSword : BaseState2D<Sword.SwordState>
+public class IdleSword : SwordStateBase
 {
-    public ThrowingSword(Sword.SwordState key) : base(key)
+    public override void OnEnterState(Sword sword)
     {
+        Debug.Log("Became Idle");
+    }
+    public override void OnExitState(Sword sword) {}
+
+    public override void UpdateState(Sword sword)
+    {
+        sword.MoveTowards(sword.PlayerTransform);
     }
 }
-
-public class StationarySword : BaseState2D<Sword.SwordState>
+public class StationarySword : SwordStateBase
 {
-    public StationarySword(Sword.SwordState key) : base(key)
+    public override void OnEnterState(Sword sword)
     {
+        Debug.Log("Became Stationary");
+        sword.Solidity(true);
+        sword.Rigidbody.bodyType = RigidbodyType2D.Static;
     }
+
+    public override void OnExitState(Sword sword)
+    {
+        sword.Solidity(false);
+        sword.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
+    }
+    public override void UpdateState(Sword sword) {}
+}
+public class ThrowingSword : SwordStateBase
+{
+    public override void OnEnterState(Sword sword)
+    {
+        sword.ElapsedThrowTime = 0;
+        Debug.Log("Became Thrown");
+    }
+
+    public override void OnExitState(Sword sword)
+    {
+        sword.ElapsedThrowTime = 0;
+    }
+
+    public override void UpdateState(Sword sword)
+    {
+        sword.ElapsedThrowTime += Time.deltaTime * sword.ThrowSpeedUpPercent;
+        if (sword.objectStabbedInto != null)
+        {
+            sword.ChangeState(sword.stationary);
+        }
+        sword.MoveTowards(sword.FollowTransform);
+    }
+}
+public class SlashingSword : SwordStateBase
+{
+    public override void OnEnterState(Sword sword) {}
+    public override void OnExitState(Sword sword) {}
+    public override void UpdateState(Sword sword) {}
 }
