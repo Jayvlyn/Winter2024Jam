@@ -35,6 +35,7 @@ public class StationarySword : SwordStateBase
         Debug.Log("Became Stationary");
         sword.Solidity(true);
         sword.Rigidbody.bodyType = RigidbodyType2D.Static;
+        sword.transform.position = sword.FollowTransform.position;
     }
 
     public override void OnExitState(Sword sword)
