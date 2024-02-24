@@ -11,11 +11,11 @@ public class SwordStateBase
     public virtual void UpdateState(Sword sword) {}
 }
 
-public class IdleSword : SwordStateBase
+public class ReelingSword : SwordStateBase
 {
     public override void OnEnterState(Sword sword)
     {
-        Debug.Log("Became Idle");
+        //Debug.Log("Became Reel");
     }
     public override void OnExitState(Sword sword) {}
 
@@ -32,7 +32,7 @@ public class StationarySword : SwordStateBase
 {
     public override void OnEnterState(Sword sword)
     {
-        Debug.Log("Became Stationary");
+        //Debug.Log("Became Stationary");
         sword.Solidity(true);
         sword.Rigidbody.bodyType = RigidbodyType2D.Static;
     }
@@ -49,7 +49,7 @@ public class ThrowingSword : SwordStateBase
     public override void OnEnterState(Sword sword)
     {
         sword.ElapsedThrowTime = 0;
-        Debug.Log("Became Thrown");
+        //Debug.Log("Became Thrown");
     }
 
     public override void OnExitState(Sword sword)
@@ -68,11 +68,16 @@ public class ThrowingSword : SwordStateBase
 }
 public class SlashingSword : SwordStateBase
 {
-    public override void OnEnterState(Sword sword) {}
-    public override void OnExitState(Sword sword) {}
-    public override void UpdateState(Sword sword) {}
+    public override void OnEnterState(Sword sword) 
+    {
+    }
+    public override void OnExitState(Sword sword) 
+    {
+    }
+    public override void UpdateState(Sword sword) 
+    {
+    }
 }
-
 public class HoveringSword : SwordStateBase
 {
     public override void OnEnterState(Sword sword) {}
@@ -80,6 +85,7 @@ public class HoveringSword : SwordStateBase
 
     public override void UpdateState(Sword sword)
     {
+        sword.FollowForce = Vector2.Distance(sword.transform.position, sword.PlayerTransform.position) * sword.FollowForceMultiplier;
         sword.MoveTowards(sword.PlayerTransform, sword.FollowForce, false);
     }
 }

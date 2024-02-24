@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class Sword : MonoBehaviour
 {
-    public IdleSword idle = new IdleSword();
+    public ReelingSword idle = new ReelingSword();
     public StationarySword stationary = new StationarySword();
     public SlashingSword slashing = new SlashingSword();
     public ThrowingSword throwing = new ThrowingSword();
@@ -19,6 +19,7 @@ public class Sword : MonoBehaviour
     public float IdleForce;
     public float ThrowForce;
     public float FollowForce;
+    public float FollowForceMultiplier = 10;
     public float distanceTolerance = 0.1f;
     [SerializeField] public Transform PlayerTransform;
     [SerializeField] public Transform FollowTransform;
@@ -37,6 +38,10 @@ public class Sword : MonoBehaviour
     private void Update()
     {
         ElapsedThrowTime += Time.deltaTime * MovingSpeedUpPercent;
+    }
+
+    private void FixedUpdate()
+    {
         currentState.UpdateState(this);
     }
 

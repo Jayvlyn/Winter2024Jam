@@ -14418,7 +14418,7 @@ Transform:
   m_GameObject: {fileID: 480059787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.89, y: -2.44, z: -10}
+  m_LocalPosition: {x: -9.79, y: -2.6400003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14502,6 +14502,11 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &499237159 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7010372736609984587, guid: 007ad10cd6786d14994f4c9dcff88f69, type: 3}
+  m_PrefabInstance: {fileID: 639635012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &506674876
 GameObject:
   m_ObjectHideFlags: 0
@@ -15698,11 +15703,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8227113444354896, guid: 5a43d6ca1673ec44c8c64d44b2e5f270, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.89
+      value: -9.79
       objectReference: {fileID: 0}
     - target: {fileID: 8227113444354896, guid: 5a43d6ca1673ec44c8c64d44b2e5f270, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.44
+      value: -2.6400003
       objectReference: {fileID: 0}
     - target: {fileID: 8227113444354896, guid: 5a43d6ca1673ec44c8c64d44b2e5f270, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15743,7 +15748,7 @@ PrefabInstance:
     - target: {fileID: 5687762838604785943, guid: 5a43d6ca1673ec44c8c64d44b2e5f270, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 499237159}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
