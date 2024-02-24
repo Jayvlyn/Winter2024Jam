@@ -47,17 +47,14 @@ public class SwordController : MonoBehaviour
         StartCoroutine(RotateTowards(playerPos, direction, time));
     }
 
-    public void ResetRotation(float time)
-    {
-        StartCoroutine(RotateBack(time));
-        
-    }
-
+    
     IEnumerator RotateTowards(Transform origin, Vector2 direction, float time)
     {
         float elapsedTime = 0;
-        float finalAngle = Mathf.Atan2(direction.y,
-            direction.x) * Mathf.Rad2Deg + ((direction.x > 0) ? 90f : -90);
+        float finalAngle = (Mathf.Atan2(direction.y,
+            direction.x) * Mathf.Rad2Deg) + 90f;
+        if (finalAngle > 180) finalAngle -= 360;
+        if (finalAngle < -180) finalAngle += 360;
         
         //sword.transform.rotation = Quaternion.Euler(0, 0, finalAngle);
         sword.transform.position = (Vector2)origin.position;
@@ -67,25 +64,11 @@ public class SwordController : MonoBehaviour
             elapsedTime += Time.deltaTime;
         
             sword.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(sword.transform.rotation.z, finalAngle, lerpFollow));
-            sword.transform.position = Vector3.Lerp(sword.transform.position, ((Vector2)origin.position + (direction * forwardSlashDistance)), lerpFollow);
+            sword.transform.position = Vector3.Lerp(sword.transform.position, ((Vector2)origin.position + (direction *
+                (forwardSlashDistance * time))), lerpFollow);
             yield return null;
         }
     }
 
-    IEnumerator RotateBack(float time)
-    {
-        float elapsedTime = 0;
-        float finalAngle = 0;
-
-        
-        while (elapsedTime < time)
-        {
-            elapsedTime += Time.deltaTime;
-
-            sword.transform.rotation =
-                Quaternion.Euler(0, 0, Mathf.Lerp(sword.transform.rotation.z, finalAngle, lerpFollow));
-            
-            yield return null;
-        }
-    }
+    
 }
