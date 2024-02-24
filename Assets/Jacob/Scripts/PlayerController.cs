@@ -27,10 +27,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0.1f,0.99f)] private float verticalSlashDamping = .5f;
     [SerializeField, Range(0.1f, 0.99f)] private float horizontalSlashDamping = .5f;
 
-    private bool isJumping;
+    [SerializeField] private SwordController swordController;
     [SerializeField] private float jumpControlTime = 1f;
     private float jumpControlTimer;
+
+    private bool isJumping;
     private bool isSlashing;
+    private bool isHoldingSword;
+    
     private bool isFacingRight = true;
     private Vector2 moveInput = Vector2.zero;
 
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        timeFromThrow += Time.deltaTime;
         mag = rb.velocity.magnitude;
 
         if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
@@ -96,8 +101,50 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
+
+        #region Throwing
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (isHoldingSword)
+            {
+                swordController.Throw((isFacingRight) ? Vector2.right : Vector2.left, transform.position);
+                isHoldingSword = false;
+                timeFromThrow = 0;
+            }
+            
+            
+        }
+
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            if (timeFromThrow > 0.5f) //min pull back time
+            {  
+                float distanceCatch = swordController.Catch(transform);
+                isHoldingSword = true;
+                // Give Speed based on distance
+                // 0 = maxBonus
+                // some number = minBonus
+                // Bonus = Mathf.Lerp(max, min, distance / maxRange)
+                // Bonus = AnimationCurve.Evaluate()
+            }
+        }
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            if (!isHoldingSword && timeFromThrow > 0.5f) //min pull back time
+            {
+                swordController.RealIn();
+            }
+        }
+        
+
+        #endregion
+        
     }
 
+    private float timeFromThrow;
+    
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
@@ -133,9 +180,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool CanSlash => !isSlashing && isHoldingSword;
     private void OnSlash(InputValue inputValue)
     {
-        if (ns.GetClosestSlashable() != null && !isSlashing)
+        if (ns.GetClosestSlashable() != null && CanSlash)
         {
             rb.velocity = Vector2.zero;
 
@@ -167,10 +215,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnThrow(InputValue inputValue)
-    {
-
-    }
+    
     #endregion
 
     private IEnumerator FinishSlash(Vector3 slashDir)

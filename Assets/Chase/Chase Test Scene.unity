@@ -148,12 +148,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243099939}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: 0.32, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1401252460}
+  m_Father: {fileID: 296312735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &243099941
 MonoBehaviour:
@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac08776f73816404f9a59bd8ff2a2648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 1401252460}
+  origin: {fileID: 296312735}
   movement: 1
-  radiusOrEnd: {x: 0.54, y: 0.71}
-  centerOrStart: {x: -0.42, y: 0.82}
+  radiusOrEnd: {x: 0.73, y: 1.35}
+  centerOrStart: {x: -1.11, y: 1.17}
   speed: 100
   reverse: 0
 --- !u!1001 &296312726
@@ -181,6 +181,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1839286288254620351, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
+      propertyPath: swordController
+      value: 
+      objectReference: {fileID: 296312728}
     - target: {fileID: 2113641642622345006, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.93
@@ -227,9 +231,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2113641642622345006, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 243099940}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8687300768126396772, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 296312728}
   m_SourcePrefab: {fileID: 100100000, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
+--- !u!1 &296312727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8687300768126396772, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
+  m_PrefabInstance: {fileID: 296312726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &296312728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296312727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65393262b9a8a04facfff8fd1271fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sword: {fileID: 1317194190}
+  swordPoint: {fileID: 1864813720}
+  maxThrowDistance: 20
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!4 &296312735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2113641642622345006, guid: 141ad0b9981cf204f8bf08538a4f5b07, type: 3}
+  m_PrefabInstance: {fileID: 296312726}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1157023165
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 1317194189}
   ConnectedCollider: {fileID: 1317194193}
-  MoveForce: 200
+  MoveForce: 1000
   distanceTolerance: 0.1
   PlayerTransform: {fileID: 243099940}
   FollowTransform: {fileID: 1864813720}
@@ -748,7 +786,7 @@ GameObject:
   - component: {fileID: 1338402134}
   - component: {fileID: 1338402133}
   - component: {fileID: 1338402132}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +953,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 243099940}
   - {fileID: 1254038895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -928,11 +965,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401252459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b816ef8e832c9941b01bb4a29055917, type: 3}
+  m_Script: {fileID: 11500000, guid: e65393262b9a8a04facfff8fd1271fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 0}
-  swordThrowFollowObject: {fileID: 0}
+  swordPoint: {fileID: 0}
+  maxThrowDistance: 0
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1725061969
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,6 +985,7 @@ GameObject:
   - component: {fileID: 1725061972}
   - component: {fileID: 1725061971}
   - component: {fileID: 1725061970}
+  - component: {fileID: 1725061973}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -994,7 +1036,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1025,6 +1067,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1725061973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725061969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1798867314
 GameObject:
   m_ObjectHideFlags: 0
