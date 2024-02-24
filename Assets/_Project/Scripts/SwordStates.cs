@@ -32,10 +32,14 @@ public class StationarySword : SwordStateBase
 {
     public override void OnEnterState(Sword sword)
     {
-        Debug.Log("Became Stationary");
+        //Debug.Log("Became Stationary");
         sword.Solidity(true);
         sword.Rigidbody.bodyType = RigidbodyType2D.Static;
         sword.transform.position = sword.FollowTransform.position;
+        if((sword.playerFacingRight && !sword.isFacingRight) || (!sword.playerFacingRight && sword.isFacingRight))
+        {
+            sword.Flip();
+        }
     }
 
     public override void OnExitState(Sword sword)

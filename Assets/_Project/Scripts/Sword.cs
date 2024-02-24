@@ -12,7 +12,9 @@ public class Sword : MonoBehaviour
     public SlashingSword slashing = new SlashingSword();
     public ThrowingSword throwing = new ThrowingSword();
     public HoveringSword hovering = new HoveringSword();
-    
+
+    public bool playerFacingRight;
+
     public Rigidbody2D Rigidbody;
     public Collider2D ConnectedCollider;
     public float IdleForce;
@@ -69,7 +71,7 @@ public class Sword : MonoBehaviour
         if ((Rigidbody.velocity.x < 0 && !isFacingRight) || (Rigidbody.velocity.x > 0 && isFacingRight)) Flip();
     }
 
-    private bool isFacingRight;
+    public bool isFacingRight;
     public void Flip()
     {
         isFacingRight = !isFacingRight;

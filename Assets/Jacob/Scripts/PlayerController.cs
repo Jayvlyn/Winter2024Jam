@@ -120,7 +120,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (isHoldingSword)
             {
-                swordController.Throw((isFacingRight) ? Vector2.right : Vector2.left, transform.position);
+                swordController.Throw((isFacingRight) ? Vector2.right : Vector2.left, transform.position, isFacingRight);
                 isHoldingSword = false;
                 timeFromThrow = 0;
             }
