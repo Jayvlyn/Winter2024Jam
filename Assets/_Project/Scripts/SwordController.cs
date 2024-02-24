@@ -13,6 +13,7 @@ public class SwordController : MonoBehaviour
     {
         Debug.DrawRay(origin, direction * maxThrowDistance);
         RaycastHit2D raycast = Physics2D.Raycast(origin, direction, maxThrowDistance, hitLayer);
+        if (raycast.collider == null) raycast.point = origin + (direction * maxThrowDistance);
         swordPoint.position = raycast.point;
         
         sword.ChangeState(sword.throwing);
