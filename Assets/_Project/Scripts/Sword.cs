@@ -20,6 +20,7 @@ public class Sword : MonoBehaviour
     public float FollowForce;
     public float FollowForceMultiplier = 10;
     public float distanceTolerance = 0.1f;
+    public float flingForce = 10;
     [SerializeField] public Transform PlayerTransform;
     [SerializeField] public Transform FollowTransform;
     [HideInInspector] public float ElapsedThrowTime;
@@ -47,6 +48,7 @@ public class Sword : MonoBehaviour
     public SwordStateBase currentState;
     public void ChangeState(SwordStateBase state)
     {
+        if (state == currentState) return;
         currentState?.OnExitState(this);
         currentState = state;
         currentState.OnEnterState(this);
@@ -88,6 +90,17 @@ public class Sword : MonoBehaviour
         if (objectStabbedInto == stabable)
         {
             objectStabbedInto = null;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            if(collision.gameObject.TryGetComponent(out Rigidbody2D playerRb) && currentState == stationary && playerRb.gameObject.transform.position.y < transform.position.y && playerRb.velocity.y > 0)
+            {
+                playerRb.AddForce(Vector3.up * flingForce, ForceMode2D.Impulse);
+            }
         }
     }
 }

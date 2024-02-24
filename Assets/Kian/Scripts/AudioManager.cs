@@ -7,6 +7,8 @@ public class AudioManager : Singleton<AudioManager>
 {
     private AudioSource source;
 
+    [SerializeField, Range(0, 1)] private float slashDirPitchChangeAmount;
+
     private void Start()
     {
         source = GetComponent<AudioSource>();
@@ -23,11 +25,13 @@ public class AudioManager : Singleton<AudioManager>
     {
         source.pitch = pitch;
         source.PlayOneShot(clip);
+        source.pitch = 1.0f;
     }
 
     public void PlayOneShotOnSlashDir(AudioClip clip, float yDir)
     {
-        source.pitch += yDir * .5f;
+        source.pitch += yDir * slashDirPitchChangeAmount;
         source.PlayOneShot(clip);
+        source.pitch = 1.0f;
     }
 }
