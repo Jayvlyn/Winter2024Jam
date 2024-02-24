@@ -51,6 +51,8 @@ public class PlayerController : Singleton<PlayerController>
     private float accelerationRate;
     private float movement;
 
+    [SerializeField] private AudioClip slashClip;
+
     private void Start()
     {
         isHoldingSword = true;
@@ -205,6 +207,8 @@ public class PlayerController : Singleton<PlayerController>
 
             Vector3 slashDir = slashable.transform.position - transform.position;
             slashDir.Normalize();
+
+            AudioManager.Instance.PlayOneShotOnSlashDir(slashClip, slashDir.y);
 
             float distance = Vector3.Distance(transform.position, slashable.transform.position);
 
