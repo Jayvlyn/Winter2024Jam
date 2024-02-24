@@ -13,6 +13,8 @@ public class TimeManager : Singleton<TimeManager>
 
     [SerializeField] float timePerSegment;
 
+    private float timeFreezeLength;
+
     private int currentSegment;
 
     private void Start()
@@ -24,7 +26,15 @@ public class TimeManager : Singleton<TimeManager>
 
     private void Update()
     {
-        totalTime -= Time.deltaTime;
+        if (timeFreezeLength >= 0)
+        {
+            timeFreezeLength -= Time.deltaTime;
+        }
+
+
+
+        if (timeFreezeLength <= 0)
+            totalTime -= Time.deltaTime;
         CheckTimer();
     }
 
@@ -36,5 +46,10 @@ public class TimeManager : Singleton<TimeManager>
         }
 
         timeSlider.value = 1 - (timePerSegment / maxTime) * currentSegment;
+    }
+
+    public void FreezeTime(float time)
+    {
+        timeFreezeLength = time;
     }
 }
