@@ -552,12 +552,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 1317194189}
   ConnectedCollider: {fileID: 1317194193}
-  MoveForce: 1000
+  IdleForce: 200
+  ThrowForce: 500
+  FollowForce: 400
   distanceTolerance: 0.1
   PlayerTransform: {fileID: 243099940}
   FollowTransform: {fileID: 1864813720}
   ElapsedThrowTime: 0
-  ThrowSpeedUpPercent: 4
+  MovingSpeedUpPercent: 100
   objectStabbedInto: {fileID: 0}
 --- !u!212 &1317194191
 SpriteRenderer:

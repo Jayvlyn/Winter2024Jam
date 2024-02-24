@@ -11,16 +11,19 @@ public class Sword : MonoBehaviour
     public StationarySword stationary = new StationarySword();
     public SlashingSword slashing = new SlashingSword();
     public ThrowingSword throwing = new ThrowingSword();
+    public HoveringSword hovering = new HoveringSword();
     
     
     public Rigidbody2D Rigidbody;
     public Collider2D ConnectedCollider;
-    public float MoveForce;
+    public float IdleForce;
+    public float ThrowForce;
+    public float FollowForce;
     public float distanceTolerance = 0.1f;
     [SerializeField] public Transform PlayerTransform;
     [SerializeField] public Transform FollowTransform;
     [HideInInspector] public float ElapsedThrowTime;
-    [SerializeField] public float ThrowSpeedUpPercent;
+    [SerializeField] public float MovingSpeedUpPercent;
 
     public void Solidity(bool solid)
     {
@@ -33,6 +36,7 @@ public class Sword : MonoBehaviour
 
     private void Update()
     {
+        ElapsedThrowTime += Time.deltaTime * MovingSpeedUpPercent;
         currentState.UpdateState(this);
     }
 
@@ -44,7 +48,7 @@ public class Sword : MonoBehaviour
         currentState.OnEnterState(this);
     }
 
-    public void MoveTowards(Transform target)
+    public void MoveTowards(Transform target, float force, bool speedUp = true)
     {
         float distance = Vector2.Distance(transform.position, target.position);
         if (distance <= distanceTolerance)
@@ -54,7 +58,7 @@ public class Sword : MonoBehaviour
 
         Vector2 direction = (target.position - transform.position).normalized;
         
-        Rigidbody.AddForce(direction * MoveForce * (ElapsedThrowTime + 1));
+        Rigidbody.AddForce(direction * force * ((speedUp) ? MovingSpeedUpPercent + 1 : 1));
     }
     
 
@@ -70,48 +74,4 @@ public class Sword : MonoBehaviour
             objectStabbedInto = null;
         }
     }
-
-    [ContextMenu(nameof(Throw))]
-    public void Throw()
-    {
-        ChangeState(throwing);
-    }
-    [ContextMenu(nameof(BecomeIdle))]
-    public void BecomeIdle()
-    {
-        ChangeState(idle);
-    }
-
-    public void Slash()
-    {
-        
-    }
 }
-
-
-
-/*
- * 
-    private void Update()
-    {
-        if (objectStabbedInto != null)
-        {
-            //Stuck in Wall
-            //Don't move
-            return;
-        }
-        float distanceFromPlayer = Vector2.Distance(transform.position, playerDestination.position);
-        if (currentTarget == playerDestination)
-        {
-            if (distanceFromPlayer <= 0.1f)
-            {
-                //Too Close Don't Move
-                return;
-            }
-        }
-
-        Vector2 direction = currentTarget.position - transform.position;
-        rb.AddForce(direction * (distanceFromPlayer + 1) * acc);
-    }
-
-*/
