@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 2113641642622345006}
   - component: {fileID: 1839286288254620351}
   - component: {fileID: 8000620562320514018}
+  - component: {fileID: 8829466622967863974}
   - component: {fileID: 993489415598801520}
   - component: {fileID: 5217178952362485176}
   - component: {fileID: 5194869974375074503}
@@ -63,7 +64,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.93, y: -2.73, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1258761605078518878}
@@ -81,21 +82,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb2098a990b96b4c872362b8c20d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ns: {fileID: 0}
   groundCheck: {fileID: 1258761605078518878}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  mag: 0
   gravity: 3.5
   thresholdDemand: 1
   speedThreshold: 12
+  stopThreshold: 1
+  baseMoveSpeed: 8
   moveSpeed: 8
+  moveSpeedIncrease: 2
+  maxCatchDistance: 5
+  catchMoveSpeedIncrease:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.18510072
+      outSlope: 0.18510072
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07513032
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.2627714
+      outSlope: 3.2627714
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.027894735
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  momentumTime: 3
+  catchMomentumTime: 1.5
   jumpPower: 30
-  baseSlashPower: 10
-  baseSlashLength: 1
-  verticalSlashDamping: 0.9
-  horizontalSlashDamping: 0.8
+  baseSlashPower: 14
+  baseSlashLength: 0.1
+  verticalSlashDamping: 0.75
+  horizontalSlashDamping: 0.65
+  swordController: {fileID: 8829466622967863974}
   jumpControlTime: 0.2
+  isHoldingSword: 0
 --- !u!114 &8000620562320514018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +142,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeObjects: []
+--- !u!114 &8829466622967863974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8687300768126396772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65393262b9a8a04facfff8fd1271fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sword: {fileID: 0}
+  swordPoint: {fileID: 0}
+  maxThrowDistance: 20
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &993489415598801520
 MonoBehaviour:
   m_ObjectHideFlags: 0
