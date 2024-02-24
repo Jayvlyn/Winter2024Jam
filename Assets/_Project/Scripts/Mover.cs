@@ -11,6 +11,7 @@ public class Mover : MonoBehaviour
     [SerializeField] private Vector2 centerOrStart;
     [SerializeField] private float speed;
     [SerializeField] private bool reverse;
+    [SerializeField] private TimeAffectable timeEffect;
 
 
     private float elapsedTime;
@@ -20,7 +21,7 @@ public class Mover : MonoBehaviour
     {
         if (!reverse)
         {
-            elapsedTime += Time.deltaTime * speed;
+            elapsedTime += GetTimeChange();
             if (elapsedTime >= 360)
             {
                 direction = !direction;
@@ -29,7 +30,7 @@ public class Mover : MonoBehaviour
         }
         else
         {
-            elapsedTime -= Time.deltaTime * speed;
+            elapsedTime -= GetTimeChange();
             if (elapsedTime <= 0)
             {
                 direction = !direction;
@@ -59,6 +60,11 @@ public class Mover : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private float GetTimeChange()
+    {
+        return Time.deltaTime * speed * (timeEffect == null ? 1 : timeEffect.GetMultiplier());
     }
 
     private void OnDrawGizmosSelected()
