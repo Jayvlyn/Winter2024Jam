@@ -56,9 +56,9 @@ MonoBehaviour:
   groundCheck: {fileID: 7882693795632509755}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   mag: 0
-  gravity: 3.5
+  gravity: 4.5
   thresholdDemand: 1
   speedThreshold: 12
   stopThreshold: 1
@@ -116,7 +116,7 @@ MonoBehaviour:
   closeObjects: []
   blockLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!114 &474109553154729411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 4552822935317157231}
   swordPoint: {fileID: 1701426720975399227}
-  maxThrowDistance: 20
+  maxThrowDistance: 100
   hitLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 6876390023120223160}
   - component: {fileID: 5871150876455410736}
   - component: {fileID: 4379506824452955483}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ MonoBehaviour:
   ThrowForce: 500
   FollowForce: 400
   FollowForceMultiplier: 300
-  distanceTolerance: 0.1
+  distanceTolerance: 0.35
   flingForce: 20
   PlayerTransform: {fileID: 7498963985523672368}
   FollowTransform: {fileID: 1701426720975399227}
