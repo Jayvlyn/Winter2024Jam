@@ -8,6 +8,9 @@ using UnityEngine.Events;
 public class Slashable : MonoBehaviour
 {
     private NearbySlashable connectedSlasher;
+
+    [SerializeField] GameObject ObjectToDestroy;
+
     [SerializeField] int health;
     [SerializeField] private UnityEvent slashThroughEvent;
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,6 +40,6 @@ public class Slashable : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        Destroy(ObjectToDestroy);
     }
 }
