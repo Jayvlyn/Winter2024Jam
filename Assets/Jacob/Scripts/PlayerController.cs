@@ -142,7 +142,12 @@ public class PlayerController : MonoBehaviour
         {
             if (!isHoldingSword && timeFromThrow > 0.5f) //min pull back time
             {
-                swordController.RealIn();
+                if(swordController.reelingIn && Vector2.Distance(swordController.gameObject.transform.position, transform.position) < 1)
+                {
+                    swordController.sword.ChangeState(swordController.sword.hovering);
+                    return;
+                }
+                swordController.ReelIn();
             }
         }
         

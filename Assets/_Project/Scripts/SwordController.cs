@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordController : MonoBehaviour
 {
-    [SerializeField] private Sword sword;
+    [SerializeField] public Sword sword;
     [SerializeField] private Transform swordPoint;
     [SerializeField] private float maxThrowDistance;
     [SerializeField] private LayerMask hitLayer;
@@ -17,13 +17,14 @@ public class SwordController : MonoBehaviour
         swordPoint.position = raycast.point;
         
         sword.ChangeState(sword.throwing);
-        realingIn = false;
+        reelingIn = false;
     }
 
-    private bool realingIn;
-    public void RealIn()
+    public bool reelingIn;
+    public void ReelIn()
     {
-        if (realingIn) return;
+        if (reelingIn) return;
+        
         sword.ChangeState(sword.reel);
     }
 

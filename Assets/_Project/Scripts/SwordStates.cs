@@ -23,7 +23,7 @@ public class ReelingSword : SwordStateBase
     {
         sword.MoveTowards(sword.PlayerTransform, sword.IdleForce);
         if (Vector2.Distance(sword.transform.position, sword.PlayerTransform.position) < sword.distanceTolerance)
-        {
+        {   
             sword.ChangeState(sword.hovering);
         }
     }
@@ -88,7 +88,10 @@ public class SlashingSword : SwordStateBase
 }
 public class HoveringSword : SwordStateBase
 {
-    public override void OnEnterState(Sword sword) {}
+    public override void OnEnterState(Sword sword) 
+    {
+
+    }
     public override void OnExitState(Sword sword) {}
 
     public override void UpdateState(Sword sword)
