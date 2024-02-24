@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6437453893922609496}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   horizontalSlashDamping: 0.65
   swordController: {fileID: 474109553154729411}
   jumpControlTime: 0.2
-  slashClip: {fileID: 0}
+  slashClip: {fileID: 8300000, guid: 0419bbe87a27176489c7c81864a21af1, type: 3}
 --- !u!114 &1376724071601808519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,6 +525,7 @@ MonoBehaviour:
   FollowForce: 400
   FollowForceMultiplier: 300
   distanceTolerance: 0.1
+  flingForce: 20
   PlayerTransform: {fileID: 7498963985523672368}
   FollowTransform: {fileID: 1701426720975399227}
   ElapsedThrowTime: 0
