@@ -15,7 +15,7 @@ public class ReelingSword : SwordStateBase
 {
     public override void OnEnterState(Sword sword)
     {
-        //Debug.Log("Became Reel");
+        Debug.Log("Became Reel");
     }
     public override void OnExitState(Sword sword) {}
 
@@ -90,13 +90,13 @@ public class HoveringSword : SwordStateBase
 {
     public override void OnEnterState(Sword sword) 
     {
+        Debug.Log("became Hovering");
 
     }
     public override void OnExitState(Sword sword) {}
 
     public override void UpdateState(Sword sword)
     {
-        //Debug.Log("Hovering");
         sword.FollowForce = Vector2.Distance(sword.transform.position, sword.PlayerTransform.position) * sword.FollowForceMultiplier;
         sword.MoveTowards(sword.PlayerTransform, sword.FollowForce, false);
     }
