@@ -25,7 +25,7 @@ public class NearbySlashable : Singleton<NearbySlashable>
         foreach(Slashable s in closeObjects)
         {
             float distance = Vector3.Distance(transform.position, s.transform.position);
-            if (distance < closestDistance)
+            if (distance < closestDistance && s.slashable)
             {
                 closestDistance = distance;
                 closestSlashable = s;

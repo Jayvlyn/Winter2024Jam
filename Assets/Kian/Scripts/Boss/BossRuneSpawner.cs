@@ -7,7 +7,7 @@ public class BossRuneSpawner : Singleton<BossRuneSpawner>
 {
     [SerializeField] List<GameObject> runeLayouts = new List<GameObject>();
 
-    bool bossActive = true;
+    bool bossActive = false;
 
     public bool canSpawnLayout;
 
@@ -23,5 +23,11 @@ public class BossRuneSpawner : Singleton<BossRuneSpawner>
             Instantiate(runeLayouts[Random.Range(0, runeLayouts.Count)], transform.position, transform.rotation, transform);
             canSpawnLayout = false;
         }
+    }
+
+    public void SetBossActive()
+    {
+        bossActive = true;
+        canSpawnLayout = true;
     }
 }

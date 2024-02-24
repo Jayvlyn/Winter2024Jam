@@ -9,11 +9,14 @@ public class Slashable : MonoBehaviour
 {
     private NearbySlashable connectedSlasher;
 
+
+    public bool slashable = true;
     [SerializeField] private bool canDie;
     [SerializeField] GameObject ObjectToDestroy;
 
     [SerializeField] int health;
     [SerializeField] private UnityEvent slashThroughEvent;
+    [SerializeField] private UnityEvent deathEvent;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out NearbySlashable playerSlasher))
@@ -42,5 +45,11 @@ public class Slashable : MonoBehaviour
     public void Death()
     {
         Destroy(ObjectToDestroy);
+        deathEvent?.Invoke();
+    }
+
+    public void SetKillable(bool killable)
+    {
+        canDie = killable;
     }
 }

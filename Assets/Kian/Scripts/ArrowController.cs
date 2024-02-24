@@ -32,6 +32,7 @@ public class ArrowController : MonoBehaviour
             clockHandSR.transform.localScale = new Vector3(currentDist * distScaleFactor, currentDist * distScaleFactor, 1);
             clockHandSR.color = new Color(1, 1, 1, 1 - (currentDist / (maxDist)));
 
+            Debug.Log(maxDist);
             //gets angle to the nearest enemy
             float angle = Mathf.Atan2(nearestSlashable.transform.position.y - transform.position.y,
                       nearestSlashable.transform.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
