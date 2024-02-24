@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float baseMoveSpeed = 8.0f;
     [SerializeField] private float moveSpeed = 8.0f;
     [SerializeField] private float moveSpeedIncrease = 2.0f;
+    [SerializeField] private float maxCatchDistance = 5.0f;
+    [SerializeField] private AnimationCurve catchMoveSpeedIncrease;
     [SerializeField] private float momentumTime = 3.0f;
+    [SerializeField] private float catchMomentumTime = 1.5f;
     [SerializeField] private float jumpPower = 10.0f;
     [SerializeField] private float baseSlashPower = 10.0f;
     private float slashPower = 10.0f;
@@ -126,12 +129,11 @@ public class PlayerController : MonoBehaviour
             if (timeFromThrow > 0.5f) //min pull back time
             {  
                 float distanceCatch = swordController.Catch(transform);
+                float normalizedDistance = distanceCatch / maxCatchDistance;
+                StartCoroutine(MomentumBuild(catchMoveSpeedIncrease.Evaluate(normalizedDistance), catchMomentumTime));
+
+
                 isHoldingSword = true;
-                // Give Speed based on distance
-                // 0 = maxBonus
-                // some number = minBonus
-                // Bonus = Mathf.Lerp(max, min, distance / maxRange)
-                // Bonus = AnimationCurve.Evaluate()
             }
         }
 
@@ -227,7 +229,7 @@ public class PlayerController : MonoBehaviour
         isSlashing = false;
         rb.gravityScale = gravity;
 
-        StartCoroutine(MomentumBuild());
+        StartCoroutine(MomentumBuild(moveSpeedIncrease, momentumTime));
 
         if (slashDir.y > 0)
         {
@@ -239,10 +241,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator MomentumBuild()
+    private IEnumerator MomentumBuild(float increase, float time)
     {
-        moveSpeed += moveSpeedIncrease;
-        yield return new WaitForSeconds(momentumTime);
-        moveSpeed += moveSpeedIncrease;
+        moveSpeed += increase;
+        yield return new WaitForSeconds(time);
+        moveSpeed -= increase;
     }
 }
