@@ -9,6 +9,7 @@ public class Slashable : MonoBehaviour
 {
     private NearbySlashable connectedSlasher;
 
+    [SerializeField] private bool canDie;
     [SerializeField] GameObject ObjectToDestroy;
 
     [SerializeField] int health;
@@ -35,7 +36,7 @@ public class Slashable : MonoBehaviour
         health -= damage;
         slashThroughEvent?.Invoke();
 
-        if (health <= 0) Death();
+        if (health <= 0 && canDie) Death();
     }
 
     public void Death()

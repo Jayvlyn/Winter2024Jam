@@ -3,38 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Guymon.DesignPatterns;
+using UnityEngine.Serialization;
 
-public class Sword : StateMessenger2D<Sword.SwordState>
+public class Sword : MonoBehaviour
 {
-    private IdleSword idle = new IdleSword(SwordState.Idle);
-    private StationarySword slicing = new StationarySword(SwordState.Slicing);
-    private StationarySword stationary = new StationarySword(SwordState.Stationary);
-    private ThrowingSword throwing = new ThrowingSword(SwordState.Throwing);
+    public IdleSword idle = new IdleSword();
+    public StationarySword stationary = new StationarySword();
+    public SlashingSword slashing = new SlashingSword();
+    public ThrowingSword throwing = new ThrowingSword();
+    
     
     public Rigidbody2D Rigidbody;
+    public Collider2D ConnectedCollider;
     public float MoveForce;
-    [HideInInspector] public Transform Target;
+    public float distanceTolerance = 0.1f;
+    [SerializeField] public Transform PlayerTransform;
+    [SerializeField] public Transform FollowTransform;
+    [HideInInspector] public float ElapsedThrowTime;
+    [SerializeField] public float ThrowSpeedUpPercent;
 
-    public enum SwordState
+    public void Solidity(bool solid)
     {
-        Idle,
-        Slicing,
-        Throwing,
-        Stationary
+        ConnectedCollider.isTrigger = (!solid);
+    }
+    private void Start()
+    {
+        ChangeState(idle);
     }
 
-    private void Awake()
+    private void Update()
     {
-        ChangeState(SwordState.Idle);
+        currentState.UpdateState(this);
     }
 
-    public void MoveTowards()
+    private SwordStateBase currentState;
+    public void ChangeState(SwordStateBase state)
     {
-        Vector2 direction = Target.position - transform.position;
-        Rigidbody.AddForce(direction * MoveForce);
+        currentState?.OnExitState(this);
+        currentState = state;
+        currentState.OnEnterState(this);
     }
 
-    private Stabable objectStabbedInto;
+    public void MoveTowards(Transform target)
+    {
+        float distance = Vector2.Distance(transform.position, target.position);
+        if (distance <= distanceTolerance)
+        {
+            return;
+        }
+
+        Vector2 direction = (target.position - transform.position).normalized;
+        
+        Rigidbody.AddForce(direction * MoveForce * (ElapsedThrowTime + 1));
+    }
+    
+
+    [HideInInspector] public Stabable objectStabbedInto;
     public void Add(Stabable stabable)
     {
         objectStabbedInto = stabable;
@@ -47,7 +71,18 @@ public class Sword : StateMessenger2D<Sword.SwordState>
         }
     }
 
+    [ContextMenu(nameof(Throw))]
     public void Throw()
+    {
+        ChangeState(throwing);
+    }
+    [ContextMenu(nameof(BecomeIdle))]
+    public void BecomeIdle()
+    {
+        ChangeState(idle);
+    }
+
+    public void Slash()
     {
         
     }
