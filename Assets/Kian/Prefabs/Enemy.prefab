@@ -166,9 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f741d0df63cc14e44a43acd4443ff9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slashable: 1
+  canDie: 0
   ObjectToDestroy: {fileID: 5911197479329733898}
   health: 3
   slashThroughEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6138042540652166506
@@ -184,8 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 8451174086802459344}
-  movement: 2
+  movement: 0
   radiusOrEnd: {x: 2.73, y: 1.54}
   centerOrStart: {x: -1.83, y: -0.99}
   speed: 1
   reverse: 0
+  timeEffect: {fileID: 0}
