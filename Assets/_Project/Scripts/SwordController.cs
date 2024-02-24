@@ -10,6 +10,7 @@ public class SwordController : MonoBehaviour
     [SerializeField] private LayerMask hitLayer;
 
     [SerializeField] private float forwardSlashDistance;
+    [SerializeField] private float swordSlashSpeed;
 
     [SerializeField, Range(0, 1)] private float lerpFollow;
 
@@ -47,18 +48,44 @@ public class SwordController : MonoBehaviour
 
     }
 
+    public void ResetRotation(float time)
+    {
+        StartCoroutine(RotateBack(time));
+        
+    }
+
     IEnumerator RotateTowards(Transform origin, Vector2 direction, float time)
     {
         float elapsedTime = 0;
         float finalAngle = Mathf.Atan2(direction.y,
-            direction.x) * Mathf.Rad2Deg + 90f;
+            direction.x) * Mathf.Rad2Deg + ((direction.x > 0) ? 90f : -90);
+        
+        //sword.transform.rotation = Quaternion.Euler(0, 0, finalAngle);
+        sword.transform.position = (Vector2)origin.position;
+        sword.Rigidbody.velocity = direction * swordSlashSpeed;
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+        
+            sword.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(sword.transform.rotation.z, finalAngle, lerpFollow));
+            sword.transform.position = Vector3.Lerp(sword.transform.position, ((Vector2)origin.position + (direction * forwardSlashDistance)), lerpFollow);
+            yield return null;
+        }
+    }
+
+    IEnumerator RotateBack(float time)
+    {
+        float elapsedTime = 0;
+        float finalAngle = 0;
+
         
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
 
-            sword.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(sword.transform.rotation.z, finalAngle, lerpFollow));
-            sword.transform.position = Vector3.Lerp(sword.transform.position, ((Vector2)origin.position + (direction * forwardSlashDistance)), lerpFollow);
+            sword.transform.rotation =
+                Quaternion.Euler(0, 0, Mathf.Lerp(sword.transform.rotation.z, finalAngle, lerpFollow));
+            
             yield return null;
         }
     }

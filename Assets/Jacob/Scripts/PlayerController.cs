@@ -241,7 +241,8 @@ public class PlayerController : Singleton<PlayerController>
     private IEnumerator FinishSlash(Vector3 slashDir)
     {
         yield return new WaitForSeconds(slashLength);
-
+        
+        swordController.ResetRotation(slashLength * 0.25f);
         isSlashing = false;
         rb.gravityScale = gravity;
 
