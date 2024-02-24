@@ -63,6 +63,8 @@ public class Sword : MonoBehaviour
         Vector2 direction = (target.position - transform.position).normalized;
         
         Rigidbody.AddForce(direction * force * ((speedUp) ? MovingSpeedUpPercent + 1 : 1));
+
+        if ((Rigidbody.velocity.x < 0 && !isFacingRight) || (Rigidbody.velocity.x > 0 && isFacingRight)) Flip();
     }
 
     private bool isFacingRight;
