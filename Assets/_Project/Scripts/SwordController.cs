@@ -45,7 +45,6 @@ public class SwordController : MonoBehaviour
     public void Slash(Transform playerPos, Vector2 direction, float time)
     {
         StartCoroutine(RotateTowards(playerPos, direction, time));
-
     }
 
     public void ResetRotation(float time)

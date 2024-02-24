@@ -242,7 +242,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         yield return new WaitForSeconds(slashLength);
         
-        swordController.ResetRotation(slashLength * 0.25f);
+        //swordController.ResetRotation(slashLength * 0.25f);
         isSlashing = false;
         rb.gravityScale = gravity;
 
