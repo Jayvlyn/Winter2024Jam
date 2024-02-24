@@ -37,6 +37,8 @@ public class PlayerController : Singleton<PlayerController>
 
     [SerializeField] private SwordController swordController;
     [SerializeField] private float jumpControlTime = 1f;
+    [SerializeField] private float coyoteTime = 0.1f;
+    private float coyoteTimer = 0f;
     private float jumpControlTimer;
 
     private bool isJumping = false;
@@ -114,6 +116,11 @@ public class PlayerController : Singleton<PlayerController>
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
+        if(coyoteTimer > 0)
+        {
+            coyoteTimer -= Time.deltaTime;
+        }
+
         #region Throwing
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -178,7 +185,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnJump(InputValue inputValue)
     {
-        if (inputValue.isPressed && IsGrounded())
+        if (inputValue.isPressed && (IsGrounded() || coyoteTimer > 0))
         {
             isJumping = true;
             jumpControlTimer = jumpControlTime;
@@ -255,5 +262,13 @@ public class PlayerController : Singleton<PlayerController>
         moveSpeed += increase;
         yield return new WaitForSeconds(time);
         moveSpeed -= increase;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(!IsGrounded())
+        {
+            coyoteTimer = coyoteTime;
+        }
     }
 }
