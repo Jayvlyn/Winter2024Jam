@@ -681,6 +681,7 @@ MonoBehaviour:
   FollowTransform: {fileID: 1701426720975399227}
   ElapsedThrowTime: 0
   MovingSpeedUpPercent: 100
+  stabOffset: 1.75
   isFacingRight: 0
   objectStabbedInto: {fileID: 0}
 --- !u!50 &6876390023120223160

@@ -27,6 +27,7 @@ public class Sword : MonoBehaviour
     [SerializeField] public Transform FollowTransform;
     [HideInInspector] public float ElapsedThrowTime;
     [SerializeField] public float MovingSpeedUpPercent;
+    [SerializeField] public float stabOffset = 1.4f;
 
     public void Solidity(bool solid)
     {
