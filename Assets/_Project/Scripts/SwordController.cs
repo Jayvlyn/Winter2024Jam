@@ -9,7 +9,9 @@ public class SwordController : MonoBehaviour
     [SerializeField] private float maxThrowDistance;
     [SerializeField] private LayerMask hitLayer;
 
-    public void Throw(Vector2 direction, Vector2 origin)
+
+
+    public void Throw(Vector2 direction, Vector2 origin, bool playerFacingRight)
     {
         Debug.DrawRay(origin, direction * maxThrowDistance);
         RaycastHit2D raycast = Physics2D.Raycast(origin, direction, maxThrowDistance, hitLayer);
@@ -18,6 +20,8 @@ public class SwordController : MonoBehaviour
         
         sword.ChangeState(sword.throwing);
         reelingIn = false;
+
+        sword.playerFacingRight = playerFacingRight;
     }
 
     public bool reelingIn;
