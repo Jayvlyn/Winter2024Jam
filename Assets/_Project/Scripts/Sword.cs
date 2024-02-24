@@ -63,10 +63,22 @@ public class Sword : MonoBehaviour
         Vector2 direction = (target.position - transform.position).normalized;
         
         Rigidbody.AddForce(direction * force * ((speedUp) ? MovingSpeedUpPercent + 1 : 1));
+
+        if ((Rigidbody.velocity.x < 0 && !isFacingRight) || (Rigidbody.velocity.x > 0 && isFacingRight)) Flip();
     }
-    
+
+    private bool isFacingRight;
+    public void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.y *= -1;
+        transform.localScale = localScale;
+    }
+
 
     [HideInInspector] public Stabable objectStabbedInto;
+
     public void Add(Stabable stabable)
     {
         objectStabbedInto = stabable;
