@@ -22,7 +22,7 @@ public class ArrowController : MonoBehaviour
         transform.position = NearbySlashable.Instance.transform.position;
         nearestSlashable = NearbySlashable.Instance.GetClosestSlashable();
 
-        if (nearestSlashable != null )
+        if (nearestSlashable != null && PlayerController.Instance.isHoldingSword)
         {
 
             maxDist = nearestSlashable.GetComponent<CircleCollider2D>().radius;
