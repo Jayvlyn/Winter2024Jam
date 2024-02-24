@@ -42,6 +42,9 @@ public class DuckPlayerController : MonoBehaviour
     private float nWalkDeceleration;
     #endregion
 
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+
     #region Camera variables
     [Header("CAMERA")]
     private Camera mainCam;
@@ -76,33 +79,33 @@ public class DuckPlayerController : MonoBehaviour
 
     #region Dashing variables
 
-    [Header("DASHING")]
-    public float dashRange;
-    public LayerMask dLayerMask;
-    public RaycastHit2D dashCheck;
-    [SerializeField, Range(0f, 20f)] private float oDashForce = 5;
-    [SerializeField, Range(0f, 5f)] private float powerDashSpeedMultiplier = 1;
-    [SerializeField, Range(0f, 1f)] private float powerDashSpeedDiminish = 1;
-    [SerializeField, Range(0f, 1f)] private float powerDashJumpHeightDiminish = 1;
-    [SerializeField, Range(0f, 1f)] private float postDashVelocityMultX = 1;
-    [SerializeField, Range(0f, 1f)] private float postDashVelocityMultY = 1;
-    [SerializeField, Range(0f, 5f)] private float dashTimer = 1;
+    //[Header("DASHING")]
+    //public float dashRange;
+    //public LayerMask dLayerMask;
+    //public RaycastHit2D dashCheck;
+    //[SerializeField, Range(0f, 20f)] private float oDashForce = 5;
+    //[SerializeField, Range(0f, 5f)] private float powerDashSpeedMultiplier = 1;
+    //[SerializeField, Range(0f, 1f)] private float powerDashSpeedDiminish = 1;
+    //[SerializeField, Range(0f, 1f)] private float powerDashJumpHeightDiminish = 1;
+    //[SerializeField, Range(0f, 1f)] private float postDashVelocityMultX = 1;
+    //[SerializeField, Range(0f, 1f)] private float postDashVelocityMultY = 1;
+    //[SerializeField, Range(0f, 5f)] private float dashTimer = 1;
 
-    private CinemachineImpulseSource impulse;
+    //private CinemachineImpulseSource impulse;
 
-    private Vector3 preDashPos;
-    private Vector2 dashDir;
-    private Vector3 dashVector;
-    private float dashCounter;
+    //private Vector3 preDashPos;
+    //private Vector2 dashDir;
+    //private Vector3 dashVector;
+    //private float dashCounter;
 
-    [HideInInspector] public bool canDash = true;
-    [HideInInspector] public bool isDashing = false;
+    //[HideInInspector] public bool canDash = true;
+    //[HideInInspector] public bool isDashing = false;
     #endregion
 
 
-    [SerializeField] private bool hasImpulse = true;
-    [SerializeField] private bool hasBoxCol = true;
-    [SerializeField] private bool hasRB = true;
+    //[SerializeField] private bool hasImpulse = true;
+    //[SerializeField] private bool hasBoxCol = true;
+    //[SerializeField] private bool hasRB = true;
     private void Awake()
     {
         if (instance == null)
@@ -113,10 +116,9 @@ public class DuckPlayerController : MonoBehaviour
 
     private void Start()
     {
-        if (hasImpulse) impulse = GetComponent<CinemachineImpulseSource>();
+        theRB = GetComponent<Rigidbody2D>();
         nWalkDeceleration = oWalkDeceleration;
-        if (hasBoxCol) boxCol = GetComponent<BoxCollider2D>();
-        if (hasRB) theRB = GetComponent<Rigidbody2D>();
+;
         oGravity = theRB.gravityScale;
     }
 
@@ -139,27 +141,28 @@ public class DuckPlayerController : MonoBehaviour
         accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? walkAcceleration : nWalkDeceleration;
         movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, velocityPower) * Mathf.Sign(speedDifference);
         theRB.AddForce(movement * Vector2.right);
+
         if (onGround) animator?.SetFloat("Speed", Mathf.Abs(theRB.velocity.x));
 
         //makes it so the player doesn't slide once their speed is less than a certain amount;
-        if ((theRB.velocity.x < minWalkSpeed && theRB.velocity.x > -minWalkSpeed) && moveDir.x == 0)
+        if ((Mathf.Sign(theRB.velocity.x) < minWalkSpeed && moveDir.x == 0))
         {
             theRB.velocity = new Vector2(0f, theRB.velocity.y);
         }
 
         //Change the gravity depending on situation
-        if (isDashing)
-        {
-            theRB.gravityScale = 0;
-        }
+        //if (isDashing)
+        //{
+        //    theRB.gravityScale = 0;
+        //}
 
         //forces the dash to always go the same distance
-        if (dashCounter > 0) dashCounter -= Time.fixedDeltaTime;
+        //if (dashCounter > 0) dashCounter -= Time.fixedDeltaTime;
 
-        else if (!isDashing/* && isFalling*/ /*&& !WaterPhysics.inWater*/)
-        {
+        //else if (!isDashing/* && isFalling*/ /*&& !WaterPhysics.inWater*/)
+        //{
             theRB.gravityScale = oGravity + postJumpGravity;
-        }
+        //}
 
         //forces the jump to always go the same distance
         if (jumpCounter > 0)
@@ -197,7 +200,7 @@ public class DuckPlayerController : MonoBehaviour
             jumpsAvailable = 1 /*+ PowerController.instance.extraJumps*/;
             onGroundTimer += Time.deltaTime;
 
-            if (Input.GetButtonDown("Fire1")) animator.SetTrigger("Attack");
+            //if (Input.GetButtonDown("Fire1")) animator.SetTrigger("Attack");
             if (onGroundTimer >= forcedDecelerationRaiseTimer && nWalkDeceleration != maxDeceleration)
             {
                 raiseDeceleration(1000f);
@@ -205,65 +208,65 @@ public class DuckPlayerController : MonoBehaviour
         }
         //this makes sure to gets the direction they are dashing before they dash,
         //this helps make sure the player doesn't dash in a weird direction they weren't meaning to
-        if (!isDashing)
-        {
-            dashDir = moveDir;
-        }
+        //if (!isDashing)
+        //{
+        //    dashDir = moveDir;
+        //}
 
-        dash();
+        //dash();
 
         jump();
 
     }
 
     #region dashing
-    private void dash()
-    {
-        if (Input.GetButtonDown("Fire2") && moveDir != Vector2.zero && checkDashAvailable(true))
-        {
-            //audio
-            //PlayerAudioController.instance.dashSound();
+    //private void dash()
+    //{
+    //    if (Input.GetButtonDown("Fire2") && moveDir != Vector2.zero && checkDashAvailable(true))
+    //    {
+    //        //audio
+    //        //PlayerAudioController.instance.dashSound();
 
-            dashDir.Normalize();
-            dashCounter = dashTimer;
-            isDashing = true;
-            canDash = false;
-            if (dashDir == Vector2.up || dashDir == Vector2.down)
-            {
-                nMoveSpeed = oMoveSpeed;
-            }
-        }
+    //        dashDir.Normalize();
+    //        dashCounter = dashTimer;
+    //        isDashing = true;
+    //        canDash = false;
+    //        if (dashDir == Vector2.up || dashDir == Vector2.down)
+    //        {
+    //            nMoveSpeed = oMoveSpeed;
+    //        }
+    //    }
 
-        if (dashCounter > 0)
-        {
+    //    if (dashCounter > 0)
+    //    {
 
-            theRB.velocity = new Vector3((oDashForce * dashDir.x), (oDashForce * dashDir.y), 0f);
-        }
+    //        theRB.velocity = new Vector3((oDashForce * dashDir.x), (oDashForce * dashDir.y), 0f);
+    //    }
 
-        else if (dashCounter <= 0)
-        {
-            //if the dash direction is anything except right or left it changes the speed so they don't get weird height
-            if (isDashing && (dashDir != Vector2.left || dashDir != Vector2.right))
-            {
-                theRB.velocity = new Vector3(theRB.velocity.x * postDashVelocityMultX, theRB.velocity.y * postDashVelocityMultY, 0f);
-            }
-            isDashing = false;
-            if (isGrounded() && checkDashAvailable(false))
-            {
-                canDash = true;
-                dashDir = Vector2.zero;
-            }
-        }
-    }
+    //    else if (dashCounter <= 0)
+    //    {
+    //        //if the dash direction is anything except right or left it changes the speed so they don't get weird height
+    //        if (isDashing && (dashDir != Vector2.left || dashDir != Vector2.right))
+    //        {
+    //            theRB.velocity = new Vector3(theRB.velocity.x * postDashVelocityMultX, theRB.velocity.y * postDashVelocityMultY, 0f);
+    //        }
+    //        isDashing = false;
+    //        if (isGrounded() && checkDashAvailable(false))
+    //        {
+    //            canDash = true;
+    //            dashDir = Vector2.zero;
+    //        }
+    //    }
+    //}
 
     //check both TRUE is checking if they have the dash power AND they can dash.
     //check both FALSE is checking if they even have the dash power
-    private bool checkDashAvailable(bool checkBoth)
-    {
-        //if (checkBoth) return PowerController.instance.hasDashPower && canDash;
-        //else return PowerController.instance.hasDashPower;
-        return true;
-    }
+    //private bool checkDashAvailable(bool checkBoth)
+    //{
+    //    //if (checkBoth) return PowerController.instance.hasDashPower && canDash;
+    //    //else return PowerController.instance.hasDashPower;
+    //    return true;
+    //}
     #endregion
 
     private void jump()
@@ -289,36 +292,27 @@ public class DuckPlayerController : MonoBehaviour
 
 
             //if the player jumps while dashing it does the super dash
-            if (isDashing)
-            {
-                //PlayerAudioController.instance.powerDashSound();
-                //move speed and jump force get changed by a certain amount
-                nMoveSpeed *= powerDashSpeedMultiplier + ((jumpsAvailable / maxJumps) * (powerDashSpeedDiminish - (maxJumps - jumpsAvailable)));
-                //if speed is above max, set it equal to max speed
-                if (nMoveSpeed > maxMovementSpeed)
-                {
-                    nMoveSpeed = maxMovementSpeed;
-                }
-                nJumpForce *= powerDashJumpHeightDiminish;
-                //lowers the deceleration
-                nWalkDeceleration -= decelerationDiminish;
-                if (nWalkDeceleration < minDeceleration)
-                {
-                    nWalkDeceleration = minDeceleration;
-                }
-                canDash = true;
-                isDashing = false;
-            }
+            //if (isDashing)
+            //{
+            //    //PlayerAudioController.instance.powerDashSound();
+            //    //move speed and jump force get changed by a certain amount
+            //    nMoveSpeed *= powerDashSpeedMultiplier + ((jumpsAvailable / maxJumps) * (powerDashSpeedDiminish - (maxJumps - jumpsAvailable)));
+            //    //if speed is above max, set it equal to max speed
+            //    if (nMoveSpeed > maxMovementSpeed)
+            //    {
+            //        nMoveSpeed = maxMovementSpeed;
+            //    }
+            //    nJumpForce *= powerDashJumpHeightDiminish;
+            //    //lowers the deceleration
+            //    nWalkDeceleration -= decelerationDiminish;
+            //    if (nWalkDeceleration < minDeceleration)
+            //    {
+            //        nWalkDeceleration = minDeceleration;
+            //    }
+            //    canDash = true;
+            //    isDashing = false;
+            //}
 
-            //this is for falling through platforms
-            /*if (moveDir.y < 0 && isGrounded())
-            {
-                isJumping = false;
-                isRising = false;
-                isFalling = true;
-            }
-            else
-            {*/
             isJumping = true;
             isRising = true;
             isFalling = false;
@@ -371,10 +365,11 @@ public class DuckPlayerController : MonoBehaviour
 
     public bool isGrounded()
     {
-        groundHit = Physics2D.BoxCast(boxCol.bounds.center, boxCol.bounds.size, 0f, Vector2.down, gCheckDist, groundMask);
-        if (groundHit.collider != null && !isRising)
+        //groundHit = Physics2D.BoxCast(boxCol.bounds.center, boxCol.bounds.size, 0f, Vector2.down, gCheckDist, groundMask);
+        //groundHit = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        if (Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer) && !isRising)
         {
-            animator?.SetBool("OnGround", true);
+            //animator?.SetBool("OnGround", true);
             //only resets move speed if the deceleration is at the max
             if (nWalkDeceleration == maxDeceleration)
                 nMoveSpeed = oMoveSpeed;
@@ -385,7 +380,7 @@ public class DuckPlayerController : MonoBehaviour
             return true;
         }
 
-        animator?.SetBool("OnGround", false);
+        //animator?.SetBool("OnGround", false);
         onGround = false;
         return false;
     }
