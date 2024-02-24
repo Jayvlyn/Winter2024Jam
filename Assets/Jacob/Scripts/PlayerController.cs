@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
             FlipX();
@@ -99,9 +100,10 @@ public class PlayerController : MonoBehaviour
 
         if (ns.GetClosestSlashable() != null)
         {
-
-
             Slashable slashable = ns.GetClosestSlashable();
+
+            slashable.OnSlashThrough(1);
+
             isSlashing = true;
             rb.gravityScale = 0;
 
