@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float thresholdDemand = 0.98f;
     [SerializeField] private float speedThreshold = 12.0f;
+    [SerializeField] private float stopThreshold = 1;
     [SerializeField] private float moveSpeed = 8.0f;
     [SerializeField] private float jumpPower = 10.0f;
     [SerializeField] private float baseSlashPower = 10.0f;
@@ -89,6 +90,11 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.magnitude > speedThreshold && !isSlashing && !isJumping)
         {
             rb.velocity *= thresholdDemand;
+        }
+
+        if (moveInput.x == 0 && Mathf.Abs(rb.velocity.x) < stopThreshold)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
