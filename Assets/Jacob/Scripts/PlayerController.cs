@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AnimationCurve catchMoveSpeedIncrease;
     [SerializeField] private float momentumTime = 3.0f;
     [SerializeField] private float catchMomentumTime = 1.5f;
+    [SerializeField] private float catchMoveSpeedMultiplier = 5;
     [SerializeField] private float jumpPower = 10.0f;
     [SerializeField] private float baseSlashPower = 10.0f;
     private float slashPower = 10.0f;
@@ -130,7 +131,7 @@ public class PlayerController : MonoBehaviour
             {  
                 float distanceCatch = swordController.Catch(transform);
                 float normalizedDistance = distanceCatch / maxCatchDistance;
-                StartCoroutine(MomentumBuild(catchMoveSpeedIncrease.Evaluate(normalizedDistance), catchMomentumTime));
+                StartCoroutine(MomentumBuild(catchMoveSpeedIncrease.Evaluate(normalizedDistance) * catchMoveSpeedMultiplier, catchMomentumTime));
 
 
                 isHoldingSword = true;

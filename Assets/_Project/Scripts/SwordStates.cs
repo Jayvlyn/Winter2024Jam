@@ -32,7 +32,7 @@ public class StationarySword : SwordStateBase
 {
     public override void OnEnterState(Sword sword)
     {
-        //Debug.Log("Became Stationary");
+        Debug.Log("Became Stationary");
         sword.Solidity(true);
         sword.Rigidbody.bodyType = RigidbodyType2D.Static;
     }
@@ -62,6 +62,13 @@ public class ThrowingSword : SwordStateBase
         if (sword.objectStabbedInto != null)
         {
             sword.ChangeState(sword.stationary);
+        }
+        else
+        {
+            if (Vector2.Distance(sword.FollowTransform.position, sword.transform.position) < 1)
+            {
+                sword.ChangeState(sword.reel);
+            }
         }
         sword.MoveTowards(sword.FollowTransform, sword.ThrowForce);
     }
