@@ -76,7 +76,7 @@ public class Sword : MonoBehaviour
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
-        localScale.y *= -1;
+        localScale.x *= -1;
         transform.localScale = localScale;
     }
 
