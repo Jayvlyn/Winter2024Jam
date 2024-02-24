@@ -24,12 +24,11 @@ public class SwordController : MonoBehaviour
     public void RealIn()
     {
         if (realingIn) return;
-        sword.ChangeState(sword.idle);
+        sword.ChangeState(sword.reel);
     }
 
     public float Catch(Transform playerPos)
     {
         return Vector2.Distance(playerPos.position, sword.transform.position);
-        realingIn = false;
     }
 }

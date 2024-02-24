@@ -7,12 +7,11 @@ using UnityEngine.Serialization;
 
 public class Sword : MonoBehaviour
 {
-    public ReelingSword idle = new ReelingSword();
+    public ReelingSword reel = new ReelingSword();
     public StationarySword stationary = new StationarySword();
     public SlashingSword slashing = new SlashingSword();
     public ThrowingSword throwing = new ThrowingSword();
     public HoveringSword hovering = new HoveringSword();
-    
     
     public Rigidbody2D Rigidbody;
     public Collider2D ConnectedCollider;
@@ -32,7 +31,7 @@ public class Sword : MonoBehaviour
     }
     private void Start()
     {
-        ChangeState(idle);
+        ChangeState(reel);
     }
 
     private void Update()
