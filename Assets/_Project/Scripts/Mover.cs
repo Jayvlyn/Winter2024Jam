@@ -5,17 +5,14 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
+    [SerializeField] private Transform origin;
     [SerializeField] private MovementType movement;
     [SerializeField] private Vector2 radiusOrEnd;
+    [SerializeField] private Vector2 centerOrStart;
     [SerializeField] private float speed;
     [SerializeField] private bool reverse;
 
-    private void Start()
-    {
-        origin = transform.position;
-    }
 
-    private Vector2 origin;
     private float elapsedTime;
     private bool direction;
     
@@ -43,21 +40,21 @@ public class Mover : MonoBehaviour
         {
             case MovementType.Circular:
             {
-                float radius = Vector2.Distance(origin, radiusOrEnd);
+                float radius = Vector2.Distance(centerOrStart + (Vector2)origin.position, radiusOrEnd + (Vector2)origin.position);
                 
-                float x = Mathf.Cos(elapsedTime) * radius + origin.x;
-                float y = Mathf.Sin(elapsedTime) * radius + origin.y;
+                float x = Mathf.Cos(elapsedTime) * radius + centerOrStart.x + origin.position.x;
+                float y = Mathf.Sin(elapsedTime) * radius + centerOrStart.y + origin.position.y;
                 transform.position = new Vector2(x, y);
                 break;
             }
             case MovementType.Straight:
             {
-                transform.position = Vector2.Lerp(origin, radiusOrEnd, elapsedTime / 360);
+                transform.position = Vector2.Lerp(centerOrStart + (Vector2)origin.position, radiusOrEnd + (Vector2)origin.position, elapsedTime / 360);
                 break;
             }
             case MovementType.PingPong:
             {
-                transform.position = Vector2.Lerp(origin, radiusOrEnd,
+                transform.position = Vector2.Lerp(centerOrStart + (Vector2)origin.position, radiusOrEnd + (Vector2)origin.position,
                     (direction) ? (elapsedTime / 360) : 1 - (elapsedTime / 360));
                 break;
             }
@@ -67,9 +64,9 @@ public class Mover : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(origin, 0.5f);
+        Gizmos.DrawWireSphere(centerOrStart + (Vector2)origin.position, 0.5f);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(radiusOrEnd, 0.5f);
+        Gizmos.DrawWireSphere(radiusOrEnd + (Vector2)origin.position, 0.5f);
     }
 }
 
