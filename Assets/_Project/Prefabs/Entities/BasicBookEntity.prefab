@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4224427913965480802}
   - component: {fileID: 8038571316714678040}
+  - component: {fileID: 3234765279537535711}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -73,17 +74,38 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -607854597, guid: 0ba5e9ddc4ad8834eb7182df1922c5fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3234765279537535711
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346707640591440719}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf0048bc22adb334795cdd4aa68aab74, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5950993306503545629
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4374080671696534475}
   m_Layer: 0
-  m_Name: BasicEnemy
+  m_Name: BasicBookEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,9 +379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 4374080671696534475}
-  movement: 3
-  radiusOrEnd: {x: 2.73, y: 1.54}
-  centerOrStart: {x: 0, y: 0}
+  movement: 1
+  radiusOrEnd: {x: 0, y: 0.73}
+  centerOrStart: {x: 0, y: -0.66}
   speed: 1
   reverse: 0
   timeEffect: {fileID: 8123999302709780383}
