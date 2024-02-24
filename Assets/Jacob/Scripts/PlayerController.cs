@@ -1,9 +1,10 @@
+using Guymon.DesignPatterns;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     private Rigidbody2D rb;
     private NearbySlashable ns;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isJumping = false;
     private bool isSlashing = false;
-    [SerializeField] private bool isHoldingSword;
+    [SerializeField] public bool isHoldingSword { get; private set; }
     
     private bool isFacingRight = true;
     private Vector2 moveInput = Vector2.zero;
@@ -142,11 +143,6 @@ public class PlayerController : MonoBehaviour
         {
             if (!isHoldingSword && timeFromThrow > 0.5f) //min pull back time
             {
-                if(swordController.reelingIn && Vector2.Distance(swordController.gameObject.transform.position, transform.position) < 1)
-                {
-                    swordController.sword.ChangeState(swordController.sword.hovering);
-                    return;
-                }
                 swordController.ReelIn();
             }
         }
