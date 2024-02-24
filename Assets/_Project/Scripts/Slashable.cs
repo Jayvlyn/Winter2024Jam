@@ -7,12 +7,12 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Slashable : MonoBehaviour
 {
-    private Slasher connectedSlasher;
+    private NearbySlashable connectedSlasher;
     [SerializeField] int health;
     [SerializeField] private UnityEvent slashThroughEvent;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Slasher playerSlasher))
+        if (other.TryGetComponent(out NearbySlashable playerSlasher))
         {
             connectedSlasher = playerSlasher;
             playerSlasher.Add(this);
@@ -20,7 +20,7 @@ public class Slashable : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Slasher playerSlasher))
+        if (other.TryGetComponent(out NearbySlashable playerSlasher))
         {
             connectedSlasher = null;
             playerSlasher.Remove(this);

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ns = GetComponent<NearbySlashable>();
     }
 
     private void FixedUpdate()
@@ -90,6 +91,10 @@ public class PlayerController : MonoBehaviour
     private void OnSlash(InputValue inputValue)
     {
         Slashable slashable = ns.GetClosestSlashable();
+
+        Vector3 slashDir = slashable.transform.position - transform.position ;
+        slashDir.Normalize();
+        rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
     }
 
     private void OnThrow(InputValue inputValue)
