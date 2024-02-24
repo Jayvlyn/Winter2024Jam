@@ -11,14 +11,19 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    [SerializeField] private float thresholdDemand = 1.0f;
+    [SerializeField] private float thresholdDemand = 0.98f;
     [SerializeField] private float speedThreshold = 12.0f;
-    [SerializeField] private float speed = 8.0f;
+    [SerializeField] private float moveSpeed = 8.0f;
     [SerializeField] private float jumpPower = 10.0f;
+    [SerializeField] private float slashPower = 10.0f;
 
-    private float horizontal;
     private bool isFacingRight = true;
+    private Vector2 moveInput = Vector2.zero;
 
+    private float targetSpeed;
+    private float speedDifference;
+    private float accelerationRate;
+    private float movement;
 
     private void Start()
     {
@@ -27,19 +32,24 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        targetSpeed = moveInput.x * moveSpeed;
+        //gets the difference between current velocity and wanted velocity
+        speedDifference = targetSpeed - rb.velocity.x;
+        accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? 2.8f : 3f;
+        movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 1.21f) * Mathf.Sign(speedDifference);
+        rb.AddForce(movement * Vector2.right);
     }
 
     private void Update()
     {
-        if((!isFacingRight && horizontal > 0f) || (isFacingRight && horizontal < 0f))
+        if((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
             FlipX();
         }
 
-        if(rb.velocity.magnitude > thresholdDemand)
+        if(rb.velocity.magnitude > speedThreshold)
         {
-
+            rb.velocity *= thresholdDemand;
         }
     }
 
@@ -61,16 +71,14 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue inputValue)
     {
         Debug.Log("onmove");
-        Vector2 input = inputValue.Get<Vector2>();
-        horizontal = input.x;
+        moveInput = inputValue.Get<Vector2>();
     }
     
     private void OnJump(InputValue inputValue)
     {
-        Debug.Log("onjump");
         if(inputValue.isPressed && IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
         }
 
         if(!inputValue.isPressed && rb.velocity.y > 0)
