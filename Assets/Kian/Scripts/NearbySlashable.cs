@@ -7,6 +7,8 @@ public class NearbySlashable : Singleton<NearbySlashable>
 {
     [SerializeField] List<Slashable> closeObjects = new List<Slashable>();
 
+    [SerializeField] private LayerMask layerMask;
+
     public void Add(Slashable s)
     {
         closeObjects.Add(s);
@@ -25,7 +27,10 @@ public class NearbySlashable : Singleton<NearbySlashable>
         foreach(Slashable s in closeObjects)
         {
             float distance = Vector3.Distance(transform.position, s.transform.position);
-            if (distance < closestDistance && s.slashable)
+
+            //RaycastHit2D hit = Physics2D.Raycast(transform.position, s.transform.position - transform.position, Vector3.Distance(transform.position, s.transform.position), layerMask);
+
+            if (distance < closestDistance && s.slashable/* && !hit.collider*/)
             {
                 closestDistance = distance;
                 closestSlashable = s;

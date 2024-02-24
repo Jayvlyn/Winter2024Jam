@@ -7,6 +7,8 @@ public class ArrowController : MonoBehaviour
     [SerializeField] private GameObject clockHandGO;
     [SerializeField] private SpriteRenderer clockHandSR;
 
+    [SerializeField] private LayerMask layerMask;
+
     private Slashable nearestSlashable;
 
     [SerializeField] private float distScaleFactor;
@@ -15,12 +17,14 @@ public class ArrowController : MonoBehaviour
 
     private void Start()
     {
+        Physics2D.queriesStartInColliders = false;
     }
 
     private void Update()
     {
         transform.position = NearbySlashable.Instance.transform.position;
         nearestSlashable = NearbySlashable.Instance.GetClosestSlashable();
+
 
         if (nearestSlashable != null && PlayerController.Instance.isHoldingSword)
         {
@@ -32,10 +36,9 @@ public class ArrowController : MonoBehaviour
             clockHandSR.transform.localScale = new Vector3(currentDist * distScaleFactor, currentDist * distScaleFactor, 1);
             clockHandSR.color = new Color(1, 1, 1, 1 - (currentDist / (maxDist)));
 
-            Debug.Log(maxDist);
-            //gets angle to the nearest enemy
             float angle = Mathf.Atan2(nearestSlashable.transform.position.y - transform.position.y,
-                      nearestSlashable.transform.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
+                          nearestSlashable.transform.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
+            //gets angle to the nearest enemy
 
             // Set the rotation of the arrow GameObject
             clockHandGO.transform.rotation = Quaternion.Euler(0f, 0f, angle);

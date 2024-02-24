@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimeManager : Singleton<TimeManager>
 {
     [SerializeField] private Slider timeSlider;
+    [SerializeField] private SceneChanger sceneChanger;
 
     private float totalTime;
     [SerializeField] float maxTime;
@@ -31,7 +32,10 @@ public class TimeManager : Singleton<TimeManager>
             timeFreezeLength -= Time.deltaTime;
         }
 
-
+        if (totalTime <= 0)
+        {
+            GameOver();
+        }
 
         if (timeFreezeLength <= 0)
             totalTime -= Time.deltaTime;
@@ -51,5 +55,10 @@ public class TimeManager : Singleton<TimeManager>
     public void FreezeTime(float time)
     {
         timeFreezeLength = time;
+    }
+
+    private void GameOver()
+    {
+        sceneChanger.ChangeScene();
     }
 }
