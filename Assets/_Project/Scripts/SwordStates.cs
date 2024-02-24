@@ -30,11 +30,13 @@ public class StationarySword : SwordStateBase
     {
         Debug.Log("Became Stationary");
         sword.Solidity(true);
+        sword.Rigidbody.bodyType = RigidbodyType2D.Static;
     }
 
     public override void OnExitState(Sword sword)
     {
         sword.Solidity(false);
+        sword.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
     }
     public override void UpdateState(Sword sword) {}
 }
