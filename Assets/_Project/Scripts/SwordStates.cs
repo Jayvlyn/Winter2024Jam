@@ -36,7 +36,7 @@ public class StationarySword : SwordStateBase
         sword.Solidity(true);
         sword.Rigidbody.bodyType = RigidbodyType2D.Static;
         sword.transform.position = sword.FollowTransform.position;
-        if((sword.playerFacingRight && !sword.isFacingRight) || (!sword.playerFacingRight && sword.isFacingRight))
+        if((!sword.playerFacingRight && !sword.isFacingRight) || (sword.playerFacingRight && sword.isFacingRight))
         {
             sword.Flip();
         }
