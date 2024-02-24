@@ -15,7 +15,7 @@ public class ReelingSword : SwordStateBase
 {
     public override void OnEnterState(Sword sword)
     {
-        Debug.Log("Became Reel");
+        //Debug.Log("Became Reel");
     }
     public override void OnExitState(Sword sword) {}
 
@@ -94,7 +94,7 @@ public class HoveringSword : SwordStateBase
 {
     public override void OnEnterState(Sword sword) 
     {
-        Debug.Log("became Hovering");
+        //Debug.Log("became Hovering");
 
     }
     public override void OnExitState(Sword sword) {}
