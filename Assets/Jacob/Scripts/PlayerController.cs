@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -31,9 +32,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float catchMoveSpeedMultiplier = 5;
     [SerializeField] private float jumpPower = 10.0f;
     [SerializeField] private float baseSlashPower = 10.0f;
-    private float slashPower = 10.0f;
-    [SerializeField] private float baseSlashLength = 1.2f;
-    private float slashLength = 1.2f;
+    [SerializeField] private float minSlashTime = 1.2f;
     [SerializeField, Range(0.1f,0.99f)] private float verticalSlashDamping = .5f;
     [SerializeField, Range(0.1f, 0.99f)] private float horizontalSlashDamping = .5f;
 
@@ -60,8 +59,6 @@ public class PlayerController : Singleton<PlayerController>
     private void Start()
     {
         isHoldingSword = true;
-        slashPower = baseSlashPower;
-        slashLength = baseSlashLength;
         moveSpeed = baseMoveSpeed;
         rb = GetComponent<Rigidbody2D>();
         ns = GetComponent<NearbySlashable>();
@@ -239,31 +236,42 @@ public class PlayerController : Singleton<PlayerController>
 
             float distance = Vector3.Distance(transform.position, slashable.transform.position);
 
-            slashPower = baseSlashPower * distance;
+            float slashPower = baseSlashPower * distance;
             if (slashPower < baseSlashPower) slashPower = baseSlashPower;
 
             rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
 
-            slashLength = 1.7f * distance / rb.velocity.magnitude;
+            float desiredSlashTime;
 
-            if (slashLength < baseSlashLength) slashLength = baseSlashLength;
+            RaycastHit2D raycast = Physics2D.Raycast(transform.position, slashDir, 2 * distance, groundLayer);
+            if (raycast.collider != null)
+            {
+                desiredSlashTime = 1.7f * raycast.distance / rb.velocity.magnitude;
+                //Debug.Log("Changed Distance");
+            }
+            else
+            {
+                desiredSlashTime = 1.7f * distance / rb.velocity.magnitude;
+            }
+            
+            if (desiredSlashTime < minSlashTime) desiredSlashTime = minSlashTime;
 
-            swordController.Slash(transform, slashDir, slashLength * 0.25f);
+            swordController.Slash(transform, slashDir, desiredSlashTime * 0.25f);
 
             animator.SetBool("Slashing", true);
             if (slashDir.y < 0) animator.SetTrigger("DownSlash");
             else animator.SetTrigger("UpSlash");
 
-            StartCoroutine(FinishSlash(slashDir));
+            StartCoroutine(FinishSlash(slashPower, slashDir, desiredSlashTime));
         }
     }
 
     
     #endregion
 
-    private IEnumerator FinishSlash(Vector3 slashDir)
+    private IEnumerator FinishSlash(float slashPower, Vector3 slashDir, float time)
     {
-        yield return new WaitForSeconds(slashLength);
+        yield return new WaitForSeconds(time);
         
         isSlashing = false;
         StartCoroutine(FinishSlashAnimation());
