@@ -256,7 +256,7 @@ public class PlayerController : Singleton<PlayerController>
         }
         else
         {
-            rb.AddForce(new Vector3(-slashDir.x, 0, 0) * (slashPower * .5f), ForceMode2D.Impulse);
+            rb.AddForce(new Vector3(-slashDir.x, 0, 0) * (slashPower * .5f * verticalSlashDamping), ForceMode2D.Impulse);
         }
     }
 
