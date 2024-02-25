@@ -11,9 +11,9 @@ using Random = UnityEngine.Random;
 public class RuneSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject runePrefab;
-    [SerializeField] private List<Transform> parents = new List<Transform>();
     [SerializeField, MinMaxSlider(0, 100)] private Vector2 spawnTimer;
     [SerializeField, MinMaxSlider(0, 100)] private Vector2 spawnHeight;
+    [SerializeField, MinMaxSlider(-100, 100)] private Vector2 speed;
     [SerializeField] private int maxSpawnCount;
 
     private int spawnCount;
@@ -44,8 +44,17 @@ public class RuneSpawner : MonoBehaviour
     {
         spawnCount++;
         int getter = Random.Range(0, 2);
-        Instantiate(runePrefab, new Vector3(0, spawnHeight[getter], 0) + transform.position,
-            quaternion.identity, parents[getter]);
+        GameObject rune = Instantiate(runePrefab, transform);
+        var movers = rune.GetComponentsInChildren<Mover>();
+        foreach (var mover in movers)
+        {
+            Debug.Log(mover.gameObject.tag);
+            if (mover.gameObject.CompareTag("Revolver"))
+            {
+                mover.SetData(Vector2.zero, new Vector2(0,spawnHeight[getter]), speed[getter], (getter == 0));
+                break;
+            }
+        }
     }
 
     private void decrementSpawnCount(EventArgs args)

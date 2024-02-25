@@ -261,52 +261,6 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!1 &3120375176832280234
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2884074989129184847}
-  - component: {fileID: 6183249495072493826}
-  m_Layer: 0
-  m_Name: Inner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2884074989129184847
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3120375176832280234}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 729394238641406692}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6183249495072493826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3120375176832280234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32355f426a9e27f428831ff027cd799c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -34.6
-  usesExternalTimer: 0
 --- !u!1 &3912555901909652889
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +354,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 729394238641406692}
-  - component: {fileID: 7155312531778888943}
   - component: {fileID: 2439425061354128854}
   m_Layer: 0
   m_Name: RuneSpawner
@@ -421,24 +374,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 15.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2884074989129184847}
+  m_Children: []
   m_Father: {fileID: 1282200145819565480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7155312531778888943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4231938106574398612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32355f426a9e27f428831ff027cd799c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  usesExternalTimer: 0
 --- !u!114 &2439425061354128854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,12 +390,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runePrefab: {fileID: 5356159957484249084, guid: 1d0fe7eb01a91324a944640247b2e41f, type: 3}
-  parents:
-  - {fileID: 729394238641406692}
-  - {fileID: 2884074989129184847}
-  spawnTimer: {x: 4, y: 5.5}
-  spawnHeight: {x: 10, y: 25}
-  maxSpawnCount: 10
+  spawnTimer: {x: 2, y: 2.7}
+  spawnHeight: {x: 9, y: 22}
+  speed: {x: -1.7, y: 1.2}
+  maxSpawnCount: 14
 --- !u!1 &4390412781075907273
 GameObject:
   m_ObjectHideFlags: 0
