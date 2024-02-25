@@ -250,14 +250,14 @@ public class PlayerController : Singleton<PlayerController>
 
         StartCoroutine(MomentumBuild(moveSpeedIncrease, momentumTime));
 
-        if (slashDir.y > 0)
-        {
+        //if (slashDir.y > 0)
+        //{
             rb.AddForce(new Vector3(-slashDir.x * (slashPower * horizontalSlashDamping), -slashDir.y * (slashPower * verticalSlashDamping)), ForceMode2D.Impulse);
-        }
-        else
-        {
-            rb.AddForce(new Vector3(-slashDir.x, 0, 0) * (slashPower * .5f * verticalSlashDamping), ForceMode2D.Impulse);
-        }
+        //}
+        //else
+        //{
+        //    rb.AddForce(new Vector3(-slashDir.x, 0, 0) * (slashPower * .5f * verticalSlashDamping), ForceMode2D.Impulse);
+        //}
     }
 
     private IEnumerator MomentumBuild(float increase, float time)
