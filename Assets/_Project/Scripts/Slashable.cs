@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,10 @@ using UnityEngine.Events;
 public class Slashable : MonoBehaviour
 {
     private NearbySlashable connectedSlasher;
+
+    [SerializeField] private GameObject slashEffect;
+    [SerializeField] private AudioClip hitSound;
+    //[SerializeField] private AudioClip deathSound;
 
 
     public bool slashable = true;
@@ -39,11 +43,15 @@ public class Slashable : MonoBehaviour
         health -= damage;
         slashThroughEvent?.Invoke();
 
+        if(slashEffect != null) Instantiate(slashEffect, transform.position, transform.rotation);
+        if(hitSound != null) AudioManager.Instance.PlayOneShotAtPitch(hitSound, Random.Range(0.8f, 1.2f));
+
         if (health <= 0 && canDie) Death();
     }
 
     public void Death()
     {
+        //AudioManager.Instance.PlayOneShotAtPitch(deathSound, Random.Range(0.8f, 1.2f));
         Destroy(ObjectToDestroy);
         deathEvent?.Invoke();
     }
