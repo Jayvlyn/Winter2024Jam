@@ -77,7 +77,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 231.8, y: 279.87}
+  m_ConnectedAnchor: {x: 231.8, y: 279.57}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -355,6 +355,8 @@ GameObject:
   m_Component:
   - component: {fileID: 729394238641406692}
   - component: {fileID: 2439425061354128854}
+  - component: {fileID: 3965427370562227588}
+  - component: {fileID: 2727558130243876897}
   m_Layer: 0
   m_Name: RuneSpawner
   m_TagString: Untagged
@@ -394,6 +396,34 @@ MonoBehaviour:
   spawnHeight: {x: 9, y: 22}
   speed: {x: -1.7, y: 1.2}
   maxSpawnCount: 14
+--- !u!114 &3965427370562227588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231938106574398612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d6628ec72d5c47a4015c357b9a017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runeLayouts: []
+  canSpawnLayout: 0
+--- !u!114 &2727558130243876897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231938106574398612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a587edf05226e4f9fc8d4578471250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSpawns: {fileID: 0}
+  specialSpawns: {fileID: 0}
 --- !u!1 &4390412781075907273
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +685,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: -2.6299744}
+  m_ConnectedAnchor: {x: 0, y: -2.630005}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
