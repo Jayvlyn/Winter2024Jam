@@ -1,3 +1,4 @@
+using System;
 using Guymon.DesignPatterns;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,4 +37,10 @@ public class AudioManager : Singleton<AudioManager>
         source.pitch = 1.0f + (yDir * slashDirPitchChangeAmount);
         source.PlayOneShot(clip);
     }
+
+    private void OnDestroy()
+    {
+        instance = null;
+    }
 }
+
