@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 329764676653291009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.93, y: -2.73, z: 0}
+  m_LocalPosition: {x: 14.8, y: -21.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -97,12 +97,12 @@ MonoBehaviour:
   catchMomentumTime: 1.5
   catchMoveSpeedMultiplier: 5
   jumpPower: 30
-  baseSlashPower: 14
+  baseSlashPower: 11
   minSlashTime: 0.1
-  verticalSlashDamping: 0.75
-  horizontalSlashDamping: 0.65
+  verticalSlashDamping: 0.65
+  horizontalSlashDamping: 0.6
   hitWallDecreasePercent: 0.3
-  noWallDistanceBonus: 1.7
+  noWallDistanceBonus: 1.3
   swordController: {fileID: 474109553154729411}
   jumpControlTime: 0.2
   coyoteTime: 0.1
@@ -406,7 +406,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 5.44, y: 5.44, z: 2.72}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2154320073163038583}
@@ -791,7 +791,7 @@ MonoBehaviour:
   FollowForce: 400
   FollowForceMultiplier: 300
   distanceTolerance: 0.35
-  flingForce: 35
+  flingForce: 30
   PlayerTransform: {fileID: 7498963985523672368}
   FollowTransform: {fileID: 1701426720975399227}
   ElapsedThrowTime: 0
@@ -974,7 +974,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.000000029802322, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 15
 --- !u!114 &176370481736163567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9fd07eff58be044a93c440a4b0598a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 6
+  range: 15
   castRender: {fileID: 4886058860378566318}
   inAffect: 0
 --- !u!1 &6283073396671273917
