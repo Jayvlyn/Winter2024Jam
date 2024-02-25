@@ -8,6 +8,8 @@ public class RuneLayout : MonoBehaviour
 
     [SerializeField] float baseTimeBetweenRunes;
     [SerializeField, Range(0f, 1f)] float decrementPercentage;
+    [SerializeField] private AudioClip spawnSound;
+
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class RuneLayout : MonoBehaviour
             print(waitTime);
             yield return new WaitForSeconds(waitTime);
             runes[i].SetActive(true);
+            AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
             StartCoroutine(DestroyRune(runes[i].gameObject, 3, i == runes.Count - 1));
         }
 
@@ -33,6 +36,7 @@ public class RuneLayout : MonoBehaviour
 
         if (rune != null)
         {
+            AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
             Destroy(rune);
         }
 

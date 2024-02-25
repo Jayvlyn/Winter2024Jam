@@ -29,6 +29,9 @@ public class Sword : MonoBehaviour
     [SerializeField] public float MovingSpeedUpPercent;
     [SerializeField] public float stabOffset = 1.4f;
 
+    [SerializeField] public GameObject wallStabParticles;
+    [SerializeField] public Transform wallParticleTransform;
+
     [SerializeField] public AudioClip wallStabSound;
     [SerializeField] public AudioClip flingSound;
     [SerializeField] public AudioClip throwSound;
@@ -76,6 +79,12 @@ public class Sword : MonoBehaviour
         Rigidbody.AddForce(direction * force * ((speedUp) ? MovingSpeedUpPercent + 1 : 1));
 
         if ((Rigidbody.velocity.x < 0 && !isFacingRight) || (Rigidbody.velocity.x > 0 && isFacingRight)) Flip();
+    }
+
+    public void OnWallHit()
+    {
+        Instantiate(wallStabParticles, transform.position, transform.rotation);
+        AudioManager.instance.PlayOneShot(wallStabSound);
     }
 
     public bool isFacingRight;

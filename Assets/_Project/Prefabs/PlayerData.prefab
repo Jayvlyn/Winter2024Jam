@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &216897418410482204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2377098182639036859}
+  m_Layer: 6
+  m_Name: ParticleTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2377098182639036859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216897418410482204}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.19, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4292303129615357715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &329764676653291009
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 329764676653291009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.8, y: -21.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41,6 +72,7 @@ Transform:
   - {fileID: 2154320073163038583}
   - {fileID: 3897698834321694829}
   - {fileID: 8571663016137568252}
+  - {fileID: 1308154650203918168}
   m_Father: {fileID: 7286107659416866905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7321309411948572122
@@ -530,6 +562,37 @@ MonoBehaviour:
   speed: 140
   reverse: 0
   timeEffect: {fileID: 0}
+--- !u!1 &4274348437232398254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1308154650203918168}
+  m_Layer: 0
+  m_Name: NewCameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1308154650203918168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274348437232398254}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7010372736609984587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4761784024825371625
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,10 +778,11 @@ Transform:
   m_GameObject: {fileID: 5038602880137707305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.48, y: -1.46, z: 0}
+  m_LocalPosition: {x: -3.31, y: 1.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2377098182639036859}
   m_Father: {fileID: 7286107659416866905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5583703097036314003
@@ -799,6 +863,8 @@ MonoBehaviour:
   ElapsedThrowTime: 0
   MovingSpeedUpPercent: 100
   stabOffset: 1.75
+  wallStabParticles: {fileID: 6920495118301297399, guid: 6e35f8fccd6e58c43822685ac5a0fa80, type: 3}
+  wallParticleTransform: {fileID: 2377098182639036859}
   wallStabSound: {fileID: 8300000, guid: 037c8cfceda942a45840ce52ad7e5323, type: 3}
   flingSound: {fileID: 8300000, guid: f839ae6867e28b8488a9d01604d916d9, type: 3}
   throwSound: {fileID: 8300000, guid: ee10fc781c970c64695da140a2ea332a, type: 3}

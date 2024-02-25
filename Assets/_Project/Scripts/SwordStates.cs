@@ -53,6 +53,7 @@ public class StationarySword : SwordStateBase
         }
 
         sword.transform.rotation = Quaternion.identity;
+        sword.OnWallHit();
 
     }
 

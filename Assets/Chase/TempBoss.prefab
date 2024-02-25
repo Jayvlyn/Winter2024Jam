@@ -51,6 +51,7 @@ MonoBehaviour:
   spawnHeight: {x: 9, y: 22}
   speed: {x: -1.7, y: 1.2}
   maxSpawnCount: 14
+  spawnSound: {fileID: 8300000, guid: de86f4e81693a6048a265575894c5c65, type: 3}
   active: 0
 --- !u!114 &3965427370562227588
 MonoBehaviour:
@@ -67,6 +68,10 @@ MonoBehaviour:
   runeLayouts:
   - {fileID: 5619736017156856121, guid: 1012d4b2d21e8b846ab16565cb6656ee, type: 3}
   - {fileID: 5619736017156856121, guid: 63fb042c3655f2440a40a2cf3df2c1f8, type: 3}
+  - {fileID: 394763070965531998, guid: 81ea14e5877afbd448b8557fd601fc9f, type: 3}
+  - {fileID: 4081198736865344618, guid: c2176c9884357b14cbd8f769f1f26f0e, type: 3}
+  - {fileID: 5619736017156856121, guid: 650ecd69d76ee08409015b459835e897, type: 3}
+  - {fileID: 5619736017156856121, guid: 3d551dd962626eb488eda71a72a443c5, type: 3}
   spawnPos: {fileID: 5949696330489556046}
   recentLayout: {fileID: 0}
 --- !u!114 &2727558130243876897
@@ -144,9 +149,9 @@ Transform:
   m_GameObject: {fileID: 6170972904523753372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 24, y: 16, z: 16}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 7.15, z: 0}
+  m_LocalScale: {x: 1.74, y: 1.74, z: 1.74}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1282200145819565480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,9 +195,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.15686275}
+  m_SortingOrder: -40
+  m_Sprite: {fileID: 2019981375, guid: b5bf8a10b16ec6c479e4563305993563, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -305,6 +310,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7742472591751195999, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
       propertyPath: hitSound
       value: 
@@ -312,6 +321,18 @@ PrefabInstance:
     - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
       propertyPath: slashThroughEvent.m_PersistentCalls.m_Calls.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7499751081110223673}
+    - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeSceneSoon
       objectReference: {fileID: 0}
     - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
       propertyPath: slashThroughEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -328,6 +349,14 @@ PrefabInstance:
     - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
       propertyPath: slashThroughEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnPlayerHitChandelier
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneChanger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7787967298216304792, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
       propertyPath: slashThroughEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -348,11 +377,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1784108958798683987, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
     - {fileID: 1535350839078497312, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+    - {fileID: 2227960202705810213, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2692463343967779356, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
     - {fileID: 1103663248849018739, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8779406227973769446, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7499751081110223673}
   m_SourcePrefab: {fileID: 100100000, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
 --- !u!114 &6132930740958716869 stripped
 MonoBehaviour:
@@ -370,3 +403,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7172175637743547966, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
   m_PrefabInstance: {fileID: 390526720581402253}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8988580714366105195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8779406227973769446, guid: 225cc31665d44714aac8b808ef03dfb0, type: 3}
+  m_PrefabInstance: {fileID: 390526720581402253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7499751081110223673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988580714366105195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21d6288c08fe8644886f85521d5cb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: GameOver
