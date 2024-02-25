@@ -791,7 +791,7 @@ MonoBehaviour:
   FollowForce: 400
   FollowForceMultiplier: 300
   distanceTolerance: 0.35
-  flingForce: 20
+  flingForce: 35
   PlayerTransform: {fileID: 7498963985523672368}
   FollowTransform: {fileID: 1701426720975399227}
   ElapsedThrowTime: 0
