@@ -14881,6 +14881,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1594356770558669774, guid: 8dfef7ab44b9d9f43a54ef91bc35ef14, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 1764853488}
     - target: {fileID: 4766929238164536543, guid: 8dfef7ab44b9d9f43a54ef91bc35ef14, type: 3}
       propertyPath: maxTime
       value: 30
@@ -17394,6 +17398,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: GameOver
+--- !u!82 &1764853488 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1095150384253772914, guid: 8dfef7ab44b9d9f43a54ef91bc35ef14, type: 3}
+  m_PrefabInstance: {fileID: 288229670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1865446910
 PrefabInstance:
   m_ObjectHideFlags: 0
