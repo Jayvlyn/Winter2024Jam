@@ -14,12 +14,6 @@ public class RuneLayout : MonoBehaviour
         StartCoroutine(SpawnRunes());
     }
 
-    public void SectionEnd()
-    {
-        BossRuneSpawner.Instance.canSpawnLayout = true;
-        Destroy(gameObject);
-    }
-
     private IEnumerator SpawnRunes()
     {
         for (int i = 0; i < runes.Count; i++) 
@@ -28,19 +22,22 @@ public class RuneLayout : MonoBehaviour
             print(waitTime);
             yield return new WaitForSeconds(waitTime);
             runes[i].SetActive(true);
-            StartCoroutine(DestroyRune(runes[i].gameObject, 2 / (1 / (decrementPercentage * i + 1))));
+            StartCoroutine(DestroyRune(runes[i].gameObject, 3, i == runes.Count - 1));
         }
 
     }
 
-    private IEnumerator DestroyRune(GameObject rune, float time)
+    private IEnumerator DestroyRune(GameObject rune, float time, bool last)
     {
         yield return new WaitForSeconds(time);
 
         if (rune != null)
         {
+            if (last)
+            {
+                GetComponentInParent<Boss>().OnFailed();
+            }
             Destroy(rune);
-
         }
     }
 }

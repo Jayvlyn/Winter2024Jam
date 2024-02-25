@@ -9,27 +9,14 @@ public class BossRuneSpawner : Singleton<BossRuneSpawner>
 
     [SerializeField] private Transform spawnPos;
 
-    bool bossActive = false;
 
-    public bool canSpawnLayout;
 
-    private void Update()
+    public GameObject recentLayout;
+
+
+    public void SpawnLayout()
     {
-        if (!bossActive) return;
-
-
-        if (canSpawnLayout)
-        {
-            //TODO: play animation or audio
-
-            Instantiate(runeLayouts[Random.Range(0, runeLayouts.Count)], spawnPos.position, transform.rotation, transform);
-            canSpawnLayout = false;
-        }
+        recentLayout = Instantiate(runeLayouts[Random.Range(0, runeLayouts.Count)], spawnPos.position, transform.rotation, transform);
     }
-
-    public void SetBossActive()
-    {
-        bossActive = true;
-        canSpawnLayout = true;
-    }
+    
 }
