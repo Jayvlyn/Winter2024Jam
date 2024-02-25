@@ -269,14 +269,14 @@ public class PlayerController : Singleton<PlayerController>
             if (slashDir.y < 0) animator.SetTrigger("DownSlash");
             else animator.SetTrigger("UpSlash");
 
-            StartCoroutine(FinishSlash(slashPower, slashDir, desiredSlashTime));
+            StartCoroutine(FinishSlash(slashPower, slashDir, desiredSlashTime, raycast.collider));
         }
     }
 
     
     #endregion
 
-    private IEnumerator FinishSlash(float slashPower, Vector3 slashDir, float time)
+    private IEnumerator FinishSlash(float slashPower, Vector3 slashDir, float time, bool goingToHitWall)
     {
         yield return new WaitForSeconds(time);
         
@@ -286,13 +286,16 @@ public class PlayerController : Singleton<PlayerController>
 
         StartCoroutine(MomentumBuild(moveSpeedIncrease, momentumTime));
 
+        float yForce = (goingToHitWall) ? 0 : -slashDir.y * (slashPower * verticalSlashDamping);
+        float xForce = -slashDir.x * (slashPower * horizontalSlashDamping);
+
         //if (slashDir.y > 0)
         //{
-            rb.AddForce(new Vector3(-slashDir.x * (slashPower * horizontalSlashDamping), -slashDir.y * (slashPower * verticalSlashDamping)), ForceMode2D.Impulse);
+            rb.AddForce(new Vector3(xForce, yForce), ForceMode2D.Impulse);
         //}
         //else
         //{
-        //    rb.AddForce(new Vector3(-slashDir.x, 0, 0) * (slashPower * .5f * verticalSlashDamping), ForceMode2D.Impulse);
+        //    rb.AddForce(new Vector3(xForce, 0, 0), ForceMode2D.Impulse);
         //}
     }
 
