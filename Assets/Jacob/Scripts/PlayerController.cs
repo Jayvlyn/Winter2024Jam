@@ -70,6 +70,15 @@ public class PlayerController : Singleton<PlayerController>
 
     private void FixedUpdate()
     {
+        if ((moveInput.x >= 0 && rb.velocity.x < 0) || (moveInput.x <= 0 && rb.velocity.x > 0))
+        {
+            animator.SetBool("Skid", true);
+        }
+        else
+        {
+            animator.SetBool("Skid", false);
+        }
+
         if (isSlashing) return;
 
         targetSpeed = moveInput.x * moveSpeed;
@@ -103,6 +112,7 @@ public class PlayerController : Singleton<PlayerController>
         timeFromThrow += Time.deltaTime;
         mag = rb.velocity.magnitude;
         animator.SetFloat("MoveSpeed", mag);
+        animator.SetFloat("VerticalVelocity", rb.velocity.y);
 
         if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
@@ -185,6 +195,7 @@ public class PlayerController : Singleton<PlayerController>
     private void OnMove(InputValue inputValue)
     {
         moveInput = inputValue.Get<Vector2>();
+
     }
 
     public int jumpCount = 0;
@@ -196,6 +207,7 @@ public class PlayerController : Singleton<PlayerController>
             isJumping = true;
             jumpControlTimer = jumpControlTime;
             rb.AddForce(new Vector2(0, jumpPower * 0.5f), ForceMode2D.Impulse);
+            animator.SetTrigger("Jump");
         }
 
         if (!inputValue.isPressed)
@@ -237,6 +249,11 @@ public class PlayerController : Singleton<PlayerController>
             if (slashLength < baseSlashLength) slashLength = baseSlashLength;
 
             swordController.Slash(transform, slashDir, slashLength * 0.25f);
+
+            animator.SetBool("Slashing", true);
+            if (slashDir.y < 0) animator.SetTrigger("DownSlash");
+            else animator.SetTrigger("UpSlash");
+
             StartCoroutine(FinishSlash(slashDir));
         }
     }
@@ -249,6 +266,7 @@ public class PlayerController : Singleton<PlayerController>
         yield return new WaitForSeconds(slashLength);
         
         isSlashing = false;
+        StartCoroutine(FinishSlashAnimation());
         rb.gravityScale = gravity;
 
         StartCoroutine(MomentumBuild(moveSpeedIncrease, momentumTime));
@@ -261,6 +279,12 @@ public class PlayerController : Singleton<PlayerController>
         //{
         //    rb.AddForce(new Vector3(-slashDir.x, 0, 0) * (slashPower * .5f * verticalSlashDamping), ForceMode2D.Impulse);
         //}
+    }
+
+    private IEnumerator FinishSlashAnimation()
+    {
+        yield return new WaitForSeconds(0.25f);
+        animator.SetBool("Slashing", false);
     }
 
     private IEnumerator MomentumBuild(float increase, float time)

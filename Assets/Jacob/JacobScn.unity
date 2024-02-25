@@ -15145,6 +15145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slashDirPitchChangeAmount: 0
+  source: {fileID: 0}
 --- !u!4 &1081054903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8451174086802459344, guid: c8892e030f8cc584c80df30e1f09e5ee, type: 3}
