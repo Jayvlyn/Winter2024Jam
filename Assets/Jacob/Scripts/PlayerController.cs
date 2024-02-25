@@ -114,7 +114,7 @@ public class PlayerController : Singleton<PlayerController>
         animator.SetFloat("MoveSpeed", mag);
         animator.SetFloat("VerticalVelocity", rb.velocity.y);
 
-        if ((!isFacingRight && rb.velocity.x > 0f) || (isFacingRight && rb.velocity.x < 0f))
+        if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
             FlipX();
         }
