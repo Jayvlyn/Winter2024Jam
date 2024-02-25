@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 
 public class RuneSpawner : MonoBehaviour
 {
+
+
     [SerializeField] private GameObject runePrefab;
     [SerializeField, MinMaxSlider(0, 100)] private Vector2 spawnTimer;
     [SerializeField, MinMaxSlider(0, 100)] private Vector2 spawnHeight;
@@ -32,6 +34,8 @@ public class RuneSpawner : MonoBehaviour
 
     private void Update()
     {
+
+
         timer -= Time.deltaTime;
         if (timer <= 0)
         {

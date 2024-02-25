@@ -31,4 +31,9 @@ public class RuneLayout : MonoBehaviour
         }
 
     }
+
+    private IEnumerator DestroyRune(GameObject rune, float time)
+    {
+        yield return null;
+    }
 }
