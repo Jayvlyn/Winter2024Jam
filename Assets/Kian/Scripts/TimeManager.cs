@@ -14,6 +14,8 @@ public class TimeManager : Singleton<TimeManager>
 
     [SerializeField] float timePerSegment;
 
+    [SerializeField] AudioClip thock;
+
     private float timeFreezeLength;
 
     private int currentSegment;
@@ -47,6 +49,7 @@ public class TimeManager : Singleton<TimeManager>
         if (totalTime < maxTime - (timePerSegment * (currentSegment + 1)))
         {
             currentSegment++;
+            AudioManager.instance.PlayOneShot(thock);
         }
 
         timeSlider.value = 1 - (timePerSegment / maxTime) * currentSegment;
