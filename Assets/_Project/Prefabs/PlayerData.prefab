@@ -61,6 +61,7 @@ MonoBehaviour:
     m_Bits: 72
   mag: 0
   gravity: 4.5
+  animator: {fileID: 7974065096342956661}
   thresholdDemand: 1
   speedThreshold: 12
   stopThreshold: 1
