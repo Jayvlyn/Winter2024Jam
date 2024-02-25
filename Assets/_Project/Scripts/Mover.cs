@@ -74,6 +74,14 @@ public class Mover : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(radiusOrEnd + (Vector2)origin.position, 0.5f);
     }
+
+    public void SetData(Vector2 center, Vector2 radius, float speed, bool reverse)
+    {
+        centerOrStart = center;
+        radiusOrEnd = radius;
+        this.speed = speed;
+        this.reverse = reverse;
+    }
 }
 
 public enum MovementType
