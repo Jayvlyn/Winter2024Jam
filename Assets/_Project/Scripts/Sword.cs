@@ -29,6 +29,8 @@ public class Sword : MonoBehaviour
     [SerializeField] public float MovingSpeedUpPercent;
     [SerializeField] public float stabOffset = 1.4f;
 
+    [SerializeField] public AudioClip wallStabSound;
+
     public void Solidity(bool solid)
     {
         ConnectedCollider.isTrigger = (!solid);

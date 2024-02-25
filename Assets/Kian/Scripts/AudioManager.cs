@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
         
         source.pitch = pitch;
         source.PlayOneShot(clip);
-        source.pitch = 1.0f;
+        //source.pitch = 1.0f;
     }
 
     public void PlayOneShotOnSlashDir(AudioClip clip, float yDir)
