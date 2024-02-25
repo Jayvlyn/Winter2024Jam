@@ -7,6 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject settingsUI;
 
+    public void Start()
+    {
+        
+    }
+
     #region BUTTON EVENTS
     public void OnPlay()
     {
