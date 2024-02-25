@@ -10,7 +10,7 @@ public class Mover : MonoBehaviour
     [SerializeField] private Vector2 radiusOrEnd;
     [SerializeField] private Vector2 centerOrStart;
     [SerializeField] private float speed;
-    [SerializeField] private bool reverse;
+    [SerializeField] public bool reverse;
     [SerializeField] private TimeAffectable timeEffect;
 
 
