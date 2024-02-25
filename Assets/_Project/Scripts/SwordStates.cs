@@ -50,6 +50,8 @@ public class StationarySword : SwordStateBase
             sword.transform.position = new Vector3(sword.transform.position.x - sword.stabOffset, sword.transform.position.y, 0);
         }
 
+        sword.transform.rotation = Quaternion.identity;
+
     }
 
     public override void OnExitState(Sword sword)
