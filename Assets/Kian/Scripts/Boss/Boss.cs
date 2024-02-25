@@ -11,17 +11,21 @@ public class Boss : MonoBehaviour
 
     public void OnPlayerHitChandelier()
     {
+        chandelierHits++;
 
         if (chandelierHits < 2)
         {
             StartCoroutine(CallSpawns());
         }
 
-        if (chandelierHits == 2)
+        else if (chandelierHits == 2)
         {
             specialSpawns.active = true;
         }
-        chandelierHits++;
+        else
+        {
+            specialSpawns.active = false;
+        }
     }
 
     public void OnFailed()

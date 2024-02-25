@@ -77,7 +77,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 231.8, y: 279.57}
+  m_ConnectedAnchor: {x: 87.946884, y: 77.37}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -396,6 +396,7 @@ MonoBehaviour:
   spawnHeight: {x: 9, y: 22}
   speed: {x: -1.7, y: 1.2}
   maxSpawnCount: 14
+  active: 0
 --- !u!114 &3965427370562227588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,8 +409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7d6628ec72d5c47a4015c357b9a017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runeLayouts: []
-  canSpawnLayout: 0
+  runeLayouts:
+  - {fileID: 5619736017156856121, guid: 1012d4b2d21e8b846ab16565cb6656ee, type: 3}
+  - {fileID: 5619736017156856121, guid: 63fb042c3655f2440a40a2cf3df2c1f8, type: 3}
+  spawnPos: {fileID: 5949696330489556046}
+  recentLayout: {fileID: 0}
 --- !u!114 &2727558130243876897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,8 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a587edf05226e4f9fc8d4578471250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpawns: {fileID: 0}
-  specialSpawns: {fileID: 0}
+  normalSpawns: {fileID: 3965427370562227588}
+  specialSpawns: {fileID: 2439425061354128854}
 --- !u!1 &4390412781075907273
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +522,7 @@ Transform:
   - {fileID: 729394238641406692}
   - {fileID: 8923829635746029948}
   - {fileID: 7115011130363833593}
+  - {fileID: 5949696330489556046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6021595151800585365
@@ -869,6 +874,18 @@ MonoBehaviour:
   slashThroughEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2727558130243876897}
+        m_TargetAssemblyTypeName: Boss, Assembly-CSharp
+        m_MethodName: OnPlayerHitChandelier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 3642415227481436637}
         m_TargetAssemblyTypeName: SlashableDisabler, Assembly-CSharp
         m_MethodName: StartSlashDisable
@@ -923,3 +940,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: ChandelierFall
+--- !u!1 &9024900678731112945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5949696330489556046}
+  m_Layer: 0
+  m_Name: SpawnTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5949696330489556046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9024900678731112945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1282200145819565480}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

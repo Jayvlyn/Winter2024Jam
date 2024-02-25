@@ -39,5 +39,9 @@ public class RuneLayout : MonoBehaviour
             }
             Destroy(rune);
         }
+        else if (rune == null && last)
+        {
+            GetComponentInParent<Boss>().OnFailed();
+        }
     }
 }
