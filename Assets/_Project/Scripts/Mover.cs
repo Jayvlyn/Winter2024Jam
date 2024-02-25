@@ -22,7 +22,7 @@ public class Mover : MonoBehaviour
         if (!reverse)
         {
             elapsedTime += GetTimeChange();
-            if (elapsedTime >= 360)
+            if (elapsedTime > 360)
             {
                 direction = !direction;
                 elapsedTime = 0;
@@ -31,7 +31,7 @@ public class Mover : MonoBehaviour
         else
         {
             elapsedTime -= GetTimeChange();
-            if (elapsedTime <= 0)
+            if (elapsedTime < 0)
             {
                 direction = !direction;
                 elapsedTime = 360;
