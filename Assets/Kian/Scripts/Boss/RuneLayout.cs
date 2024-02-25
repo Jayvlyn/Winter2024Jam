@@ -28,12 +28,19 @@ public class RuneLayout : MonoBehaviour
             print(waitTime);
             yield return new WaitForSeconds(waitTime);
             runes[i].SetActive(true);
+            StartCoroutine(DestroyRune(runes[i].gameObject, 2 / (1 / (decrementPercentage * i + 1))));
         }
 
     }
 
     private IEnumerator DestroyRune(GameObject rune, float time)
     {
-        yield return null;
+        yield return new WaitForSeconds(time);
+
+        if (rune != null)
+        {
+            Destroy(rune);
+
+        }
     }
 }

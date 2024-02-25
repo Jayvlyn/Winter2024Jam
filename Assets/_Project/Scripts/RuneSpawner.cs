@@ -22,6 +22,7 @@ public class RuneSpawner : MonoBehaviour
 
     private float timer;
 
+    public bool active = false;
 
     private void OnEnable()
     {
@@ -34,7 +35,7 @@ public class RuneSpawner : MonoBehaviour
 
     private void Update()
     {
-
+        if (!active) return;
 
         timer -= Time.deltaTime;
         if (timer <= 0)
