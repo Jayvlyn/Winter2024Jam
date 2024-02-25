@@ -11,6 +11,7 @@ public class SwordController : MonoBehaviour
 
     [SerializeField] private float forwardSlashDistance;
     [SerializeField] private float swordSlashSpeed;
+    [SerializeField] private Vector2 swordThrowOffset;
 
     [SerializeField, Range(0, 1)] private float lerpFollow;
 
@@ -18,8 +19,8 @@ public class SwordController : MonoBehaviour
 
     public void Throw(Vector2 direction, Vector2 origin, bool playerFacingRight)
     {
-        Debug.DrawRay(origin, direction * maxThrowDistance);
-        RaycastHit2D raycast = Physics2D.Raycast(origin, direction, maxThrowDistance, hitLayer);
+        Debug.DrawRay(origin + swordThrowOffset, direction * maxThrowDistance);
+        RaycastHit2D raycast = Physics2D.Raycast(origin + swordThrowOffset, direction, maxThrowDistance, hitLayer);
         if (raycast.collider == null) raycast.point = origin + (direction * maxThrowDistance);
         swordPoint.position = raycast.point;
         
