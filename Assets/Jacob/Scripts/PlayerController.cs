@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class PlayerController : Singleton<PlayerController>
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private NearbySlashable ns;
 
     public Transform groundCheck;
@@ -18,7 +18,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float gravity = 3.5f;
     [SerializeField] private float slowFallGravity = 0.5f;
 
-    [SerializeField] Animator animator;
+    [SerializeField] public Animator animator;
 
     [SerializeField] private float thresholdDemand = 0.98f;
     [SerializeField] private float speedThreshold = 12.0f;
