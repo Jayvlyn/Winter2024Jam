@@ -14,6 +14,8 @@ public class Footsteps : MonoBehaviour
     public void OnStep()
     {
         stepCount++;
+        if (stepCount == 5) stepCount = 1;
+
         if(stepCount % 2 == 0) // EVEN STEP
         {
             if(Random.Range(1,3) == 1) AudioManager.instance.PlayOneShot(step1);
