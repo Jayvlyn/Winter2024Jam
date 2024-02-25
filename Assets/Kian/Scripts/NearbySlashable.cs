@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NearbySlashable : Singleton<NearbySlashable>
+public class NearbySlashable : MonoBehaviour
 {
     [SerializeField] List<Slashable> closeObjects = new List<Slashable>();
 
