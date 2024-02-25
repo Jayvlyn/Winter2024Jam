@@ -244,7 +244,8 @@ public class PlayerController : Singleton<PlayerController>
             float slashPower = baseSlashPower * distance;
             if (slashPower < baseSlashPower) slashPower = baseSlashPower;
 
-            rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
+            //rb.AddForce(slashDir * slashPower, ForceMode2D.Impulse);
+            rb.velocity = new Vector3(slashDir.x * slashPower, slashDir.y * slashPower, 0);
 
             float desiredSlashTime;
 
