@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +30,8 @@ public class Sword : MonoBehaviour
     [SerializeField] public float stabOffset = 1.4f;
 
     [SerializeField] public AudioClip wallStabSound;
+    [SerializeField] public AudioClip flingSound;
+    [SerializeField] public AudioClip throwSound;
 
     public void Solidity(bool solid)
     {
@@ -108,9 +110,7 @@ public class Sword : MonoBehaviour
             {
                 pc.rb.velocity = Vector2.up * flingForce;
                 pc.animator.SetTrigger("Pull");
-                
-                //Vector2 velocity = playerRb.velocity;
-                //playerRb.AddForce(Vector3.up * flingForce, ForceMode2D.Impulse);
+                AudioManager.instance.PlayOneShotAtPitch(flingSound, Random.Range(0.95f, 1.05f));
             }
         }
     }
