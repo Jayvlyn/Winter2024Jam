@@ -114,7 +114,7 @@ public class PlayerController : Singleton<PlayerController>
         animator.SetFloat("MoveSpeed", mag);
         animator.SetFloat("VerticalVelocity", rb.velocity.y);
 
-        if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
+        if ((!isFacingRight && rb.velocity.x > 0f) || (isFacingRight && rb.velocity.x < 0f))
         {
             FlipX();
         }
@@ -179,7 +179,9 @@ public class PlayerController : Singleton<PlayerController>
     
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        bool grounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        animator.SetBool("OnGround", grounded);
+        return grounded;
     }
 
     private void FlipX()
