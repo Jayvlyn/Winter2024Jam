@@ -36,6 +36,9 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField, Range(0.1f,0.99f)] private float verticalSlashDamping = .5f;
     [SerializeField, Range(0.1f, 0.99f)] private float horizontalSlashDamping = .5f;
 
+    [SerializeField, Range(0, 2)] private float hitWallDecreasePercent = 0.3f;
+    [SerializeField, Range(0, 2)] private float noWallDistanceBonus = 1.7f;
+
     [SerializeField] private SwordController swordController;
     [SerializeField] private float jumpControlTime = 1f;
     [SerializeField] private float coyoteTime = 0.1f;
@@ -246,14 +249,18 @@ public class PlayerController : Singleton<PlayerController>
             RaycastHit2D raycast = Physics2D.Raycast(transform.position, slashDir, 2 * distance, groundLayer);
             if (raycast.collider != null)
             {
-                desiredSlashTime = 1.7f * raycast.distance / rb.velocity.magnitude;
-                //Debug.Log("Changed Distance");
+                Debug.Log("Changed Distance");
+                Debug.DrawRay(transform.position, slashDir * 2 * distance, Color.green, 4f);
+                distance = raycast.distance * hitWallDecreasePercent;
+                Debug.DrawRay(transform.position, slashDir * distance, Color.yellow, 4f);
             }
             else
             {
-                desiredSlashTime = 1.7f * distance / rb.velocity.magnitude;
+                distance *= noWallDistanceBonus;
             }
             
+            
+            desiredSlashTime = distance / rb.velocity.magnitude;
             if (desiredSlashTime < minSlashTime) desiredSlashTime = minSlashTime;
 
             swordController.Slash(transform, slashDir, desiredSlashTime * 0.25f);
