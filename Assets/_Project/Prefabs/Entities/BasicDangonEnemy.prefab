@@ -164,6 +164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 498374140276918801}
   - {fileID: 5385268150569834906}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -378,10 +379,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac08776f73816404f9a59bd8ff2a2648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 8655871031069575420}
+  origin: {fileID: 498374140276918801}
   movement: 1
-  radiusOrEnd: {x: -2.46, y: 1.53}
+  radiusOrEnd: {x: -2.61, y: 0}
   centerOrStart: {x: 0, y: 0}
-  speed: 1
+  speed: 152.8
+  reverse: 0
+  timeEffect: {fileID: 5506848489552789588}
+--- !u!1 &9022772668694688822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498374140276918801}
+  - component: {fileID: 1989977900100027098}
+  m_Layer: 0
+  m_Name: Circle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498374140276918801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9022772668694688822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8655871031069575420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1989977900100027098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9022772668694688822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac08776f73816404f9a59bd8ff2a2648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 8655871031069575420}
+  movement: 3
+  radiusOrEnd: {x: 1.85, y: 0}
+  centerOrStart: {x: 0, y: 0}
+  speed: 0.8
   reverse: 0
   timeEffect: {fileID: 5506848489552789588}
