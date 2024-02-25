@@ -1156,6 +1156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock
       objectReference: {fileID: 0}
+    - target: {fileID: 5166366347869149829, guid: c280184f3435972448fd0b5927c8866d, type: 3}
+      propertyPath: slasher
+      value: 
+      objectReference: {fileID: 1376724071601808519}
     - target: {fileID: 9202857809621820887, guid: c280184f3435972448fd0b5927c8866d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.91

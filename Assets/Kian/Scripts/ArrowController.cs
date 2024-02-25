@@ -6,8 +6,8 @@ public class ArrowController : MonoBehaviour
 {
     [SerializeField] private GameObject clockHandGO;
     [SerializeField] private SpriteRenderer clockHandSR;
+    [SerializeField] private NearbySlashable slasher;
 
-    [SerializeField] private LayerMask layerMask;
 
     private Slashable nearestSlashable;
 
@@ -22,8 +22,8 @@ public class ArrowController : MonoBehaviour
 
     private void Update()
     {
-        transform.position = NearbySlashable.Instance.transform.position;
-        nearestSlashable = NearbySlashable.Instance.GetClosestSlashable();
+        transform.position = slasher.transform.position;
+        nearestSlashable = slasher.GetClosestSlashable();
 
 
         if (nearestSlashable != null && PlayerController.Instance.isHoldingSword)

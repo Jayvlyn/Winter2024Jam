@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 8525916484099498536}
   - component: {fileID: 1005853699747767108}
   - component: {fileID: 3661979440372594230}
+  - component: {fileID: 1981019622179058422}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -308,7 +309,19 @@ MonoBehaviour:
         m_CallState: 2
   deathEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1981019622179058422}
+        m_TargetAssemblyTypeName: RuneDestroyedEvent, Assembly-CSharp
+        m_MethodName: RuneDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8525916484099498536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +367,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: {x: 7, y: 14}
   mover: {fileID: 8525916484099498536}
+--- !u!114 &1981019622179058422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2427189411232287454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4302ad58735c34b84e35e070aa0626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5356159957484249084
 GameObject:
   m_ObjectHideFlags: 0
