@@ -32,6 +32,8 @@ public class Sword : MonoBehaviour
     public void Solidity(bool solid)
     {
         ConnectedCollider.isTrigger = (!solid);
+        if (solid) gameObject.layer = (LayerMask.NameToLayer("Ground"));
+        else gameObject.layer = (LayerMask.NameToLayer("Sword"));
     }
     private void Start()
     {

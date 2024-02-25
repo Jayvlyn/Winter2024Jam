@@ -58,7 +58,7 @@ MonoBehaviour:
   groundCheck: {fileID: 7882693795632509755}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
   mag: 0
   gravity: 4.5
   animator: {fileID: 7974065096342956661}
