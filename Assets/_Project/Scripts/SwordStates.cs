@@ -33,6 +33,8 @@ public class StationarySword : SwordStateBase
     public override void OnEnterState(Sword sword)
     {
         //Debug.Log("Became Stationary");
+        //AudioManager.instance.PlayOneShotAtPitch(sword.wallStabSound, Random.Range(1.5f, 2f));
+
         sword.Solidity(true);
         sword.Rigidbody.bodyType = RigidbodyType2D.Static;
         sword.transform.position = sword.FollowTransform.position;

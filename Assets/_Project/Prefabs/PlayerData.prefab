@@ -696,6 +696,7 @@ MonoBehaviour:
   ElapsedThrowTime: 0
   MovingSpeedUpPercent: 100
   stabOffset: 1.75
+  wallStabSound: {fileID: 8300000, guid: 037c8cfceda942a45840ce52ad7e5323, type: 3}
   isFacingRight: 0
   objectStabbedInto: {fileID: 0}
 --- !u!50 &6876390023120223160
@@ -1049,6 +1050,7 @@ GameObject:
   - component: {fileID: 283239678671078941}
   - component: {fileID: 7974065096342956661}
   - component: {fileID: 8552599810622583725}
+  - component: {fileID: 8090210298950774547}
   m_Layer: 0
   m_Name: playerAnim
   m_TagString: Untagged
@@ -1144,6 +1146,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8090210298950774547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184962123025668847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052f8ea0d810233409fab3861ddf2943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepCount: 0
+  step1: {fileID: 8300000, guid: 1a44c834917925f4fb66d828cffdde19, type: 3}
+  step2: {fileID: 8300000, guid: d987043de77872d4d96e9ef9da65047e, type: 3}
+  step3: {fileID: 8300000, guid: 8203b0eaba62a8d4da9b4001b4e1a1ed, type: 3}
+  step4: {fileID: 8300000, guid: 9d77e5dcfc86d284b86bcee20a6cbc39, type: 3}
 --- !u!1001 &6393772449326356745
 PrefabInstance:
   m_ObjectHideFlags: 0
