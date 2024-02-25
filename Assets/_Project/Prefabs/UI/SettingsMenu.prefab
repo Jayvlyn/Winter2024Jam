@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redirectUI: {fileID: 0}
   mixer: {fileID: 24100000, guid: 241de6c1b1b32164881a72ee54ec7214, type: 2}
-  resolutionDropdown: {fileID: 0}
+  resolutionDropdown: {fileID: 2489908722692999844}
 --- !u!222 &2726891880902890428
 CanvasRenderer:
   m_ObjectHideFlags: 0
