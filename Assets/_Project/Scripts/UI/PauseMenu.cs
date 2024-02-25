@@ -16,7 +16,15 @@ public class PauseMenu : MonoBehaviour
         {
             if (paused)
             {
-                Resume();
+                if(pauseUI.activeSelf)
+                {
+                    Resume();
+                }
+                else
+                {
+                    pauseUI.SetActive(true);
+                    settingsUI.SetActive(false);
+                }
             } else
             {
                 Pause();
