@@ -22,7 +22,7 @@ public class Mover : MonoBehaviour
         if (!reverse)
         {
             elapsedTime += GetTimeChange();
-            if (elapsedTime > 360)
+            if (elapsedTime > 358.14f)
             {
                 direction = !direction;
                 elapsedTime = 0;
@@ -34,7 +34,7 @@ public class Mover : MonoBehaviour
             if (elapsedTime < 0)
             {
                 direction = !direction;
-                elapsedTime = 360;
+                elapsedTime = 358.14f;
             }
         }
         switch (movement)
@@ -50,13 +50,13 @@ public class Mover : MonoBehaviour
             }
             case MovementType.Straight:
             {
-                transform.position = Vector2.Lerp(centerOrStart + (Vector2)origin.position, radiusOrEnd + (Vector2)origin.position, elapsedTime / 360);
+                transform.position = Vector2.Lerp(centerOrStart + (Vector2)origin.position, radiusOrEnd + (Vector2)origin.position, elapsedTime / 358.14f);
                 break;
             }
             case MovementType.PingPong:
             {
                 transform.position = Vector2.Lerp(centerOrStart + (Vector2)origin.position, radiusOrEnd + (Vector2)origin.position,
-                    (direction) ? (elapsedTime / 360) : 1 - (elapsedTime / 360));
+                    (direction) ? (elapsedTime / 358.14f) : 1 - (elapsedTime / 358.14f));
                 break;
             }
         }
