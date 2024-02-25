@@ -106,7 +106,9 @@ public class Sword : MonoBehaviour
         {
             if(collision.gameObject.TryGetComponent(out Rigidbody2D playerRb) && currentState == stationary && playerRb.gameObject.transform.position.y < transform.position.y && playerRb.velocity.y > 0)
             {
-                playerRb.AddForce(Vector3.up * flingForce, ForceMode2D.Impulse);
+                playerRb.velocity = Vector2.up * flingForce;
+                //Vector2 velocity = playerRb.velocity;
+                //playerRb.AddForce(Vector3.up * flingForce, ForceMode2D.Impulse);
             }
         }
     }
