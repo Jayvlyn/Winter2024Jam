@@ -11,7 +11,7 @@ public class Slashable : MonoBehaviour
 
     [SerializeField] private GameObject slashEffect;
     [SerializeField] private AudioClip hitSound;
-    //[SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip deathSound;
 
 
     public bool slashable = true;
@@ -51,7 +51,7 @@ public class Slashable : MonoBehaviour
 
     public void Death()
     {
-        //AudioManager.Instance.PlayOneShotAtPitch(deathSound, Random.Range(0.8f, 1.2f));
+        if(deathSound != null) AudioManager.instance.PlayOneShotAtPitch(deathSound, Random.Range(0.8f, 1.2f));
         Destroy(ObjectToDestroy);
         deathEvent?.Invoke();
     }

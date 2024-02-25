@@ -271,7 +271,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 6.13
 --- !u!114 &7964965693310771326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,17 +285,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slashEffect: {fileID: 9110533108748504803, guid: 8ed8e5fee7be1b043abdc2d78d3584bb, type: 3}
-  hitSound: {fileID: 8300000, guid: 6dda7bf0c17446645916c7736c5dfe99, type: 3}
+  hitSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 78c8462c025b9044b9b6a7934a19e7a5, type: 3}
   slashable: 1
   canDie: 1
   ObjectToDestroy: {fileID: 6031198325566053122}
-  health: 1
+  health: 3
   slashThroughEvent:
     m_PersistentCalls:
       m_Calls: []
   deathEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GemManager, Assembly-CSharp
+        m_MethodName: Gem1Destroyed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8492178440324718874
 MonoBehaviour:
   m_ObjectHideFlags: 0
