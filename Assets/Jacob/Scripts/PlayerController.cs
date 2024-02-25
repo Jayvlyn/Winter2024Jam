@@ -198,6 +198,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         moveInput = inputValue.Get<Vector2>();
 
+
     }
 
     public int jumpCount = 0;
