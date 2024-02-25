@@ -55,12 +55,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb2098a990b96b4c872362b8c20d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   groundCheck: {fileID: 7882693795632509755}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   mag: 0
   gravity: 4.5
+  slowFallGravity: 0.5
   animator: {fileID: 7974065096342956661}
   thresholdDemand: 1
   speedThreshold: 12
@@ -798,6 +800,8 @@ MonoBehaviour:
   MovingSpeedUpPercent: 100
   stabOffset: 1.75
   wallStabSound: {fileID: 8300000, guid: 037c8cfceda942a45840ce52ad7e5323, type: 3}
+  flingSound: {fileID: 8300000, guid: f839ae6867e28b8488a9d01604d916d9, type: 3}
+  throwSound: {fileID: 8300000, guid: ee10fc781c970c64695da140a2ea332a, type: 3}
   isFacingRight: 0
   objectStabbedInto: {fileID: 0}
 --- !u!50 &6876390023120223160

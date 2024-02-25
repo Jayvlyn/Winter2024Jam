@@ -69,6 +69,7 @@ public class ThrowingSword : SwordStateBase
     {
         sword.ElapsedThrowTime = 0;
         //Debug.Log("Became Thrown");
+        AudioManager.instance.PlayOneShotAtPitch(sword.throwSound, Random.Range(0.95f, 1.05f));
     }
 
     public override void OnExitState(Sword sword)

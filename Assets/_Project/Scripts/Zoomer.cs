@@ -12,12 +12,17 @@ public class Zoomer : MonoBehaviour
     [SerializeField] private float time;
     private float smallSize;
 
+    [SerializeField] AudioSource originalMusic;
+    [SerializeField] AudioSource bossMusic;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             smallSize = cvm.m_Lens.OrthographicSize;
             StartCoroutine(SizeChange(smallSize, growSize, cvm, time));
+            originalMusic.volume = 0;
+            bossMusic.volume = .6f;
             
         }
     }
@@ -26,7 +31,8 @@ public class Zoomer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartCoroutine(SizeChange(cvm.m_Lens.OrthographicSize, smallSize, cvm, time));
-            
+            originalMusic.volume = .6f;
+            bossMusic.volume = 0;
         }
     }
 
