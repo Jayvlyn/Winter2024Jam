@@ -14,7 +14,6 @@ public class RotateToZero : MonoBehaviour
         float currentAngle = transform.rotation.z;
         if (currentAngle > 180) currentAngle -= 360;
         if (currentAngle < -180) currentAngle += 360;
-        Debug.Log(currentAngle);
         rigidbody.AddTorque((currentAngle - targetAngle) * force);
     }
 }
