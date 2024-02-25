@@ -865,7 +865,7 @@ MonoBehaviour:
   stabOffset: 1.75
   wallStabParticles: {fileID: 6920495118301297399, guid: 6e35f8fccd6e58c43822685ac5a0fa80, type: 3}
   wallParticleTransform: {fileID: 2377098182639036859}
-  wallStabSound: {fileID: 8300000, guid: 037c8cfceda942a45840ce52ad7e5323, type: 3}
+  wallStabSound: {fileID: 8300000, guid: 69210fd49ffc6a34bae327707cf3b9c5, type: 3}
   flingSound: {fileID: 8300000, guid: f839ae6867e28b8488a9d01604d916d9, type: 3}
   throwSound: {fileID: 8300000, guid: ee10fc781c970c64695da140a2ea332a, type: 3}
   isFacingRight: 0
