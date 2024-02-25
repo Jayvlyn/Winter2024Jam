@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 199801094252002180}
   - component: {fileID: 2265676322065196551}
   - component: {fileID: 5506848489552789588}
+  - component: {fileID: 41729851879820272}
   m_Layer: 0
   m_Name: TimeAura
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.92, y: 7.92, z: 7.92}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5385268150569834906}
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: -4
+  m_Sprite: {fileID: 21300000, guid: 99b5839fd0c4d1244957348975b204a7, type: 3}
   m_Color: {r: 0.6394722, g: 0.8688643, b: 0.93710685, a: 0.21176471}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,7 +121,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 2.58
 --- !u!114 &5506848489552789588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +136,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multiplier: 0.1
   magicArea: {fileID: 199801094252002180}
+--- !u!114 &41729851879820272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397830294131049808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32355f426a9e27f428831ff027cd799c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -10
+  usesExternalTimer: 0
 --- !u!1 &1083324000462658714
 GameObject:
   m_ObjectHideFlags: 0
