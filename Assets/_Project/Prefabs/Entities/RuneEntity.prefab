@@ -237,7 +237,7 @@ Transform:
   - {fileID: 4380914975668118492}
   - {fileID: 1526469226938706700}
   - {fileID: 8181945095846617458}
-  m_Father: {fileID: 8597042306747357520}
+  m_Father: {fileID: 8525902171173345811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &362758076179315977
 CircleCollider2D:
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac08776f73816404f9a59bd8ff2a2648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 8597042306747357520}
+  origin: {fileID: 8525902171173345811}
   movement: 3
   radiusOrEnd: {x: 1, y: 1}
   centerOrStart: {x: 0, y: 0}
@@ -380,6 +380,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: RuneDied
+--- !u!1 &2449848702906962016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8525902171173345811}
+  - component: {fileID: 6172033182734374270}
+  m_Layer: 0
+  m_Name: Revolve
+  m_TagString: Revolver
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8525902171173345811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2449848702906962016}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7096344175030957739}
+  m_Father: {fileID: 8597042306747357520}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6172033182734374270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2449848702906962016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac08776f73816404f9a59bd8ff2a2648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 8597042306747357520}
+  movement: 3
+  radiusOrEnd: {x: 0, y: 0}
+  centerOrStart: {x: 3.65, y: 1.43}
+  speed: 0
+  reverse: 0
+  timeEffect: {fileID: 4102664942567901721}
 --- !u!1 &5356159957484249084
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7096344175030957739}
+  - {fileID: 8525902171173345811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8408982608356874224
