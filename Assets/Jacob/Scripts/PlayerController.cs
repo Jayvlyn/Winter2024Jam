@@ -16,6 +16,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float mag = 0;
 
     [SerializeField] private float gravity = 3.5f;
+    [SerializeField] private float slowFallGravity = 0.5f;
 
     [SerializeField] Animator animator;
 
@@ -134,6 +135,15 @@ public class PlayerController : Singleton<PlayerController>
             coyoteTimer -= Time.deltaTime;
         }
 
+        if (moveInput.y > 0 && rb.velocity.y < 0 && rb.gravityScale == gravity)
+        {
+            rb.gravityScale = slowFallGravity;
+        }
+        else if ((moveInput.y <= 0 || rb.velocity.y >= 0) && rb.gravityScale == slowFallGravity)
+        {
+            rb.gravityScale = gravity;
+        }
+
         #region Throwing
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -197,8 +207,6 @@ public class PlayerController : Singleton<PlayerController>
     private void OnMove(InputValue inputValue)
     {
         moveInput = inputValue.Get<Vector2>();
-
-
     }
 
     public int jumpCount = 0;
