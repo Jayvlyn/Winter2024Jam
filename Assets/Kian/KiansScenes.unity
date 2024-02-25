@@ -140,9 +140,17 @@ PrefabInstance:
       value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 4766929238164536543, guid: 8dfef7ab44b9d9f43a54ef91bc35ef14, type: 3}
+      propertyPath: maxTime
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766929238164536543, guid: 8dfef7ab44b9d9f43a54ef91bc35ef14, type: 3}
       propertyPath: timeSlider
       value: 
       objectReference: {fileID: 1722223982}
+    - target: {fileID: 4766929238164536543, guid: 8dfef7ab44b9d9f43a54ef91bc35ef14, type: 3}
+      propertyPath: timePerSegment
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5280549434128832286, guid: 8dfef7ab44b9d9f43a54ef91bc35ef14, type: 3}
       propertyPath: m_Name
       value: Manager
@@ -10679,18 +10687,6 @@ PrefabInstance:
     - target: {fileID: 2034677865809084526, guid: 91838056445993442b53ba17b129d536, type: 3}
       propertyPath: m_Name
       value: Timer
-      objectReference: {fileID: 0}
-    - target: {fileID: 5908958358728154220, guid: 91838056445993442b53ba17b129d536, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5908958358728154220, guid: 91838056445993442b53ba17b129d536, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5908958358728154220, guid: 91838056445993442b53ba17b129d536, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6100129105700671663, guid: 91838056445993442b53ba17b129d536, type: 3}
       propertyPath: m_AnchorMax.x
