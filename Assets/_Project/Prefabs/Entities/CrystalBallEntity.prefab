@@ -406,7 +406,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 4.21
 --- !u!114 &7964965693310771326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slashable: 1
-  canDie: 1
+  canDie: 0
   ObjectToDestroy: {fileID: 6031198325566053122}
   health: 1
   slashThroughEvent:
@@ -442,9 +442,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 4374080671696534475}
-  movement: 3
-  radiusOrEnd: {x: 2.73, y: 1.54}
+  movement: 1
+  radiusOrEnd: {x: 0, y: 0.4}
   centerOrStart: {x: 0, y: 0}
-  speed: 1
+  speed: 250
   reverse: 0
   timeEffect: {fileID: 8123999302709780383}
