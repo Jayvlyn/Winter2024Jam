@@ -52,4 +52,14 @@ public class RuneSpawner : MonoBehaviour
     {
         spawnCount--;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, spawnHeight.x);
+        Gizmos.DrawWireSphere(transform.position, spawnHeight.y);
+    }
+
+
+
 }

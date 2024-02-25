@@ -312,7 +312,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1981019622179058422}
         m_TargetAssemblyTypeName: RuneDestroyedEvent, Assembly-CSharp
-        m_MethodName: RuneDeath
+        m_MethodName: Call
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4302ad58735c34b84e35e070aa0626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventName: RuneDied
 --- !u!1 &5356159957484249084
 GameObject:
   m_ObjectHideFlags: 0
