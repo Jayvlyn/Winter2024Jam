@@ -18,6 +18,9 @@ public class RuneSpawner : MonoBehaviour
     [SerializeField, MinMaxSlider(-100, 100)] private Vector2 speed;
     [SerializeField] private int maxSpawnCount;
 
+    [SerializeField] private AudioClip spawnSound;
+
+
     private int spawnCount;
 
     private float timer;
@@ -49,6 +52,7 @@ public class RuneSpawner : MonoBehaviour
     {
         spawnCount++;
         int getter = Random.Range(0, 2);
+        AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
         GameObject rune = Instantiate(runePrefab, transform);
         var movers = rune.GetComponentsInChildren<Mover>();
         foreach (var mover in movers)

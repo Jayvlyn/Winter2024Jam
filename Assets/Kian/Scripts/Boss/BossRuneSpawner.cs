@@ -9,6 +9,8 @@ public class BossRuneSpawner : Singleton<BossRuneSpawner>
 
     [SerializeField] private Transform spawnPos;
 
+    [SerializeField] private AudioClip spawnSound;
+
 
 
     public GameObject recentLayout;
@@ -16,7 +18,9 @@ public class BossRuneSpawner : Singleton<BossRuneSpawner>
 
     public void SpawnLayout()
     {
+        AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
         recentLayout = Instantiate(runeLayouts[Random.Range(0, runeLayouts.Count)], spawnPos.position, transform.rotation, transform);
+
     }
     
 }
