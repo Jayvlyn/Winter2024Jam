@@ -10,7 +10,7 @@ public class Quack : MonoBehaviour
     {
         if (collision.TryGetComponent(out PlayerController controller))
         {
-            AudioManager.Instance.PlayOneShot(quack);
+            AudioManager.instance.PlayOneShot(quack);
         }
     }
 }

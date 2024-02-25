@@ -5,13 +5,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : MonoBehaviour
 {
-    
+    public static AudioManager instance;
+
+
     [SerializeField, Range(0, 1)] private float slashDirPitchChangeAmount;
     [SerializeField] private AudioSource source;
 
-    
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance);
+            instance = this;
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     public void PlayOneShot(AudioClip clip)
     {

@@ -223,7 +223,7 @@ public class PlayerController : Singleton<PlayerController>
             slashDir.Normalize();
             
 
-            AudioManager.Instance.PlayOneShotOnSlashDir(slashClip, slashDir.y);
+            AudioManager.instance.PlayOneShotOnSlashDir(slashClip, slashDir.y);
 
             float distance = Vector3.Distance(transform.position, slashable.transform.position);
 

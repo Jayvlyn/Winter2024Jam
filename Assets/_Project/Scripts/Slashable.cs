@@ -44,7 +44,7 @@ public class Slashable : MonoBehaviour
         slashThroughEvent?.Invoke();
 
         if(slashEffect != null) Instantiate(slashEffect, transform.position, transform.rotation);
-        if(hitSound != null) AudioManager.Instance.PlayOneShotAtPitch(hitSound, Random.Range(0.6f, 1.4f));
+        if(hitSound != null) AudioManager.instance.PlayOneShotAtPitch(hitSound, Random.Range(0.6f, 1.4f));
 
         if (health <= 0 && canDie) Death();
     }
