@@ -30,8 +30,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayOneShotOnSlashDir(AudioClip clip, float yDir)
     {
-        source.pitch += yDir * slashDirPitchChangeAmount;
+        source.pitch = 1.0f + (yDir * slashDirPitchChangeAmount);
         source.PlayOneShot(clip);
-        source.pitch = 1.0f;
     }
 }
