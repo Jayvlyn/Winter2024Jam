@@ -16,6 +16,8 @@ public class PlayerController : Singleton<PlayerController>
 
     [SerializeField] private float gravity = 3.5f;
 
+    [SerializeField] Animator animator;
+
     [SerializeField] private float thresholdDemand = 0.98f;
     [SerializeField] private float speedThreshold = 12.0f;
     [SerializeField] private float stopThreshold = 1;
@@ -100,6 +102,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         timeFromThrow += Time.deltaTime;
         mag = rb.velocity.magnitude;
+        animator.SetFloat("MoveSpeed", mag);
 
         if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {
