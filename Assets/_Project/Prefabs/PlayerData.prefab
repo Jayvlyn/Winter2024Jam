@@ -104,7 +104,7 @@ MonoBehaviour:
   swordController: {fileID: 474109553154729411}
   jumpControlTime: 0.2
   coyoteTime: 0.1
-  slashClip: {fileID: 8300000, guid: 0419bbe87a27176489c7c81864a21af1, type: 3}
+  slashClip: {fileID: 8300000, guid: 6126122d7b05e1f4ab797f4a95e5e87b, type: 3}
   jumpCount: 0
 --- !u!114 &1376724071601808519
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
     m_Bits: 8
   forwardSlashDistance: 5
   swordSlashSpeed: 100
-  swordThrowOffset: {x: 0, y: 0}
+  swordThrowOffset: {x: 0, y: 0.9}
   lerpFollow: 0.58
   reelingIn: 0
 --- !u!114 &8202572662063660309

@@ -384,6 +384,6 @@ MonoBehaviour:
   movement: 1
   radiusOrEnd: {x: 0, y: 0.73}
   centerOrStart: {x: 0, y: -0.66}
-  speed: 1
+  speed: 200
   reverse: 0
   timeEffect: {fileID: 8123999302709780383}
