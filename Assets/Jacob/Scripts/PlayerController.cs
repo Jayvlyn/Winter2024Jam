@@ -141,8 +141,9 @@ public class PlayerController : Singleton<PlayerController>
             {  
                 float distanceCatch = swordController.Catch(transform);
                 float normalizedDistance = distanceCatch / maxCatchDistance;
-                StartCoroutine(MomentumBuild(catchMoveSpeedIncrease.Evaluate(normalizedDistance) * catchMoveSpeedMultiplier, catchMomentumTime));
-
+                float eval = catchMoveSpeedIncrease.Evaluate(normalizedDistance);
+                //StartCoroutine(MomentumBuild(catchMoveSpeedIncrease.Evaluate(normalizedDistance) * catchMoveSpeedMultiplier, catchMomentumTime));
+                rb.AddForce(rb.velocity.normalized * eval * catchMoveSpeedMultiplier, ForceMode2D.Impulse);
 
                 isHoldingSword = true;
             }
@@ -183,10 +184,12 @@ public class PlayerController : Singleton<PlayerController>
         moveInput = inputValue.Get<Vector2>();
     }
 
+    public int jumpCount = 0;
     private void OnJump(InputValue inputValue)
     {
-        if (inputValue.isPressed && (IsGrounded() || coyoteTimer > 0))
+        if (inputValue.isPressed && (IsGrounded() || (coyoteTimer > 0 && jumpCount < 1)))
         {
+            jumpCount++;
             isJumping = true;
             jumpControlTimer = jumpControlTime;
             rb.AddForce(new Vector2(0, jumpPower * 0.5f), ForceMode2D.Impulse);
@@ -269,6 +272,14 @@ public class PlayerController : Singleton<PlayerController>
         if(!IsGrounded())
         {
             coyoteTimer = coyoteTime;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(IsGrounded())
+        {
+            jumpCount = 0;
         }
     }
 }
