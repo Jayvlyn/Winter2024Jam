@@ -33,15 +33,8 @@ public class RuneLayout : MonoBehaviour
 
         if (rune != null)
         {
-            if (last)
-            {
-                GetComponentInParent<Boss>().OnFailed();
-            }
             Destroy(rune);
         }
-        else if (rune == null && last)
-        {
-            GetComponentInParent<Boss>().OnFailed();
-        }
+
     }
 }
