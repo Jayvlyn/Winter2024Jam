@@ -38,7 +38,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(ShortFinish());
     }
 
     public void ChangeSceneSoon(float time)
@@ -106,9 +106,17 @@ public class SceneChanger : MonoBehaviour
         yield return new WaitForSeconds(4.5f);
         Instantiate(runeCircle, arenaFloor.transform.position, transform.rotation);
         yield return new WaitForSeconds(8.5f);
-        ChangeScene();
+        SceneManager.LoadScene(sceneName);
+
     }
 
+    private IEnumerator ShortFinish()
+    {
+        AudioManager.instance.PlayOneShot(bossLaugh);
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(sceneName);
+
+    }
     //private IEnumerator QuietAudio()
     //{
     //    Zoomer.bossMusic.volume -= 0.05f;
