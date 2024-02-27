@@ -1516,6 +1516,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3596595808446218599, guid: 03ca48e9ac591754d83a901304396980, type: 3}
+      propertyPath: m_Intensity
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596595808446218599, guid: 03ca48e9ac591754d83a901304396980, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 3.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596595808446218599, guid: 03ca48e9ac591754d83a901304396980, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 6.48
+      objectReference: {fileID: 0}
     - target: {fileID: 3682531086921551052, guid: 03ca48e9ac591754d83a901304396980, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.2245808

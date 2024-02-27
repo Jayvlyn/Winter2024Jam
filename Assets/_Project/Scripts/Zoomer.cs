@@ -13,8 +13,8 @@ public class Zoomer : MonoBehaviour
     [SerializeField] private float time;
     private float smallSize;
 
-    public static AudioSource originalMusic;
-    public static AudioSource bossMusic;
+    public AudioSource originalMusic;
+    public AudioSource bossMusic;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

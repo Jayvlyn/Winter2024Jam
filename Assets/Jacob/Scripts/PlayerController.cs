@@ -78,6 +78,7 @@ public class PlayerController : Singleton<PlayerController>
             moveInput.x = 0;
             moveInput.y = 0;
             mag = 0;
+            animator.SetBool("Skid", false);
             rb.velocity = new Vector2(0, rb.velocity.y);
 
             return;
@@ -127,6 +128,7 @@ public class PlayerController : Singleton<PlayerController>
             moveInput.x = 0;
             moveInput.y = 0;
             mag = 0;
+            animator.SetBool("Skid", false);
             rb.velocity = new Vector2(0, rb.velocity.y);
             return;
         }

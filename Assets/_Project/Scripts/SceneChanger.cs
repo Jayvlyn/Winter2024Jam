@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public static SceneChanger instance;
 
-    [SerializeField] private Rigidbody2D rb;
+
+    //[SerializeField] private Rigidbody2D rb;
     [SerializeField] private string sceneName;
+
+    [SerializeField] private Boss boss;
 
     [SerializeField] private RuneLayout runeCircle;
 
@@ -19,7 +23,19 @@ public class SceneChanger : MonoBehaviour
     [SerializeField] private GameObject rune;
 
     [SerializeField] private AudioClip bossLaugh;
-    
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
+        instance = this;
+    }
+    private void Start()
+    {
+    }
+
     public void ChangeScene()
     {
         SceneManager.LoadScene(sceneName);
@@ -29,11 +45,11 @@ public class SceneChanger : MonoBehaviour
     {
         PlayerController.Instance.hasControl = false;
 
-        if (Boss.chandelierHits == 3)
+        if (boss.chandelierHits == 3 && boss != null)
             StartCoroutine(StopChandelier());
-        StartCoroutine(QuietAudio());
+        //StartCoroutine(QuietAudio());
 
-        if (Boss.active)
+        if (boss.active)
         {
             StartCoroutine(WaitForPlayerLand());
             if (RuneSpawner.active)
@@ -44,7 +60,7 @@ public class SceneChanger : MonoBehaviour
                     Destroy(rune);
                 }
             }
-            Boss.active = false;
+            boss.active = false;
         }
         else
             StartCoroutine(FinishScene());
@@ -61,11 +77,11 @@ public class SceneChanger : MonoBehaviour
     private IEnumerator StopChandelier()
     {
         Debug.Log("Called StopChandelier Coroutine");
-        yield return new WaitUntil(() => Vector3.Distance(chandelier.transform.position, topOfHead.position) < 5);
+        yield return new WaitUntil(() => Vector3.Distance(chandelier.transform.position, topOfHead.position) < 2);
 
-        rb.gravityScale = 0;
-        rb.velocity = Vector3.zero;
-
+        chandelier.GetComponent<Rigidbody2D>().gravityScale = 0;
+        chandelier.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        chandelier.transform.position = topOfHead.transform.position;
         Instantiate(rune, chandelier.transform.position, transform.rotation);
 
     }
@@ -74,7 +90,10 @@ public class SceneChanger : MonoBehaviour
     {
 
         yield return new WaitUntil(() => Mathf.Abs(PlayerController.Instance.transform.position.y - arenaFloor.position.y) < 3);
+        PlayerController.Instance.hasControl = false;
 
+        PlayerController.Instance.animator.SetFloat("MoveSpeed", 0);
+        PlayerController.Instance.animator.SetBool("Skid", false);
         StartCoroutine(FinishScene());
 
 
@@ -82,17 +101,18 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator FinishScene()
     {
+        PlayerController.Instance.hasControl = false;
         AudioManager.instance.PlayOneShot(bossLaugh);
         yield return new WaitForSeconds(4.5f);
         Instantiate(runeCircle, arenaFloor.transform.position, transform.rotation);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(8.5f);
         ChangeScene();
     }
 
-    private IEnumerator QuietAudio()
-    {
-        Zoomer.bossMusic.volume -= 0.05f;
-        Zoomer.originalMusic.volume -= 0.05f;
-        yield return new WaitUntil(() => Zoomer.bossMusic.volume <= 0 && Zoomer.originalMusic.volume <= 0);
-    }
+    //private IEnumerator QuietAudio()
+    //{
+    //    Zoomer.bossMusic.volume -= 0.05f;
+    //    Zoomer.originalMusic.volume -= 0.05f;
+    //    yield return new WaitUntil(() => Zoomer.bossMusic.volume <= 0 && Zoomer.originalMusic.volume <= 0);
+    //}
 }

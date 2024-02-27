@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class TimeManager : Singleton<TimeManager>
 {
     [SerializeField] private Slider timeSlider;
-    [SerializeField] private SceneChanger sceneChanger;
 
     private float totalTime;
     [SerializeField] float maxTime;
@@ -19,7 +18,7 @@ public class TimeManager : Singleton<TimeManager>
     private float timeFreezeLength;
 
     private int currentSegment;
-
+    private bool gameEnded = false;
     private void Start()
     {
         totalTime = maxTime;
@@ -34,9 +33,10 @@ public class TimeManager : Singleton<TimeManager>
             timeFreezeLength -= Time.deltaTime;
         }
 
-        if (totalTime <= 0)
+        if (totalTime <= 0 && !gameEnded)
         {
-            sceneChanger.ChangeSceneSoon(1);
+            SceneChanger.instance.ChangeSceneSoon(1);
+            gameEnded = true;
         }
 
         if (timeFreezeLength <= 0)
@@ -46,7 +46,7 @@ public class TimeManager : Singleton<TimeManager>
 
     private void CheckTimer()
     {
-        if (totalTime < maxTime - (timePerSegment * (currentSegment + 1)))
+        if (totalTime < maxTime - (timePerSegment * (currentSegment + 1)) && !gameEnded)
         {
             currentSegment++;
             AudioManager.instance.PlayOneShot(thock);
@@ -62,6 +62,6 @@ public class TimeManager : Singleton<TimeManager>
 
     private void GameOver()
     {
-        sceneChanger.ChangeScene();
+        SceneChanger.instance.ChangeScene();
     }
 }

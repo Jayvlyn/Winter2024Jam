@@ -8,8 +8,8 @@ public class Boss : MonoBehaviour
     [SerializeField] BossRuneSpawner normalSpawns;
     [SerializeField] RuneSpawner specialSpawns;
 
-    public static int chandelierHits = 0;
-    public static bool active = false;
+    public int chandelierHits = 0;
+    public bool active = false;
 
     private GameObject recentLayout;
 
