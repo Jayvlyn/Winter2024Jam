@@ -36,6 +36,11 @@ public class SceneChanger : MonoBehaviour
     {
     }
 
+    public void PickScene(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+
     public void ChangeScene()
     {
         StartCoroutine(ShortFinish());

@@ -36,7 +36,7 @@ public class ClockTimeTable : Singleton<ClockTimeTable>
 
         if (elapsedTime >= totalTime)
         {
-            sceneChanger?.ChangeScene();
+            sceneChanger?.PickScene("Game");
         }
     }
 }
