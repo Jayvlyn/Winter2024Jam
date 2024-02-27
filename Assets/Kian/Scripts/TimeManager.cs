@@ -35,7 +35,7 @@ public class TimeManager : Singleton<TimeManager>
 
         if (totalTime <= 0 && !gameEnded)
         {
-            SceneChanger.instance.ChangeSceneSoon(1);
+            SceneChanger.instance.ChangeScene();
             gameEnded = true;
         }
 
