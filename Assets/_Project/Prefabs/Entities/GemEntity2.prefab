@@ -284,7 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f741d0df63cc14e44a43acd4443ff9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slashEffect: {fileID: 9110533108748504803, guid: 8ed8e5fee7be1b043abdc2d78d3584bb, type: 3}
+  hitEffect: {fileID: 9110533108748504803, guid: 8ed8e5fee7be1b043abdc2d78d3584bb, type: 3}
+  hitDelay: 0.07
   hitSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 78c8462c025b9044b9b6a7934a19e7a5, type: 3}
   slashable: 1

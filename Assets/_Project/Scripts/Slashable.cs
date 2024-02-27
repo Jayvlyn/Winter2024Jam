@@ -9,7 +9,8 @@ public class Slashable : MonoBehaviour
 {
     private NearbySlashable connectedSlasher;
 
-    [SerializeField] private GameObject slashEffect;
+    [SerializeField] private GameObject hitEffect;
+    private float hitDelay = 0.05909f;
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip deathSound;
 
@@ -41,12 +42,7 @@ public class Slashable : MonoBehaviour
     public void OnSlashThrough(int damage)
     {
         health -= damage;
-        slashThroughEvent?.Invoke();
-
-        if(slashEffect != null) Instantiate(slashEffect, transform.position, transform.rotation);
-        if(hitSound != null) AudioManager.instance.PlayOneShotAtPitch(hitSound, Random.Range(0.6f, 1.4f));
-
-        if (health <= 0 && canDie) Death();
+        StartCoroutine(TakeHit());
     }
 
     public void Death()
@@ -59,5 +55,16 @@ public class Slashable : MonoBehaviour
     public void SetKillable(bool killable)
     {
         canDie = killable;
+    }
+
+    private IEnumerator TakeHit()
+    {
+        yield return new WaitForSeconds(hitDelay);
+        if (hitEffect != null) Instantiate(hitEffect, transform.position, transform.rotation);
+        if (hitSound != null) AudioManager.instance.PlayOneShotAtPitch(hitSound, Random.Range(0.6f, 1.4f));
+
+        slashThroughEvent?.Invoke();
+
+        if (health <= 0 && canDie) Death();
     }
 }
