@@ -35,9 +35,12 @@ public class Boss : MonoBehaviour
 
         if (recentLayout != null)
         {
-            recentLayout.GetComponent<RuneLayout>().PlaySound();
             GameObject lastRune = recentLayout.GetComponent<RuneLayout>().GetLastItem();
-            if (lastRune != null) lastRune.GetComponent<Rune>().lastRuneInLayout = false;
+            if (lastRune != null)
+            {
+                lastRune.GetComponent<Rune>().lastRuneInLayout = false;
+                recentLayout.GetComponent<RuneLayout>().PlaySound();
+            }
             Destroy(recentLayout);
         }
 
