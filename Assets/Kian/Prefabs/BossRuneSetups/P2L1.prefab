@@ -2156,6 +2156,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8107794946600781827, guid: 03ca48e9ac591754d83a901304396980, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028588061119780536, guid: 03ca48e9ac591754d83a901304396980, type: 3}
       propertyPath: runeLifespan
       value: 5

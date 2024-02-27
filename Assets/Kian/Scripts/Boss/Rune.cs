@@ -6,7 +6,7 @@ using UnityEngine;
 public class Rune : MonoBehaviour
 {
     [SerializeField] float runeLifespan;
-    [SerializeField] bool lastRuneInLayout = false;
+    public bool lastRuneInLayout = false;
 
 
     public void Activate()
@@ -18,8 +18,8 @@ public class Rune : MonoBehaviour
     {
         if (lastRuneInLayout)
         {
-            GetComponentInParent<RuneLayout>().GetComponentInParent<Boss>().OnFailed();
-            GetComponentInParent<RuneLayout>().PlaySound();
+            GetComponentInParent<Boss>().OnFailed();
+            //GetComponentInParent<RuneLayout>().PlaySound();
         }
     }
 }

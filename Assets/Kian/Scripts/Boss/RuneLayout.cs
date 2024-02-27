@@ -27,7 +27,7 @@ public class RuneLayout : MonoBehaviour
             runes[i].GetComponent<Rune>().Activate();
             PlaySound();
         }
-
+        GetComponentInParent<Boss>().settingRunes = false;
     }
 
     //this is for RuneQuickAdd script
@@ -40,5 +40,10 @@ public class RuneLayout : MonoBehaviour
     public void PlaySound()
     {
         AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
+    }
+
+    public GameObject GetLastItem()
+    {
+        return runes[runes.Count - 1];
     }
 }

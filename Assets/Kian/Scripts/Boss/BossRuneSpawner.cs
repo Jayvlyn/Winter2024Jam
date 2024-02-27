@@ -16,13 +16,17 @@ public class BossRuneSpawner : Singleton<BossRuneSpawner>
     public GameObject recentLayout;
 
 
-    public void SpawnEasyLayout()
+    public void SpawnEasyLayout(string whereFrom)
     {
+        Debug.Log("called easy layout from " + whereFrom);
         recentLayout = Instantiate(easyRuneLayouts[Random.Range(0, easyRuneLayouts.Count)], spawnPos.position, transform.rotation, transform);
+        GetComponent<Boss>().SetRecentLayout(recentLayout);
     }
 
-    public void SpawnHardLayout()
+    public void SpawnHardLayout(string whereFrom)
     {
+        Debug.Log("called hard layout from " + whereFrom);
         recentLayout = Instantiate(hardRuneLayouts[Random.Range(0, hardRuneLayouts.Count)], spawnPos.position, transform.rotation, transform);
+        GetComponent<Boss>().SetRecentLayout(recentLayout);
     }
 }
