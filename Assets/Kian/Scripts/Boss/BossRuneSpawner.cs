@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class BossRuneSpawner : Singleton<BossRuneSpawner>
 {
-    [SerializeField] List<GameObject> runeLayouts = new List<GameObject>();
+    [SerializeField] List<GameObject> easyRuneLayouts = new List<GameObject>();
+    [SerializeField] List<GameObject> hardRuneLayouts = new List<GameObject>();
 
     [SerializeField] private Transform spawnPos;
 
@@ -15,10 +16,13 @@ public class BossRuneSpawner : Singleton<BossRuneSpawner>
     public GameObject recentLayout;
 
 
-    public void SpawnLayout()
+    public void SpawnEasyLayout()
     {
-        recentLayout = Instantiate(runeLayouts[Random.Range(0, runeLayouts.Count)], spawnPos.position, transform.rotation, transform);
-
+        recentLayout = Instantiate(easyRuneLayouts[Random.Range(0, easyRuneLayouts.Count)], spawnPos.position, transform.rotation, transform);
     }
-    
+
+    public void SpawnHardLayout()
+    {
+        recentLayout = Instantiate(hardRuneLayouts[Random.Range(0, hardRuneLayouts.Count)], spawnPos.position, transform.rotation, transform);
+    }
 }

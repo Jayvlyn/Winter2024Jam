@@ -24,21 +24,21 @@ public class RuneLayout : MonoBehaviour
             print(waitTime);
             yield return new WaitForSeconds(waitTime);
             runes[i].SetActive(true);
-            AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
-            StartCoroutine(DestroyRune(runes[i].gameObject, 3, i == runes.Count - 1));
+            runes[i].GetComponent<Rune>().Activate();
+            PlaySound();
         }
 
     }
 
-    private IEnumerator DestroyRune(GameObject rune, float time, bool last)
+    //this is for RuneQuickAdd script
+    public void AddRuneToList(GameObject rune)
     {
-        yield return new WaitForSeconds(time);
+        if (!runes.Contains(rune))
+            runes.Add(rune);
+    }
 
-        if (rune != null)
-        {
-            AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
-            Destroy(rune);
-        }
-
+    public void PlaySound()
+    {
+        AudioManager.instance.PlayOneShotAtPitch(spawnSound, Random.Range(.9f, 1.2f));
     }
 }

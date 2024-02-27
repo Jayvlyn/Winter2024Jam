@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -9,18 +10,26 @@ public class Boss : MonoBehaviour
 
     private int chandelierHits = 0;
 
+    private bool canSpawnLayout;
+
+    [SerializeField] private bool startActive = false;
+    private void Start()
+    {
+        if (startActive)
+        {
+            SetBossActive();
+        }
+    }
+
     public void OnPlayerHitChandelier()
     {
         chandelierHits++;
 
-        if (chandelierHits < 2)
-        {
-            //StartCoroutine(CallSpawns());
-        }
+        canSpawnLayout = true;
 
-        else if (chandelierHits == 2)
+        if (chandelierHits == 2)
         {
-            specialSpawns.active = true;
+            StartCoroutine(SetSpecialSpawns());
         }
         else
         {
@@ -30,10 +39,7 @@ public class Boss : MonoBehaviour
 
     public void OnFailed()
     {
-        if (chandelierHits < 2)
-        {
-            StartCoroutine(CallSpawns());
-        }
+        StartCoroutine(CallSpawns());
     }
 
     public void SetBossActive()
@@ -42,18 +48,29 @@ public class Boss : MonoBehaviour
     }
 
 
-    private IEnumerator CallSpawns()
+    public IEnumerator CallSpawns()
     {
         Debug.Log("called CallSpawns coroutine");
+        if (chandelierHits == 2)
+            StartCoroutine(SetSpecialSpawns());
         yield return new WaitForSeconds(3);
-        Debug.Log("Should be spawning runes");
-        normalSpawns.SpawnLayout();
-        yield return new WaitForSeconds(9);
-        if (chandelierHits < 2)
+        if (chandelierHits == 0)
         {
-            Debug.Log("Should call CallSpawns again");
-            StartCoroutine(CallSpawns());
+            Debug.Log("Should call Easy Spawn again");
+            normalSpawns.SpawnEasyLayout();
         }
+        else if (chandelierHits == 1)
+        {
+            Debug.Log("Should call hard spawn again");
+            normalSpawns.SpawnHardLayout();
+        }
+
     }
 
+
+    private IEnumerator SetSpecialSpawns()
+    {
+        yield return new WaitForSeconds(3);
+        specialSpawns.active = true;
+    }
 }
