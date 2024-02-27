@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RuneQuickAdd : MonoBehaviour
 {
+    public bool doValidation = false;
     private void OnValidate()
     {
-        GetComponentInParent<RuneLayout>().AddRuneToList(gameObject);
+        if (doValidation)
+            GetComponentInParent<RuneLayout>().AddRuneToList(gameObject);
     }
 }

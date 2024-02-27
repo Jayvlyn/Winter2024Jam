@@ -59,7 +59,7 @@ MonoBehaviour:
   - {fileID: 1548806280627239422}
   baseTimeBetweenRunes: 1
   decrementPercentage: 0.9
-  spawnSound: {fileID: 8300000, guid: 6dda7bf0c17446645916c7736c5dfe99, type: 3}
+  spawnSound: {fileID: 8300000, guid: de86f4e81693a6048a265575894c5c65, type: 3}
 --- !u!1001 &1516518438429770446
 PrefabInstance:
   m_ObjectHideFlags: 0
