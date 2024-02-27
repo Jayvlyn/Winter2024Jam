@@ -36,7 +36,7 @@ public class TimeManager : Singleton<TimeManager>
 
         if (totalTime <= 0)
         {
-            GameOver();
+            sceneChanger.ChangeSceneSoon(1);
         }
 
         if (timeFreezeLength <= 0)

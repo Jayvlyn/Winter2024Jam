@@ -13,6 +13,8 @@ public class PlayerController : Singleton<PlayerController>
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+    public bool hasControl = true;
+
     [SerializeField] private float mag = 0;
 
     [SerializeField] private float gravity = 3.5f;
@@ -71,6 +73,16 @@ public class PlayerController : Singleton<PlayerController>
 
     private void FixedUpdate()
     {
+        if (!hasControl)
+        {
+            moveInput.x = 0;
+            moveInput.y = 0;
+            mag = 0;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+
+            return;
+        }
+       
         if ((moveInput.x >= 0 && rb.velocity.x < 0) || (moveInput.x <= 0 && rb.velocity.x > 0))
         {
             animator.SetBool("Skid", true);
@@ -110,6 +122,17 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
+        if (!hasControl)
+        {
+            moveInput.x = 0;
+            moveInput.y = 0;
+            mag = 0;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            return;
+        }
+
+
+
         timeFromThrow += Time.deltaTime;
         mag = rb.velocity.magnitude;
         animator.SetFloat("MoveSpeed", mag);
@@ -212,6 +235,8 @@ public class PlayerController : Singleton<PlayerController>
     public int jumpCount = 0;
     private void OnJump(InputValue inputValue)
     {
+        if (!hasControl) { return; }
+
         if (inputValue.isPressed && (IsGrounded() || (coyoteTimer > 0 && jumpCount < 1)))
         {
             jumpCount++;
@@ -230,6 +255,8 @@ public class PlayerController : Singleton<PlayerController>
     private bool CanSlash => !isSlashing && isHoldingSword;
     private void OnSlash(InputValue inputValue)
     {
+        if (!hasControl) { return; }
+
         if (ns.GetClosestSlashable() != null && CanSlash)
         {
             rb.velocity = Vector2.zero;
@@ -290,6 +317,8 @@ public class PlayerController : Singleton<PlayerController>
 
     private IEnumerator FinishSlash(float slashPower, Vector3 slashDir, float time, bool goingToHitWall)
     {
+        if (!hasControl) { yield return null; }
+
         yield return new WaitForSeconds(time);
         
         isSlashing = false;
@@ -313,6 +342,8 @@ public class PlayerController : Singleton<PlayerController>
 
     private IEnumerator FinishSlashAnimation()
     {
+        if (!hasControl) { yield return null; }
+
         yield return new WaitForSeconds(0.25f);
         animator.SetBool("Slashing", false);
     }

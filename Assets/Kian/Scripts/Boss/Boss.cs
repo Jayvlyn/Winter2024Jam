@@ -8,7 +8,8 @@ public class Boss : MonoBehaviour
     [SerializeField] BossRuneSpawner normalSpawns;
     [SerializeField] RuneSpawner specialSpawns;
 
-    private int chandelierHits = 0;
+    public static int chandelierHits = 0;
+    public static bool active = false;
 
     private GameObject recentLayout;
 
@@ -16,6 +17,12 @@ public class Boss : MonoBehaviour
     public bool settingRunes = false;
 
     [SerializeField] private bool startActive = false;
+
+    private void Update()
+    {
+        
+    }
+
     private void Start()
     {
         if (startActive)
@@ -59,15 +66,18 @@ public class Boss : MonoBehaviour
 
     public void SetBossActive()
     {
+        active = true;
         StartCoroutine(CallSpawns("set Boss active"));
     }
 
 
     public IEnumerator CallSpawns(string whereFrom)
     {
+        if (!active) yield return null;
         Debug.Log("Called callSpawns from " + whereFrom);
         settingRunes = true;
         yield return new WaitForSeconds(3);
+        if (!active) yield return null;
         if (chandelierHits == 0)
         {
             normalSpawns.SpawnEasyLayout("call spawns coroutine");
@@ -86,6 +96,6 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Should have started special spawns");
         yield return new WaitForSeconds(3);
-        specialSpawns.active = true;
+        RuneSpawner.active = true;
     }
 }
