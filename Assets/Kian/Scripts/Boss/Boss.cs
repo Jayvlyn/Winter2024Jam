@@ -74,7 +74,7 @@ public class Boss : MonoBehaviour
     public IEnumerator CallSpawns(string whereFrom)
     {
         if (!active) yield return null;
-        Debug.Log("Called callSpawns from " + whereFrom);
+        //Debug.Log("Called callSpawns from " + whereFrom);
         settingRunes = true;
         yield return new WaitForSeconds(3);
         if (!active) yield return null;
@@ -94,7 +94,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SetSpecialSpawns()
     {
-        Debug.Log("Should have started special spawns");
+        //Debug.Log("Should have started special spawns");
         yield return new WaitForSeconds(3);
         RuneSpawner.active = true;
     }

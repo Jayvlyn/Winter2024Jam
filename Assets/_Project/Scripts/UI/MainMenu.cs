@@ -6,11 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject settingsUI;
-
-    public void Start()
-    {
-        
-    }
+    public GameObject statsUI;
 
     #region BUTTON EVENTS
     public void OnPlay()
@@ -21,6 +17,12 @@ public class MainMenu : MonoBehaviour
     public void OnSettings()
     {
         settingsUI.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    public void OnStats()
+    {
+        statsUI.SetActive(true);
         gameObject.SetActive(false);
     }
 

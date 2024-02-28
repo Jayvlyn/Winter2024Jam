@@ -21,7 +21,7 @@ public class RuneLayout : MonoBehaviour
         for (int i = 0; i < runes.Count; i++) 
         {
             float waitTime = baseTimeBetweenRunes * (1 / (decrementPercentage * i + 1));
-            print(waitTime);
+            //print(waitTime);
             yield return new WaitForSeconds(waitTime);
             runes[i].SetActive(true);
             runes[i].GetComponent<Rune>().Activate();

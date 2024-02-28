@@ -54,6 +54,7 @@ public class SceneChanger : MonoBehaviour
         {
             StartCoroutine(StopChandelier());
             TimeManager.Instance.gameEnded = true;
+            TimeManager.Instance.UpdateStats();
         }
         //StartCoroutine(QuietAudio());
 
@@ -84,7 +85,7 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator StopChandelier()
     {
-        Debug.Log("Called StopChandelier Coroutine");
+        //Debug.Log("Called StopChandelier Coroutine");
         yield return new WaitUntil(() => Vector3.Distance(chandelier.transform.position, topOfHead.position) < 2);
 
         chandelier.GetComponent<Rigidbody2D>().gravityScale = 0;

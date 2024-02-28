@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool paused = false;
     public GameObject pauseUI;
     public GameObject settingsUI;
+    public GameObject statsUI;
 
     private void Update()
     {
@@ -65,6 +66,12 @@ public class PauseMenu : MonoBehaviour
     {
         pauseUI.SetActive(false);
         settingsUI.SetActive(true);
+    }
+
+    public void OnStats()
+    {
+        statsUI.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void OnMainMenu()

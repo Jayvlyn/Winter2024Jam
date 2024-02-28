@@ -61,7 +61,7 @@ public class RuneSpawner : MonoBehaviour
         var movers = rune.GetComponentsInChildren<Mover>();
         foreach (var mover in movers)
         {
-            Debug.Log(mover.gameObject.tag);
+            //Debug.Log(mover.gameObject.tag);
             if (mover.gameObject.CompareTag("Revolver"))
             {
                 mover.SetData(Vector2.zero, new Vector2(0,spawnHeight[getter]), speed[getter], (getter == 0));

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7321309411948572122}
   - component: {fileID: 1376724071601808519}
   - component: {fileID: 474109553154729411}
+  - component: {fileID: 7414115020806047428}
   - component: {fileID: 8202572662063660309}
   - component: {fileID: 3781851199967795933}
   - component: {fileID: 3750112603691218338}
@@ -157,6 +158,22 @@ MonoBehaviour:
   swordThrowOffset: {x: 0, y: 1.6}
   lerpFollow: 0.58
   reelingIn: 0
+--- !u!114 &7414115020806047428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329764676653291009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1fac25700d40074aaf9e45c81166bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bestMinutes: 0
+  bestSeconds: 0
+  bestMilliseconds: 0
+  bossDefeats: 0
 --- !u!114 &8202572662063660309
 MonoBehaviour:
   m_ObjectHideFlags: 0
