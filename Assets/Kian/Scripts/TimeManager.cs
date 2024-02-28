@@ -1,6 +1,7 @@
 using Guymon.DesignPatterns;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,12 @@ public class TimeManager : Singleton<TimeManager>
 
     private int currentSegment;
     private bool gameEnded = false;
+    int minutes;
+    int seconds;
+    int milliseconds;
+
+    [SerializeField] private TMP_Text SpeedrunText;
+    [SerializeField] private bool showSpeedrunTimer = false;
     private void Start()
     {
         totalTime = maxTime;
@@ -40,7 +47,24 @@ public class TimeManager : Singleton<TimeManager>
         }
 
         if (timeFreezeLength <= 0)
+        {
             totalTime -= Time.deltaTime;
+            milliseconds += (int)(Time.deltaTime * 1000);
+            if (milliseconds > 1000)
+            {
+                seconds++;
+                milliseconds = 0;
+            }
+
+            if (seconds >= 60)
+            {
+                seconds = 0;
+                minutes++;
+            }
+        }
+
+        Debug.Log(milliseconds);
+        SpeedrunText.text = string.Format("{0:00}:{0:00}.{0:000}", minutes, seconds, milliseconds);
         CheckTimer();
     }
 
