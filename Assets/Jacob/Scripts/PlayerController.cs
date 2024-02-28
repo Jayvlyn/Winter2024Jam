@@ -28,8 +28,6 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float baseMoveSpeed = 8.0f;
     [SerializeField] private float moveSpeed = 8.0f;
     [SerializeField] private float moveSpeedIncrease = 2.0f;
-    [SerializeField] private float maxCatchDistance = 5.0f;
-    [SerializeField] private AnimationCurve catchMoveSpeedIncrease;
     [SerializeField] private float momentumTime = 3.0f;
     [SerializeField] private float catchMomentumTime = 1.5f;
     [SerializeField] private float catchMoveSpeedMultiplier = 5;
@@ -187,12 +185,6 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (timeFromThrow > 0.5f) //min pull back time
             {  
-                float distanceCatch = swordController.Catch(transform);
-                float normalizedDistance = distanceCatch / maxCatchDistance;
-                float eval = catchMoveSpeedIncrease.Evaluate(normalizedDistance);
-                //StartCoroutine(MomentumBuild(catchMoveSpeedIncrease.Evaluate(normalizedDistance) * catchMoveSpeedMultiplier, catchMomentumTime));
-                rb.AddForce(rb.velocity.normalized * eval * catchMoveSpeedMultiplier, ForceMode2D.Impulse);
-
                 isHoldingSword = true;
             }
         }

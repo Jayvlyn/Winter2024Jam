@@ -92,6 +92,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  hasControl: 1
   mag: 0
   gravity: 4.5
   slowFallGravity: 0.5
@@ -102,34 +103,9 @@ MonoBehaviour:
   baseMoveSpeed: 12
   moveSpeed: 12
   moveSpeedIncrease: 2
-  maxCatchDistance: 5
-  catchMoveSpeedIncrease:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.18510072
-      outSlope: 0.18510072
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.07513032
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 3.2627714
-      outSlope: 3.2627714
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.027894735
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   momentumTime: 3
   catchMomentumTime: 1.5
-  catchMoveSpeedMultiplier: 5
+  catchMoveSpeedMultiplier: 30
   jumpPower: 30
   baseSlashPower: 11
   minSlashTime: 0.1
@@ -176,8 +152,8 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 8
-  forwardSlashDistance: 5
-  swordSlashSpeed: 100
+  forwardSlashDistance: 80
+  swordSlashSpeed: 200
   swordThrowOffset: {x: 0, y: 1.6}
   lerpFollow: 0.58
   reelingIn: 0
