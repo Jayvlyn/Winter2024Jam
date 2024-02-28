@@ -20,9 +20,11 @@ public class TimeManager : Singleton<TimeManager>
 
     private int currentSegment;
     private bool gameEnded = false;
+
     int minutes;
     int seconds;
     int milliseconds;
+    string text;
 
     [SerializeField] private TMP_Text SpeedrunText;
     [SerializeField] private bool showSpeedrunTimer = false;
@@ -63,13 +65,15 @@ public class TimeManager : Singleton<TimeManager>
             }
         }
 
-        Debug.Log(milliseconds);
-        SpeedrunText.text = string.Format("{0:00}:{0:00}.{0:000}", minutes, seconds, milliseconds);
+        text = string.Format("{0:00}" + ":", minutes);
+        text += string.Format("{0:00}" + ".", seconds);
+        text += string.Format("{0:00}", milliseconds);
+        SpeedrunText.text = text;
         CheckTimer();
     }
 
     private void CheckTimer()
-    {
+    { 
         if (totalTime < maxTime - (timePerSegment * (currentSegment + 1)) && !gameEnded)
         {
             currentSegment++;
