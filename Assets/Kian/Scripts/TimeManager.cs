@@ -19,7 +19,7 @@ public class TimeManager : Singleton<TimeManager>
     private float timeFreezeLength;
 
     private int currentSegment;
-    private bool gameEnded = false;
+    public bool gameEnded = false;
 
     int minutes;
     int seconds;
@@ -48,9 +48,8 @@ public class TimeManager : Singleton<TimeManager>
             gameEnded = true;
         }
 
-        if (timeFreezeLength <= 0)
+        if (!gameEnded)
         {
-            totalTime -= Time.deltaTime;
             milliseconds += (int)(Time.deltaTime * 1000);
             if (milliseconds > 1000)
             {
@@ -65,6 +64,12 @@ public class TimeManager : Singleton<TimeManager>
             }
         }
 
+        if (timeFreezeLength <= 0)
+        {
+            totalTime -= Time.deltaTime;
+
+        }
+
         text = string.Format("{0:00}" + ":", minutes);
         text += string.Format("{0:00}" + ".", seconds);
         text += string.Format("{0:00}", milliseconds);
@@ -73,7 +78,7 @@ public class TimeManager : Singleton<TimeManager>
     }
 
     private void CheckTimer()
-    { 
+    {
         if (totalTime < maxTime - (timePerSegment * (currentSegment + 1)) && !gameEnded)
         {
             currentSegment++;

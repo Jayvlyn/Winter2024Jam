@@ -51,7 +51,10 @@ public class SceneChanger : MonoBehaviour
         PlayerController.Instance.hasControl = false;
 
         if (boss.chandelierHits == 3 && boss != null)
+        {
             StartCoroutine(StopChandelier());
+            TimeManager.Instance.gameEnded = true;
+        }
         //StartCoroutine(QuietAudio());
 
         if (boss.active)
