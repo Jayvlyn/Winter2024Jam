@@ -34,7 +34,7 @@ public class ArrowController : MonoBehaviour
 
             //sets scale and opacity of the hand based on the distance to the enemy
             clockHandSR.transform.localScale = new Vector3(currentDist * distScaleFactor, currentDist * distScaleFactor, 1);
-            clockHandSR.color = new Color(1, 1, 1, 1 - (currentDist / (maxDist)));
+            clockHandSR.color = new Color(1, 1, 1, 1 - (currentDist / (maxDist)) + .2f);
 
             float angle = Mathf.Atan2(nearestSlashable.transform.position.y - transform.position.y,
                           nearestSlashable.transform.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
