@@ -17,14 +17,19 @@ public class PauseMenu : MonoBehaviour
         {
             if (paused)
             {
-                if(pauseUI.activeSelf)
+                if(settingsUI.activeSelf)
+                {
+                    //pauseUI.SetActive(true);
+                    settingsUI.SetActive(false);
+                }
+                else if(statsUI.activeSelf)
+                {
+                    //pauseUI.SetActive(true);
+                    statsUI.SetActive(false);
+                }
+                else if(pauseUI.activeSelf)
                 {
                     Resume();
-                }
-                else
-                {
-                    pauseUI.SetActive(true);
-                    settingsUI.SetActive(false);
                 }
             } else
             {
@@ -64,14 +69,12 @@ public class PauseMenu : MonoBehaviour
 
     public void OnSettings()
     {
-        pauseUI.SetActive(false);
         settingsUI.SetActive(true);
     }
 
     public void OnStats()
     {
         statsUI.SetActive(true);
-        gameObject.SetActive(false);
     }
 
     public void OnMainMenu()

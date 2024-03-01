@@ -2,16 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
     public GameObject redirectUI;
     public AudioMixer mixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
+    public TMP_Text timerToggleText;
+    public Toggle timerToggle;
     private Resolution[] _resolutions;
+    public GameObject speedRunTimer;
+
+    private void OnEnable()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        int bossDefeats = data.bossDefeats;
+        if(bossDefeats > 0)
+        {
+            timerToggle.interactable = true;
+            timerToggleText.color = new Color(timerToggleText.color.r, timerToggleText.color.g, timerToggleText.color.b, 1);
+        }
+        else
+        {
+            timerToggle.interactable = false;
+            timerToggleText.color = new Color(timerToggleText.color.r, timerToggleText.color.g, timerToggleText.color.b, .2f);
+        }
+    }
 
     private void Start()
     {
@@ -57,6 +77,11 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullScreen(bool toggle)
     {
         Screen.fullScreen = toggle;
+    }
+
+    public void SetSpeedrunTimer(bool toggle)
+    {
+        speedRunTimer.SetActive(toggle);
     }
     
 }
