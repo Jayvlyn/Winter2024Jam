@@ -17,19 +17,31 @@ public class SettingsMenu : MonoBehaviour
     private Resolution[] _resolutions;
     public GameObject speedRunTimer;
 
+    // Settings data
+    public bool speedRunTimerOn = false;
+
     private void OnEnable()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        int bossDefeats = data.bossDefeats;
-        if(bossDefeats > 0)
+        SettingsData settingsData = SaveSystem.LoadSettings();
+        if (settingsData != null)
         {
-            timerToggle.interactable = true;
-            timerToggleText.color = new Color(timerToggleText.color.r, timerToggleText.color.g, timerToggleText.color.b, 1);
+            timerToggle.isOn = settingsData.speedrunTimer;
         }
-        else
+
+        PlayerData data = SaveSystem.LoadPlayer();
+        if (data != null)
         {
-            timerToggle.interactable = false;
-            timerToggleText.color = new Color(timerToggleText.color.r, timerToggleText.color.g, timerToggleText.color.b, .2f);
+            int bossDefeats = data.bossDefeats;
+            if(bossDefeats > 0)
+            {
+                timerToggle.interactable = true;
+                timerToggleText.color = new Color(timerToggleText.color.r, timerToggleText.color.g, timerToggleText.color.b, 1);
+            }
+            else
+            {
+                timerToggle.interactable = false;
+                timerToggleText.color = new Color(timerToggleText.color.r, timerToggleText.color.g, timerToggleText.color.b, .2f);
+            }
         }
     }
 
@@ -81,7 +93,12 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetSpeedrunTimer(bool toggle)
     {
-        speedRunTimer.SetActive(toggle);
+        if(speedRunTimer != null)
+        {
+            speedRunTimer.SetActive(toggle);
+        }
+        speedRunTimerOn = toggle;
+        SaveSystem.SaveSettings(this);
     }
     
 }

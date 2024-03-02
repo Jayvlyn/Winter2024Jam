@@ -11,6 +11,17 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsUI;
     public GameObject statsUI;
 
+    public GameObject speedRunTimer;
+
+    private void Start()
+    {
+        SettingsData settingsData = SaveSystem.LoadSettings();
+        if (settingsData != null)
+        {
+            if (speedRunTimer != null) speedRunTimer.SetActive(settingsData.speedrunTimer);
+        }
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))

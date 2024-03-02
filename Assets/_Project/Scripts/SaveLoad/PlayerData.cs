@@ -19,9 +19,7 @@ public class PlayerData
         bossDefeats = stats.bossDefeats;
     }
 
-    public PlayerData()
-    {
-    }
+    public PlayerData() {}
 
 
     #region TESTING
