@@ -282,7 +282,7 @@ public class PlayerController : Singleton<PlayerController>
             RaycastHit2D raycast = Physics2D.Raycast(transform.position, slashDir, 2 * distance, groundLayer);
             if (raycast.collider != null)
             {
-                Debug.Log("Changed Distance");
+                //Debug.Log("Changed Distance");
                 Debug.DrawRay(transform.position, slashDir * 2 * distance, Color.green, 4f);
                 distance = raycast.distance * hitWallDecreasePercent;
                 Debug.DrawRay(transform.position, slashDir * distance, Color.yellow, 4f);

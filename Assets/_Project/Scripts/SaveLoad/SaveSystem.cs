@@ -52,7 +52,6 @@ public static class SaveSystem
         FileStream stream = new FileStream(settingsDataPath, FileMode.Create);
         SettingsData data = new SettingsData(settings);
         formatter.Serialize(stream, data);
-        Debug.Log("settings saved, speedrun timer:" + data.speedrunTimer);
         stream.Close();
     }
     public static SettingsData LoadSettings()
@@ -63,7 +62,6 @@ public static class SaveSystem
             FileStream stream = new FileStream(settingsDataPath, FileMode.Open);
 
             SettingsData data = formatter.Deserialize(stream) as SettingsData;
-            Debug.Log("settings loaded, speedrun timer:" + data.speedrunTimer);
 
             stream.Close();
 

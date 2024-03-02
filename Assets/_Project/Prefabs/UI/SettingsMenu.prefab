@@ -985,7 +985,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 541436970476498283}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.81333333
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2234,8 +2234,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a1734ac0ae62e6345b0bb63bd7118436, type: 2}
-  m_sharedMaterial: {fileID: -7290301361176389149, guid: a1734ac0ae62e6345b0bb63bd7118436, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4f977f553022e1941843694bb06b24d6, type: 2}
+  m_sharedMaterial: {fileID: 1716884069391350931, guid: 4f977f553022e1941843694bb06b24d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
