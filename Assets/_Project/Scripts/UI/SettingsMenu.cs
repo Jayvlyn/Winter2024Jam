@@ -11,17 +11,22 @@ public class SettingsMenu : MonoBehaviour
 {
     public GameObject redirectUI;
     public AudioMixer mixer;
+    public AudioMixer musicMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
     public TMP_Text timerToggleText;
     public Toggle timerToggle;
     public Toggle fullscreenToggle;
     private Resolution[] _resolutions;
     public GameObject speedRunTimer;
+    public Slider volumeSlider;
+    public Slider musicVolumeSlider;
 
     private bool settingsJustOpened = false;
 
     // Settings data
     public bool speedRunTimerOn = false;
+    public float volume;
+    public float musicVolume;
 
     private void OnEnable()
     {
@@ -30,7 +35,9 @@ public class SettingsMenu : MonoBehaviour
         SettingsData settingsData = SaveSystem.LoadSettings();
         if (settingsData != null)
         {
-            timerToggle.isOn = settingsData.speedrunTimer;
+            if(timerToggle!=null)timerToggle.isOn = settingsData.speedrunTimer;
+            if(volumeSlider!=null)volumeSlider.value = settingsData.volume;
+            if(musicVolumeSlider!=null)musicVolumeSlider.value = settingsData.musicVolume;
         }
 
         PlayerData data = SaveSystem.LoadPlayer();
@@ -68,11 +75,6 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    private void Update()
-    {
-        Debug.Log(settingsJustOpened);
-    }
-
     public void SetRes(int index)
     {
         if(!settingsJustOpened)
@@ -95,7 +97,16 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume(float value)
     {
+        volume = value;
         mixer.SetFloat("Volume", value);
+        SaveSystem.SaveSettings(this);
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        musicVolume = value;
+        musicMixer.SetFloat("Volume", value);
+        SaveSystem.SaveSettings(this);
     }
 
     public void SetFullScreen(bool toggle)

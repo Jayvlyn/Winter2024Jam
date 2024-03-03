@@ -13,15 +13,9 @@ public class Boss : MonoBehaviour
 
     private GameObject recentLayout;
 
-    private bool canSpawnLayout;
     public bool settingRunes = false;
 
     [SerializeField] private bool startActive = false;
-
-    private void Update()
-    {
-        
-    }
 
     private void Start()
     {
@@ -50,8 +44,6 @@ public class Boss : MonoBehaviour
             }
             Destroy(recentLayout);
         }
-
-        canSpawnLayout = true;
 
         if (!settingRunes)
         {

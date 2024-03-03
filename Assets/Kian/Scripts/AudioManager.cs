@@ -3,15 +3,28 @@ using Guymon.DesignPatterns;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-
     [SerializeField, Range(0, 1)] private float slashDirPitchChangeAmount;
     [SerializeField] private AudioSource source;
+
+    public AudioMixer mixer;
+    public AudioMixer musicMixer;
+
+    void Start()
+    {
+        SettingsData settingsData = SaveSystem.LoadSettings();
+        if (settingsData != null)
+        {
+            mixer.SetFloat("Volume", settingsData.volume);
+            musicMixer.SetFloat("Volume", settingsData.musicVolume);
+        }
+    }
 
     private void Awake()
     {
@@ -24,6 +37,8 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+
+
     }
 
     public void PlayOneShot(AudioClip clip)
