@@ -121,13 +121,10 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
+        animator.SetFloat("VerticalVelocity", rb.velocity.y);
+
         if (!hasControl)
         {
-            moveInput.x = 0;
-            moveInput.y = 0;
-            mag = 0;
-            animator.SetBool("Skid", false);
-            rb.velocity = new Vector2(0, rb.velocity.y);
             return;
         }
 
@@ -136,7 +133,6 @@ public class PlayerController : Singleton<PlayerController>
         timeFromThrow += Time.deltaTime;
         mag = rb.velocity.magnitude;
         animator.SetFloat("MoveSpeed", mag);
-        animator.SetFloat("VerticalVelocity", rb.velocity.y);
 
         if ((!isFacingRight && moveInput.x > 0f) || (isFacingRight && moveInput.x < 0f))
         {

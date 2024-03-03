@@ -27,7 +27,8 @@ public class RuneLayout : MonoBehaviour
             runes[i].GetComponent<Rune>().Activate();
             PlaySound();
         }
-        GetComponentInParent<Boss>().settingRunes = false;
+        var boss = GetComponentInParent<Boss>();
+        if(boss!=null) boss.settingRunes = false;
     }
 
     //this is for RuneQuickAdd script

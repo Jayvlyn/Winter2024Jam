@@ -18,7 +18,8 @@ public class Rune : MonoBehaviour
     {
         if (lastRuneInLayout)
         {
-            GetComponentInParent<Boss>().OnFailed();
+            var boss = GetComponentInParent<Boss>();
+            if(boss != null) boss.OnFailed();
             //GetComponentInParent<RuneLayout>().PlaySound();
         }
     }
