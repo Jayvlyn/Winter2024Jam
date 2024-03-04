@@ -64,7 +64,7 @@ public class SettingsMenu : MonoBehaviour
         List<string> stringRes = new List<string>();
         for (int i = 0; i < _resolutions.Length; i++)
         {
-            stringRes.Add($"{_resolutions[i].width} X {_resolutions[i].height} {_resolutions[i].refreshRateRatio}hz");
+            stringRes.Add($"{_resolutions[i].width} X {_resolutions[i].height} {(int)(_resolutions[i].refreshRateRatio.value)}hz");
             if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResIndex = i;
