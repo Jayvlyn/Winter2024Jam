@@ -225,7 +225,7 @@ public class PlayerController : Singleton<PlayerController>
     public int jumpCount = 0;
     private void OnJump(InputValue inputValue)
     {
-        if (!hasControl) { return; }
+        if (!hasControl || isSlashing) { return; }
 
         if (inputValue.isPressed && (IsGrounded() || (coyoteTimer > 0 && jumpCount < 1)))
         {
